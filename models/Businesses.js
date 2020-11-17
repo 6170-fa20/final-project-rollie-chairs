@@ -1,5 +1,5 @@
 const db = require('../db/db_config');
-
+const statuses=["Closed","Delivery","Take Out","Outdoor Dining", "Indoor Dining"];
 /**
  * @typeof Business
  * 
