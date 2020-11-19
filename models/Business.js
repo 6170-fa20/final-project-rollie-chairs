@@ -40,7 +40,7 @@ class Businesses{
         return db.run(`INSERT INTO businesses (${db.columnNames.businessName},${db.columnNames.businessPassword},${db.columnNames.businessStatus},${db.columnNames.businessEmail},${db.columnNames.businessPhone},${db.columnNames.businessType},${db.columnNames.businessDescription},${db.columnNames.businessAddress})
         VALUES ('${name}','${password}','${status}','${email}','${phone}','${type}','${description}','${address}')`)
                   .then( () => {
-                    return Businesses.findOne(name);
+                    return Businesses.findOneByName(name);
                   });
       }
     
@@ -49,10 +49,18 @@ class Businesses{
        * @param {string} name - name of business to find
        * @return {Business | undefined} - found business
        */
-      static async findOne(name) {
+      static async findOneByName(name) {
         return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessName} == '${name}'`);
       }
-    
+      
+       /**
+       * Find a Business by ID
+       * @param {string} id - ID of business to find
+       * @return {Business | undefined} - found business
+       */
+      static async findOneByID(id) {
+        return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessId} == '${id}'`);
+      }
       /**
        * Return an array of all of the Businesses.
        * @return {Business[]}
@@ -62,124 +70,24 @@ class Businesses{
       }
 
       /**
-       * Update business name
-       * @param {string} oldName - name of business to update
-       * @param {string} newName - new name for the business
+       * Update business column
+       * @param {string} id - id of business to update
+       * @param {string} column - column to be updated
+       * @param {string} value - new value for column
        * @return {Business | undefined} - updated business
        */
-      static async updateName(oldName, newName){
+      static async updateColumn(id,column,value){
         return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessName} = '${newName}' 
-        WHERE ${db.columnNames.businessName} = '${oldName}'`)
+        SET ${column} = '${value}' 
+        WHERE ${db.columnNames.businessId} = '${id}'`)
         .then( () => {
-            return Businesses.findOne(newName);
+              return Businesses.findOneByID(id);
+            
+            
         });
       }
 
-      /**
-       * Update business status
-       * @param {string} name - name of business to update
-       * @param {string} status - new status for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updateStatus(name, status){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessStatus} = '${status}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business email
-       * @param {string} name - name of business to update
-       * @param {string} email - new email for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updateEmail(name, email){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessEmail} = '${email}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business phone
-       * @param {string} name - name of business to update
-       * @param {string} phone - new phone for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updatePhone(name, phone){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessPhone} = '${phone}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business address
-       * @param {string} name - name of business to update
-       * @param {string} address - new address for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updateAddress(name, address){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessAddress} = '${address}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business type
-       * @param {string} name - name of business to update
-       * @param {string} type - new type for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updateType(name, type){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessType} = '${type}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business description
-       * @param {string} name - name of business to update
-       * @param {string} description - new description for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updateDescription(name, description){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessDescription} = '${description}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
-
-      /**
-       * Update business password
-       * @param {string} name - name of business to update
-       * @param {string} password - new password for the business
-       * @return {Business | undefined} - updated business
-       */
-      static async updatePassword(name, password){
-        return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessPassword} = '${password}' 
-        WHERE ${db.columnNames.businessName} = '${name}'`)
-        .then( () => {
-            return Businesses.findOne(name);
-        });
-      }
+      
 
         /**
          * Delete a Business.
