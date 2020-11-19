@@ -74,6 +74,7 @@ class Businesses{
         .then( () => {
             return Businesses.findOne(newName);
         });
+        // update name in metrics too
       }
 
       /**
@@ -181,21 +182,21 @@ class Businesses{
         });
       }
 
-        /**
-         * Delete a Business.
-         * 
-         * @param {string} name - name of business to delete
-         * @return {Business | undefined} - deleted business
-         */
-        static async deleteOne(name) {
-            // first fetch the business from the DB
-            // and then delete it form the DB, waiting for completion
-            return Businesses.findOne(name)
-                .then( (business) => {
-                    db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessName} = '${name}'`);
-                    return business;
-                });
-        }
+      /**
+       * Delete a Business.
+       * 
+       * @param {string} name - name of business to delete
+       * @return {Business | undefined} - deleted business
+       */
+      static async deleteOne(name) {
+          // first fetch the business from the DB
+          // and then delete it form the DB, waiting for completion
+          return Businesses.findOne(name)
+              .then( (business) => {
+                  db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessName} = '${name}'`);
+                  return business;
+              });
+      }
 
 }
 
