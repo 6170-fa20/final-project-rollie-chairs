@@ -70,7 +70,7 @@ class Metrics {
        */
       static async deny(id){
         return db.run(`UPDATE metrics
-        SET ${db.columnNames.metricDenies} = '${db.columnNames.metricDenies}' - 1
+        SET ${db.columnNames.metricDenies} = '${db.columnNames.metricDenies}' + 1
         WHERE ${db.columnNames.metricId} = '${id}'`)
       }
 

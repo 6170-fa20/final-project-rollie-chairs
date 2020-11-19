@@ -24,8 +24,9 @@ const columnNames = {
 
 function createDb() {
     console.log("created our db!");
-    sqlDb = new sqlite3.Database('businessdb.db', function() {
+    sqlDb = new sqlite3.Database('scopedb.db', function() {
       createBusinessTable();
+      createMetricTable();
     });
   };
 
@@ -50,7 +51,7 @@ function createMetricTable(){
     ${columnNames.metricName} TEXT NOT NULL,
     ${columnNames.metricOwner} TEXT NOT NULL,
     ${columnNames.metricConfirms} INTEGER,
-    ${columnNames.metricDenies} INTEGER,
+    ${columnNames.metricDenies} INTEGER
 
   )`);
 };
