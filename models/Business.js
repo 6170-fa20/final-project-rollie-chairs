@@ -87,20 +87,18 @@ class Businesses{
         });
       }
 
-
-
         /**
          * Delete a Business.
          *
-         * @param {string} name - name of business to delete
+         * @param {string} id - id of business to delete
          * @return {Business | undefined} - deleted business
          */
-        static async deleteOne(name) {
+        static async deleteOne(id) {
             // first fetch the business from the DB
             // and then delete it form the DB, waiting for completion
-            return Businesses.findOne(name)
+            return Businesses.findOneByID(id)
                 .then( (business) => {
-                    db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessName} = '${name}'`);
+                    db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessId} = '${id}'`);
                     return business;
                 });
         }
