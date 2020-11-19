@@ -2,7 +2,7 @@ const db = require('../db/db_config');
 const statuses=["Closed","Delivery","Take Out","Outdoor Dining", "Indoor Dining"];
 /**
  * @typeof Business
- * 
+ *
  * @prop {string} name - name of the business
  * @prop {number} id - id of the business
  * @prop {string} password - password of the business
@@ -16,7 +16,7 @@ const statuses=["Closed","Delivery","Take Out","Outdoor Dining", "Indoor Dining"
 
 /**
  * @class Businesses
- * 
+ *
  * Stores all businesses
  * Note that all methods are static.
  * Wherever you import this class, you will be accessing the same data
@@ -24,7 +24,7 @@ const statuses=["Closed","Delivery","Take Out","Outdoor Dining", "Indoor Dining"
 class Businesses{
     /**
      * Add a Business
-     * 
+     *
      * @param {string} name - name of the business
      * @param {string} password - password of the business
      * @param {string} status - status of the business
@@ -43,7 +43,7 @@ class Businesses{
                     return Businesses.findOneByName(name);
                   });
       }
-    
+
       /**
        * Find a Business by Name.
        * @param {string} name - name of business to find
@@ -52,7 +52,7 @@ class Businesses{
       static async findOneByName(name) {
         return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessName} == '${name}'`);
       }
-      
+
        /**
        * Find a Business by ID
        * @param {string} id - ID of business to find
@@ -78,20 +78,20 @@ class Businesses{
        */
       static async updateColumn(id,column,value){
         return db.run(`UPDATE businesses
-        SET ${column} = '${value}' 
+        SET ${column} = '${value}'
         WHERE ${db.columnNames.businessId} = '${id}'`)
         .then( () => {
               return Businesses.findOneByID(id);
-            
-            
+
+
         });
       }
 
-      
+
 
         /**
          * Delete a Business.
-         * 
+         *
          * @param {string} name - name of business to delete
          * @return {Business | undefined} - deleted business
          */
