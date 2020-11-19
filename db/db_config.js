@@ -24,7 +24,7 @@ const columnNames = {
 
 function createDb() {
     console.log("created our db!");
-    sqlDb = new sqlite3.Database('shortdb.db', function() {
+    sqlDb = new sqlite3.Database('businessdb.db', function() {
       createBusinessTable();
     });
   };
@@ -32,7 +32,7 @@ function createDb() {
 function createBusinessTable(){
     sqlDb.run(`CREATE TABLE IF NOT EXISTS businesses (
     ${columnNames.businessId} INTEGER PRIMARY KEY AUTOINCREMENT,
-    ${columnNames.businessName} TEXT NOT NULL UNIQUE,
+    ${columnNames.businessName} TEXT NOT NULL,
     ${columnNames.businessPassword} TEXT NOT NULL,
     ${columnNames.businessStatus} TEXT NOT NULL,
     ${columnNames.businessEmail} TEXT NOT NULL,
