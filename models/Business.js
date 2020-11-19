@@ -87,7 +87,6 @@ class Businesses{
         });
       }
 
-      
 
         /**
          * Delete a Business.
@@ -98,7 +97,7 @@ class Businesses{
         static async deleteOne(name) {
             // first fetch the business from the DB
             // and then delete it form the DB, waiting for completion
-            return Businesses.findOne(name)
+            return Businesses.findOneByName(name)
                 .then( (business) => {
                     db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessName} = '${name}'`);
                     return business;
