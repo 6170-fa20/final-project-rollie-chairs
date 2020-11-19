@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
  * Create a business
  * @name POST/api/business
  * @param {string} name - the name of the business
- * @return {Freet} - the created business
+ * @return {Business} - the created business
  */
 router.post('/', (req, res) => {
 	const business = Business.addOne(req.body.name,
@@ -83,7 +83,7 @@ router.put('/:id', (req, res) => {
  * @throws {404} - if business does not exist
  */
 router.delete('/:id', (req, res) => {
-	const oldBusiness = Freets.get(req.params.id);
+	const oldBusiness = Business.get(req.params.id);
 	if ( oldBusiness === undefined ) {
 		res.status(404).json({
 			error: `Business ${req.params.id} does not exist.`,
