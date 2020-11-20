@@ -59,7 +59,7 @@ class Businesses{
        * @return {Business | undefined} - found business
        */
       static async findOneByID(id) {
-        return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessId} == '${id}'`);
+        return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessId} = '${id}'`);
       }
       /**
        * Return an array of all of the Businesses.
@@ -108,6 +108,9 @@ class Businesses{
        * @return {Business | undefined} - updated business
        */
       static async updateColumn(id,column,value){
+        console.log(id);
+        console.log(column);
+        console.log(value);
         return db.run(`UPDATE businesses
         SET ${column} = '${value}'
         WHERE ${db.columnNames.businessId} = '${id}'`)
