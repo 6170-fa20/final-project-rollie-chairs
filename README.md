@@ -15,6 +15,7 @@ In a separate shell:
 $ npm start
 ```
 then you will find the application at `localhost:8080` in the browser
+We haven't implemented the home page yet, so you can find the profile page of our existing business at `localhost:8080/businesses/1`.
 
 ### Authorship:
 * **Sam Sappenfield**:
@@ -23,18 +24,16 @@ then you will find the application at `localhost:8080` in the browser
         createBusinessTable()    
 * **Kylie Carpenter**:
   * src
-    * HomePage.vue
-    * Test.vue
+    * Metric.vue
+    * MetricsList.vue
+    * BusinessInfo.vue
+    * Home.vue
+    * BusinessProfile.vue 
   * models:
-    * Model1.js
-    * Model2.js
-    * Users.js
+    * Debugged Business.js and metrics.js
   * routes:
-    * route1.js
-    * route2.js
-    * users.js
     * index.js
-  * Boilerplate code (main.js, babel.config.js, router.js, etc.)
+  * Boilerplate code (main.js, web.css, babel.config.js, router.js, etc.)
 * **Noah Zamzow-Schmidt**:
   * public:
     * javascripts
