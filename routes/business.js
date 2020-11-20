@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 		let businesses = await Business.findAll();
         res.status(200).json(businesses).end();
     } catch(error){
-        res.status(503).json(`Could not edit freet: ${error}`);
+        res.status(503).json(`Could not find businesses`);
     }
 });
 

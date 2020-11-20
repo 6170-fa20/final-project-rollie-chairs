@@ -63,6 +63,24 @@ function deleteBusiness(fields) {
     .then(showResponse)
     .catch(showResponse);
 }
+
+function getBusinessMetrics(fields) {
+  axios.get('/api/metrics/' + fields.businessID, fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
+
+function confirmMetric(fields) {
+  axios.get('/api/metrics/confirm/' + fields.id, fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
+
+function denyMetric(fields) {
+  axios.get('/api/metrics/deny/' + fields.id, fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
 // IT IS UNLIKELY THAT YOU WILL WANT TO EDIT THE CODE BELOW
 
 // map form (by id) to the function that should be called on submit
@@ -70,7 +88,10 @@ const formsAndHandlers = {
   'create-business': createBusiness,
   'edit-business': editBusiness,
   'view-all-businesses': viewAllBusinesses,
-  'delete-business': deleteBusiness
+  'delete-business': deleteBusiness,
+  'get-business-metrics': getBusinessMetrics,
+  'confirm-metric': confirmMetric,
+  'denyMetric': denyMetric
 };
 
 // attach handlers to forms
