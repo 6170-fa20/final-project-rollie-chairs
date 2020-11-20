@@ -45,17 +45,9 @@ We haven't implemented the home page yet, so you can find the profile page of ou
     * business.js
     * index.js
     * metrics.js
-* **Shariqah Hossain**:
-  * src
-    * HomePage.vue
-    * Test.vue
+* **Shariqah Hossain**:  
   * models:
-    * Model1.js
-    * Model2.js
-    * Users.js
-  * routes:
-    * route1.js
-    * route2.js
-    * users.js
-    * index.js
-  * App.vue/router.js
+    * Metrics.js
+  * db:  
+    * db_config.js. 
+      * createMetricTable()

@@ -1,8 +1,31 @@
 const db = require('../db/db_config');
 const metrics = ["Masks required","Six feet distance"];
 
+/**
+ * @typeof Metrics
+ *
+ * @prop {string} name - description of Metric
+ * @prop {number} owner - id of the business
+ * @prop {number} confirms
+ * @prop {number} denies
+ */
+
+/**
+ * @class Metrics
+ *
+ * Stores all metrics
+ * Note that all methods are static.
+ * Wherever you import this class, you will be accessing the same data
+ */
 class Metrics {
-    static async addOne(name, owner) {
+    /**
+     * Add a Metric
+     *
+     * @param {string} name - description of Metric
+     * @param {number} owner - id of the business
+     * @return {Metrics} - created metric
+     */
+      static async addOne(name, owner) {
         return db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
         VALUES ('${name}','${owner}','${0}','${0}')`)
                   .then( () => {
@@ -10,10 +33,20 @@ class Metrics {
                   });
       }
     
+      /**
+       * Find a metric by id.
+       * @param {number} id - id of business to find
+       * @return {Metrics | undefined} - found metric
+       */
       static async findOne(id) {
         return db.get(`SELECT * FROM  metrics WHERE ${db.columnNames.metricId} == '${id}'`);
       }
 
+      /**
+       * Find all metrics for a given business
+       * @param {number} businessId - id of business to find
+       * @return {Metrics | undefined} - found metric
+       */
       static async findBusinessMetrics(businessId) {
         return db.all(`SELECT * FROM  metrics WHERE ${db.columnNames.metricOwner} == '${businessId}'`);
       }
@@ -45,8 +78,6 @@ class Metrics {
        * @return {Metric | undefined} - deleted metric
        */
       static async deleteOne(id) {
-        // first fetch the metric from the DB
-        // and then delete it form the DB, waiting for completion
         return Metrics.findOne(id)
             .then( (metric) => {
                 db.run(`DELETE FROM metrics WHERE ${db.columnNames.metricId} = '${id}'`);
@@ -55,10 +86,8 @@ class Metrics {
       }
 
       /**
-       * Update metric name
-       * @param {string} oldName - name of metric to update
-       * @param {string} newName - new name for the metric
-       * @return {Metric | undefined} - updated metric
+       * Confirm a metric
+       * @param {number} id - id of metric to update
        */
       static async confirm(id){
         return db.run(`UPDATE metrics
@@ -67,10 +96,8 @@ class Metrics {
       }
 
       /**
-       * Update metric name
-       * @param {string} oldName - name of metric to update
-       * @param {string} newName - new name for the metric
-       * @return {Metric | undefined} - updated metric
+       * Deny a metric
+       * @param {number} id - id of metric to update
        */
       static async deny(id){
         return db.run(`UPDATE metrics
