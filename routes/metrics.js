@@ -25,14 +25,16 @@ router.get('/:businessID', async (req, res) => {
  * @throws {404} - if metric does not exist
  */
 router.put('/confirm/:id', async (req, res) => {
-	const oldMetric = await Metrics.findOne(req.params.id);
-	if ( oldMetric === undefined ) {
+	try{
+		// const oldMetric = await Metrics.findOne(req.params.id);
+		console.log(req.params.id);
+		// console.log(metric)
+		const metric = await Metrics.confirm(req.params.id);
+		res.status(200).json(metric).end();
+	} catch(error){
 		res.status(404).json({
 			error: `Metric ${req.params.id} does not exist.`,
 		}).end();
-	} else {
-		const metric = Metric.confirm(req.params.id);
-		res.status(200).json(metric).end();
 	}
 });
 
@@ -43,15 +45,16 @@ router.put('/confirm/:id', async (req, res) => {
  * @return {Metric} - the newly denied metric
  * @throws {404} - if metric does not exist
  */
-router.put('/:id', async (req, res) => {
+router.put('/deny/:id', async (req, res) => {
+	try{
+		
 	const oldMetric = await Metrics.findOne(req.params.id);
-	if ( oldMetric === undefined ) {
+		const metric = await Metrics.deny(req.params.id);
+		res.status(200).json(metric).end();
+	}catch(error){
 		res.status(404).json({
 			error: `Metric ${req.params.id} does not exist.`,
 		}).end();
-	} else {
-		const metric = Metric.deny(req.params.id);
-		res.status(200).json(metric).end();
 	}
 });
 

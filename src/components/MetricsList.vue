@@ -67,7 +67,7 @@ export default {
   created: function() {
 
     eventBus.$on("confirm-success", () => {
-      this.loadMetrics;
+      this.loadMetrics();
     });
     eventBus.$on("deny-success", () => {
       this.clearMessages();
