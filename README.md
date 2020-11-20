@@ -1,5 +1,6 @@
 
-# [Scope and Link to the deployed URL](https://www.heroku.com/)
+# [Scope ](https://rollie-chairs-scope.herokuapp.com/)
+in order to see the business profiles you can go to https://rollie-chairs-scope.herokuapp.com/businesses/1 and https://rollie-chairs-scope.herokuapp.com/businesses/2
 ## [RO]
 ### Purpose and Functionality
 Describe the purpose and functionality of your application (~50 words)
@@ -7,14 +8,16 @@ Scope is a crowd-sourced app that communicates to what extent a business is taki
 ### Instructions to Run Locally:
 In command line:
 ```console
-$ npm i
+$ npm run build
 $ npm run serve
 ```
 In a separate shell:
 ```console
-$ npm start
+$ npm run awesome
 ```
-then you will find the application at `localhost:8080` in the browser
+we have two hard coded businesses in our database currently you can then find each at  `localhost:8080/businesses/1` and
+`localhost:8080/businesses/2` 
+
 
 ### Authorship:
 * **Sam Sappenfield**:
