@@ -1,9 +1,9 @@
 
-# [Insert App Name Here and Link to the deployed URL](https://www.heroku.com/)
-## [Insert Team Name Here]
+# [Scope and Link to the deployed URL](https://www.heroku.com/)
+## [RO]
 ### Purpose and Functionality
 Describe the purpose and functionality of your application (~50 words) 
-
+Scope is a crowd-sourced app that communicates to what extent a business is taking necessary safety precautions during COVID-19, creating peace of mind for prospective customers. Currently, in our app there is a business profile for one business which displays the business information and the metrics associated that display how the business is following COVID protocols. 
 ### Instructions to Run Locally:
 In command line:
 ```console
@@ -17,7 +17,7 @@ $ npm start
 then you will find the application at `localhost:8080` in the browser
 
 ### Authorship:
-* **Alyssa P. Hacker**:
+* **Sam Sappenfield**:
   * src
     * HomePage.vue
     * Test.vue
@@ -30,7 +30,7 @@ then you will find the application at `localhost:8080` in the browser
     * route2.js
     * users.js
     * index.js
-* **Ben Bitdiddle**:
+* **Kylie Carpenter**:
   * src
     * HomePage.vue
     * Test.vue
@@ -44,7 +44,7 @@ then you will find the application at `localhost:8080` in the browser
     * users.js
     * index.js
   * Boilerplate code (main.js, babel.config.js, router.js, etc.)
-* **Melon Usk**:
+* **Noah Zamzow-Schmidt**:
   * src
     * HomePage.vue
     * Test.vue
@@ -57,7 +57,7 @@ then you will find the application at `localhost:8080` in the browser
     * route2.js
     * users.js
     * index.js
-* **Gill Bates**:
+* **Shariqah Hossain**:
   * src
     * HomePage.vue
     * Test.vue
