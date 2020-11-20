@@ -18,18 +18,9 @@ then you will find the application at `localhost:8080` in the browser
 
 ### Authorship:
 * **Sam Sappenfield**:
-  * src
-    * HomePage.vue
-    * Test.vue
-  * models:
-    * Model1.js
-    * Model2.js
-    * Users.js
-  * routes:
-    * route1.js
-    * route2.js
-    * users.js
-    * index.js
+  * models/Business.js
+    * db_config.js
+        createBusinessTable()    
 * **Kylie Carpenter**:
   * src
     * HomePage.vue
