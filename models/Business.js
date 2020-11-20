@@ -70,6 +70,37 @@ class Businesses{
       }
 
       /**
+       * Update business name
+       * @param {string} oldName - name of business to update
+       * @param {string} newName - new name for the business
+       * @return {Business | undefined} - updated business
+       */
+      static async updateName(oldName, newName){
+        return db.run(`UPDATE businesses
+        SET ${db.columnNames.businessName} = '${newName}' 
+        WHERE ${db.columnNames.businessName} = '${oldName}'`)
+        .then( () => {
+            return Businesses.findOne(newName);
+        });
+        // update name in metrics too
+      }
+
+      /**
+       * Update business status
+       * @param {string} name - name of business to update
+       * @param {string} status - new status for the business
+       * @return {Business | undefined} - updated business
+       */
+      static async updateStatus(name, status){
+        return db.run(`UPDATE businesses
+        SET ${db.columnNames.businessStatus} = '${status}' 
+        WHERE ${db.columnNames.businessName} = '${name}'`)
+        .then( () => {
+            return Businesses.findOne(name);
+        });
+      }
+
+      /**
        * Update business column
        * @param {string} id - id of business to update
        * @param {string} column - column to be updated
@@ -87,21 +118,21 @@ class Businesses{
         });
       }
 
-        /**
-         * Delete a Business.
-         *
-         * @param {string} id - id of business to delete
-         * @return {Business | undefined} - deleted business
-         */
-        static async deleteOne(id) {
-            // first fetch the business from the DB
-            // and then delete it form the DB, waiting for completion
-            return Businesses.findOneByID(id)
-                .then( (business) => {
-                    db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessId} = '${id}'`);
-                    return business;
-                });
-        }
+      /**
+       * Delete a Business.
+       * 
+       * @param {string} name - name of business to delete
+       * @return {Business | undefined} - deleted business
+       */
+      static async deleteOne(name) {
+          // first fetch the business from the DB
+          // and then delete it form the DB, waiting for completion
+          return Businesses.findOne(name)
+              .then( (business) => {
+                  db.run(`DELETE FROM businesses WHERE ${db.columnNames.businessName} = '${name}'`);
+                  return business;
+              });
+      }
 
 }
 

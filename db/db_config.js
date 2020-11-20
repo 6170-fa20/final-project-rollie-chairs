@@ -1,4 +1,3 @@
-
 const sqlite3 = require('sqlite3');
 
 let sqlDb;
@@ -15,13 +14,19 @@ const columnNames = {
     businessAddress: "address",
     businessType:"type",
     businessDescription:"description",
+    metricId: "metric_id",
+    metricName: "metric",
+    metricOwner: "owner",
+    metricConfirms: "confirms",
+    metricDenies: "denies"
   };
   Object.freeze(columnNames);
 
 function createDb() {
     console.log("created our db!");
-    sqlDb = new sqlite3.Database('businessdb.db', function() {
+    sqlDb = new sqlite3.Database('scopedb.db', function() {
       createBusinessTable();
+      createMetricTable();
     });
   };
 
@@ -36,6 +41,17 @@ function createBusinessTable(){
     ${columnNames.businessType} TEXT NOT NULL,
     ${columnNames.businessDescription} TEXT NOT NULL,
     ${columnNames.businessAddress} TEXT NOT NULL
+
+  )`);
+};
+
+function createMetricTable(){
+    sqlDb.run(`CREATE TABLE IF NOT EXISTS metrics (
+    ${columnNames.metricId} INTEGER PRIMARY KEY AUTOINCREMENT,
+    ${columnNames.metricName} TEXT NOT NULL,
+    ${columnNames.metricOwner} INTEGER NOT NULL,
+    ${columnNames.metricConfirms} INTEGER,
+    ${columnNames.metricDenies} INTEGER
 
   )`);
 };
