@@ -1,22 +1,19 @@
 <template>
   <div class='business-profile'>
-    <BusinessInfo
-            v-bind:businessID="businessID"
-    />
-    <!-- <MetricsList/> -->
-    <p> METRICS </p>
+    <BusinessInfo v-bind:businessID="businessID" />
+    <MetricsList  v-bind:businessID="businessID" />
   </div>
 </template>
 
 <script>
 import BusinessInfo from "../components/BusinessInfo.vue";
-//import MetricsList from "../components/MetricsList.vue";
+import MetricsList from "../components/MetricsList.vue";
 
 export default {
   name: "businessProfile",
   components: {
     BusinessInfo,
-    //MetricsList
+    MetricsList
   },
   data() {
     return {

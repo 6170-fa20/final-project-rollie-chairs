@@ -15,7 +15,7 @@ class Metrics {
       }
 
       static async findBusinessMetrics(businessId) {
-        return db.get(`SELECT * FROM  metrics WHERE ${db.columnNames.metricOwner} == '${businessId}'`);
+        return db.all(`SELECT * FROM  metrics WHERE ${db.columnNames.metricOwner} == '${businessId}'`);
       }
     
       /**

@@ -34,7 +34,7 @@
         <div>
             <Metric
             v-for="metric in metrics"
-            v-bind:key="metric.ID"
+            v-bind:key="metric.metric_id"
             v-bind:metric="metric"
             />
         </div>
@@ -60,6 +60,10 @@ export default {
     };
   },
 
+  props: {
+    businessID: Number
+  },
+
   created: function() {
 
     eventBus.$on("confirm-success", () => {
@@ -77,7 +81,7 @@ export default {
 
   methods: {
     loadMetrics: function() {
-      axios.get(`/api/metrics/business`).then(response => {
+      axios.get(`/api/metrics/${this.businessID}`).then(response => {
         this.metrics = response.data;
       });
     },

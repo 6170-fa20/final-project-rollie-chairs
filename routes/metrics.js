@@ -10,8 +10,8 @@ const Metrics = require('../models/Metrics');
  */
 router.get('/:businessID', async (req, res) => {
 	try{
-		let metric = await Metrics.findBusinessMetrics(req.params.businessID);
-        res.status(200).json(businesses).end();
+		let metrics = await Metrics.findBusinessMetrics(req.params.businessID);
+        res.status(200).json(metrics).end();
     } catch(error){
         res.status(503).json(`Could not find metrics for business`);
     }
@@ -24,8 +24,8 @@ router.get('/:businessID', async (req, res) => {
  * @return {Metric} - the newly confirmed metric
  * @throws {404} - if metric does not exist
  */
-router.put('/confirm/:id', (req, res) => {
-	const oldMetric = Metrics.findOne(req.params.id);
+router.put('/confirm/:id', async (req, res) => {
+	const oldMetric = await Metrics.findOne(req.params.id);
 	if ( oldMetric === undefined ) {
 		res.status(404).json({
 			error: `Metric ${req.params.id} does not exist.`,
@@ -43,8 +43,8 @@ router.put('/confirm/:id', (req, res) => {
  * @return {Metric} - the newly denied metric
  * @throws {404} - if metric does not exist
  */
-router.put('/:id', (req, res) => {
-	const oldMetric = Metrics.findOne(req.params.id);
+router.put('/:id', async (req, res) => {
+	const oldMetric = await Metrics.findOne(req.params.id);
 	if ( oldMetric === undefined ) {
 		res.status(404).json({
 			error: `Metric ${req.params.id} does not exist.`,
