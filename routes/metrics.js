@@ -27,7 +27,6 @@ router.get('/:businessID', async (req, res) => {
 router.put('/confirm/:id', async (req, res) => {
 	try{
 		// const oldMetric = await Metrics.findOne(req.params.id);
-		console.log(req.params.id);
 		// console.log(metric)
 		const metric = await Metrics.confirm(req.params.id);
 		res.status(200).json(metric).end();

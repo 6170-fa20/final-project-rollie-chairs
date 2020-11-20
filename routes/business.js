@@ -65,32 +65,36 @@ router.post('/', (req, res) => {
  * @return {Business} - the updated business
  * @throws {404} - if business does not exist
  */
-router.put('/:id', (req, res) => {
-	const oldBusiness = Business.findOne(req.params.id);
-	if ( oldBusiness === undefined ) {
-		res.status(404).json({
-			error: `Business ${req.params.id} does not exist.`,
-		}).end();
-	}  else {
-		if (req.body.name) {
-			Business.updateColumn("name", req.params.id, req.body.name);
-		} if (req.body.status) {
-			Business.updateColumn("status", req.params.id, req.body.status);
-		} if (req.body.email) {
-			Business.updateColumn("email", req.params.id, req.body.email);
-		} if (req.body.phone) {
-			Business.updateColumn("phone", req.params.id, req.body.phone);
-		} if (req.body.address) {
-			Business.updateColumn("address", eq.params.id, req.body.address);
-		} if (req.body.type) {
-			Business.updateColumn("type", req.params.id, req.body.type);
-		} if (req.body.description) {
-			Business.updateColumn("description", req.params.id, req.body.description);
-		} if (req.body.password) {
-			Business.updateColumn("password", req.params.id, req.body.password);
+router.put('/:id', async (req, res) => {
+	try{
+		const oldBusiness = await Business.findOneByID(req.params.id);
+		if ( oldBusiness === undefined ) {
+			res.status(404).json({
+				error: `Business ${req.params.id} does not exist.`,
+			}).end();
+		}  else {
+			if (req.body.name) {
+				await Business.updateColumn( req.params.id, "name", req.body.name);
+			} if (req.body.status) {
+				await Business.updateColumn(req.params.id, "status", req.body.status);
+			} if (req.body.email) {
+				await Business.updateColumn(req.params.id, "email", req.body.email);
+			} if (req.body.phone) {
+				await Business.updateColumn(req.params.id, "phone", req.body.phone);
+			} if (req.body.address) {
+				await Business.updateColumn(req.params.id, "address", req.body.address);
+			} if (req.body.type) {
+				await Business.updateColumn(req.params.id, "type", req.body.type);
+			} if (req.body.description) {
+				await Business.updateColumn(req.params.id, "description", req.body.description);
+			} if (req.body.password) {
+				await Business.updateColumn(req.params.id, "password", req.body.password);
+			}
+			const newBusiness = await Business.findOneByID(req.params.id);
+			res.status(200).json(newBusiness).end();
 		}
-		const newBusiness = Business.findOne(req.params.id);
-		res.status(200).json(newBusiness).end();
+	} catch(error){
+		res.status(503).json(`Could not update business info: ${error}`).end();
 	}
 });
 
