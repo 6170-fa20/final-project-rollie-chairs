@@ -1,0 +1,72 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    --main-color: blue;
+  }
+
+/********************* Styles for Headers/Titles/Etc. *********************/
+  .headers {
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* .secondary-header {
+    font-size: 3em;
+    text-decoration: underline;
+    margin-bottom: 1%;
+  } */
+
+  .profile-headers {
+    font-size: 3em;
+    margin-bottom: 0%;
+    text-decoration: underline;
+    border-bottom: solid black;
+}
+
+/**************************** HOME VIEW STYLES ************************/
+
+.home {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  border: solid red;
+}
+
+
+
+
+
+/**************************** BUSINESS PROFILE VIEW STYLES ************************/
+.business-profile-name {
+  display: flex;
+}
+.business-profile-picture {
+  display: flex;
+  flex-direction: row;
+  border: solid black
+}
+.business-profile-info {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1; */
+  justify-content: space-between;
+  /* align-items: stretch; */
+  border: solid black
+}
+
+.business-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: solid black;
+}
+
+.metrics-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-bottom: solid black;
+  border-left: solid black;
+  border-right: solid black;
+}

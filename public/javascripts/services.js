@@ -53,7 +53,7 @@ function editBusiness(fields) {
 }
 
 function viewAllBusinesses(fields) {
-  axios.put('/api/business', fields)
+  axios.get('/api/business', fields)
     .then(showResponse)
     .catch(showResponse);
 }

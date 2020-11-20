@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 const Business = require('../models/Business');
 
 /**
@@ -8,8 +8,13 @@ const Business = require('../models/Business');
  * @name GET/api/business
  * @return {Business[]} - list of businesses
  */
-router.get('/', (req, res) => {
-	res.status(200).json(Business.findAll()).end();
+router.get('/', async (req, res) => {
+	try{
+		let businesses = await Business.findAll();
+        res.status(200).json(businesses).end();
+    } catch(error){
+        res.status(503).json(`Could not edit freet: ${error}`);
+    }
 });
 
 /**
@@ -22,14 +27,14 @@ router.post('/', (req, res) => {
 	const business = Business.addOne(req.body.name,
 									req.body.password,
 									req.body.status,
-									req.body.email
-									req.body.phone
-									req.body.type
-									req.body.description
+									req.body.email,
+									req.body.phone,
+									req.body.type,
+									req.body.description,
 									req.body.address);
 	res.status(201).json(business).end();
 	}
-});
+);
 
 /**
  * Edit a business
