@@ -1,6 +1,6 @@
 
 # [Scope ](https://rollie-chairs-scope.herokuapp.com/)
-in order to see the business profiles you can go to https://rollie-chairs-scope.herokuapp.com/businesses/1 and https://rollie-chairs-scope.herokuapp.com/businesses/2
+in order to see the business profiles you can go to https://rollie-chairs-scope.herokuapp.com/businesses/1
 ## [RO]
 ### Purpose and Functionality
 Describe the purpose and functionality of your application (~50 words)
