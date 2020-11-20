@@ -62,7 +62,7 @@ class Metrics {
        */
       static async confirm(id){
         return db.run(`UPDATE metrics
-        SET ${db.columnNames.metricConfirms} = '${db.columnNames.metricConfirms}' + 1
+        SET ${db.columnNames.metricConfirms} = ${db.columnNames.metricConfirms} + 1
         WHERE ${db.columnNames.metricId} = '${id}'`)
       }
 
@@ -74,7 +74,7 @@ class Metrics {
        */
       static async deny(id){
         return db.run(`UPDATE metrics
-        SET ${db.columnNames.metricDenies} = '${db.columnNames.metricDenies}' + 1
+        SET ${db.columnNames.metricDenies} = ${db.columnNames.metricDenies} + 1
         WHERE ${db.columnNames.metricId} = '${id}'`)
       }
 
