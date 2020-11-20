@@ -13,6 +13,10 @@ class Metrics {
       static async findOne(id) {
         return db.get(`SELECT * FROM  metrics WHERE ${db.columnNames.metricId} == '${id}'`);
       }
+
+      static async findBusinessMetrics(businessId) {
+        return db.get(`SELECT * FROM  metrics WHERE ${db.columnNames.metricOwner} == '${businessId}'`);
+      }
     
       /**
        * Return an array of all of the Metrics.

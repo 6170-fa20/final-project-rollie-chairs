@@ -49,7 +49,7 @@ function createMetricTable(){
     sqlDb.run(`CREATE TABLE IF NOT EXISTS metrics (
     ${columnNames.metricId} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${columnNames.metricName} TEXT NOT NULL,
-    ${columnNames.metricOwner} TEXT NOT NULL,
+    ${columnNames.metricOwner} INTEGER NOT NULL,
     ${columnNames.metricConfirms} INTEGER,
     ${columnNames.metricDenies} INTEGER
 
