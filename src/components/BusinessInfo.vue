@@ -22,15 +22,18 @@ export default {
       business: Object
     };
   },
-  mounted: function() {
-    this.getAllBusinesses();
+  props: {
+    businessID: Number
+  },
+
+  created: function() {
+    this.getBusiness();
   },
 
   methods: {
-    getAllBusinesses: function() {
-      axios.get(`/api/business/`).then(response => {
-        this.business = response.data[0];
-        this.view = {type:"all"};
+    getBusiness: function() {
+      axios.get(`/api/business/${this.businessID}`).then(response => {
+        this.business = response.data;
       });
     }
   }

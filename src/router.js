@@ -7,19 +7,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/businesses/:businessID',
       name: 'BusinessProfile',
       component: () => import('./views/BusinessProfile.vue')
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component: () => import('./views/Home.vue')
     }
-    // {
-    //   path: '/profile',
-    //   name: 'profile',
-    //   component: () => import('./views/Profile.vue')
-    // },
-    // {
-    //   path: '/account',
-    //   name: 'account',
-    //   component: () => import('./views/Account.vue')
-    // }
   ]
 })

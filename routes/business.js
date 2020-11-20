@@ -13,7 +13,21 @@ router.get('/', async (req, res) => {
 		let businesses = await Business.findAll();
         res.status(200).json(businesses).end();
     } catch(error){
-        res.status(503).json(`Could not edit freet: ${error}`);
+        res.status(503).json(`Could not get businesses: ${error}`);
+    }
+});
+
+/**
+ * Get the business with the given ID
+ * @name GET/api/business/:businessID
+ * @return {Business} - business object
+ */
+router.get('/:businessID', async (req, res) => {
+	try{
+		let business = await Business.findOneByID(req.params.businessID);
+        res.status(200).json(business).end();
+    } catch(error){
+        res.status(503).json(`Could not find that business: ${error}`);
     }
 });
 

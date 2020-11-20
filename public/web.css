@@ -33,6 +33,22 @@
   border: solid red;
 }
 
+.view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-bottom: solid black;
+  border-left: solid black;
+  border-right: solid black;
+}
+
+.container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  /* border: solid red; */
+}
+
 
 
 
@@ -62,11 +78,17 @@
   border: solid black;
 }
 
-.metrics-container{
+.metric{
+  display: flex;
+  flex-direction: column;
+  border: solid black;
+}
+.metric-name{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  border-bottom: solid black;
-  border-left: solid black;
-  border-right: solid black;
+}
+
+.metrics-list{
+  display: flex;
+  flex-direction: row;
 }

@@ -9,7 +9,7 @@
 export default {
   name: "app",
   beforeCreate: function() {
-    this.$router.push("");
+    //this.$router.push("");
   }
 };
 </script>
