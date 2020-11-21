@@ -1,14 +1,14 @@
 <template>
-  <div class='home-page'>
+  <div class='business-signup-page'>
     <NavBar/>
-    <p> Home page just because </p>
+    
   </div>
 </template>
 
 <script>
 import NavBar from "../components/NavBar.vue"
 export default {
-  name: "Home",
+  name: "BusinessSignUp",
   components:{
     NavBar
 

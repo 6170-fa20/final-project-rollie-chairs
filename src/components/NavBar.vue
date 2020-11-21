@@ -1,0 +1,51 @@
+<template>
+  <div class="nav-bar">
+    
+      <router-link to="/"> Scope </router-link>
+      <div class="search-bar-container">
+        <form id="search-bar" v-on:submit.prevent="search" method="post">
+          <input
+            id="search-content"
+            v-model.trim="searchContent"
+            type="text"
+            name="searchcontent"
+            placeholder="Search for Business"
+          />
+
+          <input
+            type="submit"
+            value="search"
+            id="searchButton"
+            class="button"
+          />
+        </form>
+      </div>
+   
+
+    <div class="links-container">
+        <div class = "link">
+            <span> Cambridge Map </span>
+        </div>
+      <div class = "link">
+            <a href="https://www.cambridgema.gov/covid19" target="_blank">
+        Cambridge COVID Resources
+      </a>
+        </div>
+      <div class = "link">
+            <span> My account /login </span>
+        </div>
+        <div>
+            <router-link to="/businesssignup"> SignUp </router-link>
+            </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "NavBar",
+  data() {
+    return {};
+  },
+};
+</script>

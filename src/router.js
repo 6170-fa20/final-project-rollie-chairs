@@ -7,6 +7,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/businesssignup',
+      name: 'BusinessSignUp',
+      component: () => import('./views/BusinessSignUp.vue')
+    },
+    {
       path: '/businesses/:businessID',
       name: 'BusinessProfile',
       component: () => import('./views/BusinessProfile.vue')
