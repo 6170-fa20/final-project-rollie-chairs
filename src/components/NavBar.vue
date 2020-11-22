@@ -8,7 +8,7 @@
             id="search-content"
             v-model.trim="searchContent"
             type="text"
-            name="searchcontent"
+            name="searchContent"
             placeholder="Search for Business"
           />
 
@@ -42,10 +42,20 @@
 </template>
 
 <script>
+import { eventBus } from "../main";
 export default {
   name: "NavBar",
   data() {
-    return {};
+    return {
+      searchContent:"",
+    };
+  },
+  methods:{
+    search: function(){
+      eventBus.$emit("search-success", this.searchContent);
+      this.$router.push("/");
+    }
+
   },
 };
 </script>
