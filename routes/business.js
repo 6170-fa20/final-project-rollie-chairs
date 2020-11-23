@@ -32,6 +32,14 @@ router.get('/:businessID', async (req, res) => {
 });
 
 /**
+ * Get list of available statuses
+ */
+router.get('/statuses',(req, res) => {
+	res.status(201).json(Business.getStatuses()).end();
+}
+);
+
+/**
  * Create a business
  * @name POST/api/business
  * @param {string} name - the name of the business

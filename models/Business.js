@@ -137,6 +137,14 @@ class Businesses{
               });
       }
 
+      /**
+       * Return Statuses
+       * @return {String[]} -list of statuses
+       */
+      static async getStatuses(){
+        return [...statuses];
+      }
+
 }
 
 module.exports = Businesses;
