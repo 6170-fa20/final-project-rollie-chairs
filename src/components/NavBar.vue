@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    
+
       <router-link to="/"> Scope </router-link>
       <div class="search-bar-container">
         <form id="search-bar" v-on:submit.prevent="search" method="post">
@@ -20,12 +20,14 @@
           />
         </form>
       </div>
-   
+
 
     <div class="links-container">
-        <div class = "link">
-            <span> Cambridge Map </span>
-        </div>
+        <router-link to="/map" >
+            <span>
+              Map
+            </span>
+        </router-link>
       <div class = "link">
             <a href="https://www.cambridgema.gov/covid19" target="_blank">
         Cambridge COVID Resources
