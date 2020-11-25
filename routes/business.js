@@ -38,6 +38,13 @@ router.get('/statuses',(req, res) => {
 	res.status(201).json(Business.getStatuses()).end();
 }
 );
+/**
+ * Get list of available business types
+ */
+router.get('/types',(req, res) => {
+	res.status(201).json(Business.getTypes()).end();
+}
+);
 
 /**
  * Create a business

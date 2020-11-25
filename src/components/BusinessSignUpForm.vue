@@ -78,7 +78,7 @@
         >Choose a Business Type<abbr class="req" title="required">*</abbr
         >:</label
       >
-
+    
       <select
         name="businessType"
         id="businessType"
@@ -86,10 +86,14 @@
         type="text"
         required
       >
-        <option value="restaurant">restaurant</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
+        <option
+          v-for="bType in possibleTypes"
+          v-bind:key="bType"
+          v-bind:value="bType"
+        >
+          {{ bType }}
+        </option>
+        
       </select>
       <label for="address">Address:</label>
       <input
@@ -132,16 +136,23 @@ export default {
       address: "",
       errors: [],
       possibleStatuses: [],
+      possibleTypes: [],
       success: "",
     };
   },
   mounted: function () {
     this.loadStatuses();
+    this.loadBusinessTypes();
   },
   methods: {
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
         this.possibleStatuses = response.data;
+      });
+    },
+    loadBusinessTypes: function () {
+      axios.get("/api/business/types").then((response) => {
+        this.possibleTypes = response.data;
       });
     },
     signUp: function () {

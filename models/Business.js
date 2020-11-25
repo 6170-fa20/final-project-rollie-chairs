@@ -1,5 +1,6 @@
 const db = require('../db/db_config');
 const statuses=["Closed","Delivery","Take Out","Outdoor Dining", "Indoor Dining"];
+const businessTypes=["Restaurant", "Grocery Store", "Shop"];
 /**
  * @typeof Business
  *
@@ -143,6 +144,14 @@ class Businesses{
        */
       static getStatuses(){
         return [...statuses];
+      }
+
+      /**
+       * Return all Business types
+       * @return {String[]} -list of business types
+       */
+      static getTypes(){
+        return [...businessTypes];
       }
 
 }
