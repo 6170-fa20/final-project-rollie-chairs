@@ -8,7 +8,7 @@ const Business = require('../models/Business');
  * @name GET/api/business
  * @return {Business[]} - list of businesses
  */
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
 	try{
 		let businesses = await Business.findAll();
         res.status(200).json(businesses).end();
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
  * @name GET/api/business/:businessID
  * @return {Business} - business object
  */
-router.get('/:businessID', async (req, res) => {
+router.get('/id/:businessID', async (req, res) => {
 	try{
 		let business = await Business.findOneByID(req.params.businessID);
         res.status(200).json(business).end();

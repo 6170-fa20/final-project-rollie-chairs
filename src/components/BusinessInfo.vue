@@ -72,7 +72,7 @@ export default {
 
   methods: {
     getBusiness: function() {
-      axios.get(`/api/business/${this.businessID}`).then(response => {
+      axios.get(`/api/business/id/${this.businessID}`).then(response => {
         this.business = response.data;
       });
     },
@@ -93,7 +93,7 @@ export default {
       if (this.newPhone){
         req.phone = this.newPhone;
       }
-      axios.put(`/api/business/${this.businessID}`, req).then( () => {
+      axios.put(`/api/business/id/${this.businessID}`, req).then( () => {
         this.newAddress = "";
         this.newPhone = "";
         this.editing = false;
