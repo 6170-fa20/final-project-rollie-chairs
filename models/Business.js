@@ -141,7 +141,7 @@ class Businesses{
        * Return Statuses
        * @return {String[]} -list of statuses
        */
-      static async getStatuses(){
+      static getStatuses(){
         return [...statuses];
       }
 
