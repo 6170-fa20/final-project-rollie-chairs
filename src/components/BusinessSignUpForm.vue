@@ -86,14 +86,25 @@
         type="text"
         required
       >
-        <option value="volvo">Volvo</option>
+        <option value="restaurant">restaurant</option>
         <option value="saab">Saab</option>
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
+      <label for="address">Address:</label>
+      <input
+        id="address"
+        v-model.trim="address"
+        type="text"
+        name="address"
+        placeholder="Address"
+      />
       <div><abbr class="req" title="required">*</abbr>:Required Fields</div>
       <input type="submit" value="Submit" class="button" />
     </form>
+    <div v-if="success" class="success-message">
+      {{ success }}
+    </div>
     <div v-if="errors.length" class="error-message" style="width: 250px">
       <b>Please correct the following error(s):</b>
       <ul>
@@ -105,6 +116,7 @@
 
 <script>
 import axios from "axios";
+import { eventBus } from "../main"
 export default {
   name: "BusinessSignUpForm",
 
@@ -117,8 +129,10 @@ export default {
       phone: "",
       status: "",
       businessType: "",
+      address: "",
       errors: [],
       possibleStatuses: [],
+      success: "",
     };
   },
   mounted: function () {
@@ -129,6 +143,49 @@ export default {
       axios.get("/api/business/statuses").then((response) => {
         this.possibleStatuses = response.data;
       });
+    },
+    signUp: function () {
+      const bodyContent = {
+        name: this.companyName,
+        password: this.password,
+        status: this.status,
+        email: this.email,
+        phone: this.phone,
+        type: this.businessType,
+        description: this.description,
+        address: this.address,
+      };
+      axios
+        .post("/api/business", bodyContent)
+        .then((business) => {
+          // handle success
+          this.success = "Business created successfully!";
+          eventBus.$emit("create-business-success", business);
+        })
+        .catch((err) => {
+          // handle error
+          this.errors.push(err.response.data.error);
+        })
+        .then(() => {
+          // always executed
+          this.resetForm();
+          this.clearMessages();
+        });
+    },
+    resetForm: function () {
+      this.companyName = "";
+      this.password = "";
+      this.description = "";
+      this.email = "";
+      this.phone = "";
+      this.status = "";
+      this.businessType = "";
+    },
+    clearMessages: function () {
+      setInterval(() => {
+        this.errors = [];
+        this.success = "";
+      }, 5000);
     },
   },
 };
