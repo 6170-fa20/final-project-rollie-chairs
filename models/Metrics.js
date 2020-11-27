@@ -1,4 +1,7 @@
 const db = require('../db/db_config');
+const metrics = ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
+  "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
+  "All aisles are directed and enforced"]
 
 /**
  * @typeof Metrics
@@ -19,10 +22,10 @@ const db = require('../db/db_config');
 class Metrics {
       /**
        * Return an array of all of the unique types of metrics.
-       * @return {Metric[]}
+       * @return {String[]}
        */
-      static async getAllTypes() {
-        return db.all(`SELECT DISTINCT ${db.columnNames.metricName} FROM metrics`);
+      static async getMetricTypes() {
+        return [...metrics];
       }
 
       /**
