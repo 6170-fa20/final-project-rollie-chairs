@@ -1,5 +1,4 @@
 const db = require('../db/db_config');
-const metrics = ["Masks required","Six feet distance"];
 
 /**
  * @typeof Metrics
@@ -18,13 +17,21 @@ const metrics = ["Masks required","Six feet distance"];
  * Wherever you import this class, you will be accessing the same data
  */
 class Metrics {
-    /**
-     * Add a Metric
-     *
-     * @param {string} name - description of Metric
-     * @param {number} owner - id of the business
-     * @return {Metrics} - created metric
-     */
+      /**
+       * Return an array of all of the unique types of metrics.
+       * @return {Metric[]}
+       */
+      static async getAllTypes() {
+        return db.all(`SELECT DISTINCT ${db.columnNames.metricName} FROM metrics`);
+      }
+
+      /**
+       * Add a Metric
+       *
+       * @param {string} name - description of Metric
+       * @param {number} owner - id of the business
+       * @return {Metrics} - created metric
+       */
       static async addOne(name, owner) {
         return db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
         VALUES ('${name}','${owner}','${0}','${0}')`)

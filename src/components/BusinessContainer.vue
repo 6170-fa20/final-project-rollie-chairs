@@ -50,7 +50,7 @@
 
 <script>
 import axios from "axios";
-import { eventBus } from "../main";
+// import { eventBus } from "../main";
 import BusinessListing from "./BusinessListing";
 
 export default {
@@ -72,11 +72,11 @@ export default {
     loadAllBusinesses: function() {
       axios.get(`/api/business/all`).then(response => {
         this.businesses = response.data;
-        this.success = Showing you all businesses on Scope
+        this.success = "Showing you all businesses on Scope"
       })
       .catch(error => {this.error = error.response.data.error});
       this.clearMessages();
-    }
+    },
 
     clearMessages: function() {
       setInterval(() => {
