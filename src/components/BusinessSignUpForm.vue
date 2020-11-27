@@ -103,6 +103,62 @@
         name="address"
         placeholder="Address"
       />
+      <label for="mondayHours">Monday Hours:</label>
+      <input
+        id="mondayHours"
+        v-model.trim="mondayHours"
+        type="text"
+        name="mondayHours"
+        placeholder="Monday Hours"
+      />
+      <label for="tuesdayHours">Tuesday Hours:</label>
+      <input
+        id="tuesdayHours"
+        v-model.trim="tuesdayHours"
+        type="text"
+        name="tuesdayHours"
+        placeholder="Tuesday Hours"
+      />
+      <label for="wednesdayHours">Wednesday Hours:</label>
+      <input
+        id="wednesdayHours"
+        v-model.trim="wednesdayHours"
+        type="text"
+        name="wednesdayHours"
+        placeholder="Wednesday Hours"
+      />
+      <label for="thursdayHours">Thursday Hours:</label>
+      <input
+        id="thursdayHours"
+        v-model.trim="thursdayHours"
+        type="text"
+        name="thursdayHours"
+        placeholder="Thursday Hours"
+      />
+      <label for="fridayHours">Friday Hours:</label>
+      <input
+        id="fridayHours"
+        v-model.trim="fridayHours"
+        type="text"
+        name="fridayHours"
+        placeholder="Friday Hours"
+      />
+      <label for="saturdayHours">Saturday Hours:</label>
+      <input
+        id="saturdayHours"
+        v-model.trim="saturdayHours"
+        type="text"
+        name="saturdayHours"
+        placeholder="Saturday Hours"
+      />
+      <label for="sundayHours">Sunday Hours:</label>
+      <input
+        id="sundayHours"
+        v-model.trim="sundayHours"
+        type="text"
+        name="sundayHours"
+        placeholder="Sunday Hours"
+      />
       <div><abbr class="req" title="required">*</abbr>:Required Fields</div>
       <input type="submit" value="Submit" class="button" />
     </form>
@@ -134,6 +190,13 @@ export default {
       status: "",
       businessType: "",
       address: "",
+      mondayHours:"",
+      tuesdayHours:"",
+      wednesdayHours:"",
+      thursdayHours:"",
+      fridayHours:"",
+      saturdayHours:"",
+      sundayHours:"",
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
