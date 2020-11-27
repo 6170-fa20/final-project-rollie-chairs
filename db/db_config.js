@@ -14,6 +14,13 @@ const columnNames = {
     businessAddress: "address",
     businessType:"type",
     businessDescription:"description",
+    mondayHours: "monday_hours",
+    tuesdayHours: "tuesday_hours",
+    wednesdayHours: "wednesday_hours",
+    thursdayHours: "thursday_hours",
+    fridayHours: "friday_hours",
+    saturdayHours: "saturday_hours",
+    sundayHours: "sunday_hours",
     metricId: "metric_id",
     metricName: "metric",
     metricOwner: "owner",
@@ -40,8 +47,14 @@ function createBusinessTable(){
     ${columnNames.businessPhone} TEXT NOT NULL,
     ${columnNames.businessType} TEXT NOT NULL,
     ${columnNames.businessDescription} TEXT NOT NULL,
-    ${columnNames.businessAddress} TEXT NOT NULL
-
+    ${columnNames.businessAddress} TEXT NOT NULL,
+    ${columnNames.mondayHours} TEXT NOT NULL,
+    ${columnNames.tuesdayHours} TEXT NOT NULL,
+    ${columnNames.thursdayHours} TEXT NOT NULL,
+    ${columnNames.wednesdayHours} TEXT NOT NULL,
+    ${columnNames.fridayHours} TEXT NOT NULL,
+    ${columnNames.saturdayHours} TEXT NOT NULL,
+    ${columnNames.sundayHours} TEXT NOT NULL
   )`);
 };
 

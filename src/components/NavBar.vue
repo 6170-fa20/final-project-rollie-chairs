@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar">
 
-      <router-link to="/"> Scope </router-link>
+      <router-link to="/"  id="homelink"> Scope </router-link>
       <div class="search-bar-container">
         <form id="search-bar" v-on:submit.prevent="search" method="post">
           <input
@@ -23,21 +23,18 @@
 
 
     <div class="links-container">
-        <router-link to="/map" >
+        <router-link to="/map" style="text-decoration: none;">
             <span>
               Map
             </span>
         </router-link>
       <div class = "link">
-            <a href="https://www.cambridgema.gov/covid19" target="_blank">
+            <a href="https://www.cambridgema.gov/covid19" target="_blank" style="text-decoration: none;">
         Cambridge COVID Resources
       </a>
         </div>
-      <div class = "link">
-            <span> My account /login </span>
-        </div>
         <div>
-            <router-link to="/businesssignup"> SignUp </router-link>
+            <router-link to="/businesssignup" style="text-decoration: none;"> SignUp </router-link>
             </div>
     </div>
   </div>
