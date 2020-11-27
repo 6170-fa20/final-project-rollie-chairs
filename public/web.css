@@ -48,6 +48,11 @@
   flex-direction: column;
   /* border: solid red; */
 }
+.business-container {
+  height: 500px;
+  overflow: auto;
+  padding-right: 0px;
+}
 
 
 
