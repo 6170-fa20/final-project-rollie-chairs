@@ -1,6 +1,9 @@
 <template>
   <div class='business-signup-page'>
     <NavBar/>
+    <header >
+      Create a Business Profile
+    </header>
     <BusinessSignUpForm/>
   </div>
 </template>

@@ -7,7 +7,7 @@
       method="post"
     >
       <label for="companyName"
-        >Company Name<abbr class="req" title="required">*</abbr>:</label
+        >Company Name<abbr class="req" title="required" >*</abbr>:</label
       >
       <input
         id="companyName"
@@ -28,13 +28,14 @@
         placeholder="Password"
         required
       />
-      <label for="description">Description:</label>
+      <label for="description" >Description:</label>
       <input
         id="description"
         v-model.trim="description"
         type="text"
         name="description"
         placeholder="Description"
+        maxlength="150"
       />
       <label for="status"
         >Choose a Status<abbr class="req" title="required">*</abbr>:</label
