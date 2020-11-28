@@ -1,7 +1,9 @@
 <template>
   <div class="nav-bar">
 
-      <router-link to="/"  id="homelink"> Scope </router-link>
+      <router-link to="/"  id="homelink" v-bind:style= "['Home'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]"> 
+          Scope 
+       </router-link>
       <div class="search-bar-container">
         <form id="search-bar" v-on:submit.prevent="search" method="post">
           <input
@@ -23,7 +25,7 @@
 
 
     <div class="links-container">
-        <router-link to="/map" style="text-decoration: none;">
+        <router-link to="/map" v-bind:style= "['Map'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]">
             <span>
               Map
             </span>
@@ -34,7 +36,7 @@
       </a>
         </div>
         <div>
-            <router-link to="/businesssignup" style="text-decoration: none;"> SignUp </router-link>
+            <router-link to="/businesssignup" v-bind:style= "['BusinessSignUp'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]"> SignUp </router-link>
             </div>
     </div>
   </div>
@@ -47,6 +49,7 @@ export default {
   data() {
     return {
       searchContent:"",
+      currentPath:this.$route.name,
     };
   },
   methods:{

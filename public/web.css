@@ -120,10 +120,3 @@
 .req{
   color:red;
 }
-#homelink:link{
-  text-decoration: none;
-}
-
-#homelink:visited{
-  text-decoration: underline;
-}
