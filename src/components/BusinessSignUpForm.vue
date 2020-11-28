@@ -228,6 +228,13 @@ export default {
         type: this.businessType,
         description: this.description,
         address: this.address,
+        mondayHours:this.mondayHours,
+        tuesdayHours:this.tuesdayHours,
+        wednesdayHours:this.wednesdayHours,
+        thursdayHours:this.thursdayHours,
+        fridayHours:this.fridayHours,
+        saturdayHours:this.saturdayHours,
+        sundayHours:this.sundayHours
       };
       axios
         .post("/api/business", bodyContent)
