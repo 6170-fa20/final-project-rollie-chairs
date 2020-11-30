@@ -7,7 +7,7 @@
       method="post"
     >
       <label for="companyName"
-        >Company Name<abbr class="req" title="required" >*</abbr>:</label
+        >Company Name<abbr class="req" title="required">*</abbr>:</label
       >
       <input
         id="companyName"
@@ -28,7 +28,7 @@
         placeholder="Password"
         required
       />
-      <label for="description" >Description:</label>
+      <label for="description">Description:</label>
       <input
         id="description"
         v-model.trim="description"
@@ -46,6 +46,7 @@
         id="status"
         v-model.trim="status"
         type="text"
+        placeholder="Status"
         required
       >
         <option
@@ -79,12 +80,13 @@
         >Choose a Business Type<abbr class="req" title="required">*</abbr
         >:</label
       >
-    
+
       <select
         name="businessType"
         id="businessType"
         v-model.trim="businessType"
         type="text"
+        placeholder="Business Type"
         required
       >
         <option
@@ -94,7 +96,6 @@
         >
           {{ bType }}
         </option>
-        
       </select>
       <label for="address">Address:</label>
       <input
@@ -160,6 +161,12 @@
         name="sundayHours"
         placeholder="Sunday Hours"
       />
+      <label for="metrics">Preset Metrics:</label>
+      <ul id="metricslist">
+        <li v-for="metric in presetMetrics" :key="metric">
+          {{ metric }}
+        </li>
+      </ul>
       <div><abbr class="req" title="required">*</abbr>:Required Fields</div>
       <input type="submit" value="Submit" class="button" />
     </form>
@@ -177,7 +184,7 @@
 
 <script>
 import axios from "axios";
-import { eventBus } from "../main"
+import { eventBus } from "../main";
 export default {
   name: "BusinessSignUpForm",
 
@@ -191,24 +198,29 @@ export default {
       status: "",
       businessType: "",
       address: "",
-      mondayHours:"",
-      tuesdayHours:"",
-      wednesdayHours:"",
-      thursdayHours:"",
-      fridayHours:"",
-      saturdayHours:"",
-      sundayHours:"",
+      mondayHours: "",
+      tuesdayHours: "",
+      wednesdayHours: "",
+      thursdayHours: "",
+      fridayHours: "",
+      saturdayHours: "",
+      sundayHours: "",
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
+      presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
+  "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
+  "All aisles are directed and enforced"],
       success: "",
     };
   },
   mounted: function () {
     this.loadStatuses();
     this.loadBusinessTypes();
+    this.loadMetrics();
   },
   methods: {
+    loadMetrics: function () {},
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
         this.possibleStatuses = response.data;
@@ -229,13 +241,13 @@ export default {
         type: this.businessType,
         description: this.description,
         address: this.address,
-        mondayHours:this.mondayHours,
-        tuesdayHours:this.tuesdayHours,
-        wednesdayHours:this.wednesdayHours,
-        thursdayHours:this.thursdayHours,
-        fridayHours:this.fridayHours,
-        saturdayHours:this.saturdayHours,
-        sundayHours:this.sundayHours
+        mondayHours: this.mondayHours,
+        tuesdayHours: this.tuesdayHours,
+        wednesdayHours: this.wednesdayHours,
+        thursdayHours: this.thursdayHours,
+        fridayHours: this.fridayHours,
+        saturdayHours: this.saturdayHours,
+        sundayHours: this.sundayHours,
       };
       axios
         .post("/api/business", bodyContent)
