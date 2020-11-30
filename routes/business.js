@@ -11,7 +11,8 @@ const Business = require('../models/Business');
 router.get('/all', async (req, res) => {
 	try{
 		let businesses = await Business.findAll();
-        res.status(200).json(businesses).end();
+		res.status(200).json(businesses).end();
+		console.log(businesses);
     } catch(error){
         res.status(503).json(`Could not get businesses: ${error}`);
     }
@@ -80,7 +81,7 @@ router.post('/', (req, res) => {
  * @return {Business} - the updated business
  * @throws {404} - if business does not exist
  */
-router.put('/:id', async (req, res) => {
+router.put('/id/:id', async (req, res) => {
 	try{
 		const oldBusiness = await Business.findOneByID(req.params.id);
 		if ( oldBusiness === undefined ) {
@@ -90,20 +91,34 @@ router.put('/:id', async (req, res) => {
 		}  else {
 			if (req.body.name) {
 				await Business.updateColumn( req.params.id, "name", req.body.name);
+			} if (req.body.password) {
+				await Business.updateColumn( req.params.id, "password", req.body.password);
 			} if (req.body.status) {
 				await Business.updateColumn(req.params.id, "status", req.body.status);
 			} if (req.body.email) {
 				await Business.updateColumn(req.params.id, "email", req.body.email);
 			} if (req.body.phone) {
 				await Business.updateColumn(req.params.id, "phone", req.body.phone);
-			} if (req.body.address) {
-				await Business.updateColumn(req.params.id, "address", req.body.address);
 			} if (req.body.type) {
 				await Business.updateColumn(req.params.id, "type", req.body.type);
 			} if (req.body.description) {
 				await Business.updateColumn(req.params.id, "description", req.body.description);
-			} if (req.body.password) {
-				await Business.updateColumn(req.params.id, "password", req.body.password);
+			} if (req.body.address) {
+				await Business.updateColumn(req.params.id, "address", req.body.address);
+			} if (req.body.monday_hours) {
+				await Business.updateColumn( req.params.id, "monday_hours", req.body.monday_hours);
+			} if (req.body.tuesday_hours) {
+				await Business.updateColumn( req.params.id, "tuesday_hours", req.body.tuesday_hours);
+			} if (req.body.wednesday_hours) {
+				await Business.updateColumn( req.params.id, "wednesday_hours", req.body.wednesday_hours);
+			} if (req.body.thursday_hours) {
+				await Business.updateColumn( req.params.id, "thursday_hours", req.body.thursday_hours);
+			} if (req.body.friday_hours) {
+				await Business.updateColumn( req.params.id, "friday_hours", req.body.friday_hours);
+			} if (req.body.saturday_hours) {
+				await Business.updateColumn( req.params.id, "saturday_hours", req.body.saturday_hours);
+			} if (req.body.sunday_hours) {
+				await Business.updateColumn( req.params.id, "sunday_hours", req.body.sunday_hours);
 			}
 			const newBusiness = await Business.findOneByID(req.params.id);
 			res.status(200).json(newBusiness).end();

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueCookie from 'vue-cookie'
 import App from './App.vue'
 import router from './router'
+import '../public/web.css'
 
 Vue.use(VueCookie);
 

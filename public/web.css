@@ -11,11 +11,11 @@
     text-align: center;
   }
   
-  /* .secondary-header {
-    font-size: 3em;
+  .secondary-header {
+    font-size: 2em;
     text-decoration: underline;
     margin-bottom: 1%;
-  } */
+  } 
 
   .profile-headers {
     font-size: 3em;
@@ -46,17 +46,13 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  /* border: solid red; */
+  border: solid red; 
 }
 .business-container {
   height: 500px;
   overflow: auto;
   padding-right: 0px;
 }
-
-
-
-
 
 /**************************** BUSINESS PROFILE VIEW STYLES ************************/
 .business-profile-name {
@@ -78,9 +74,15 @@
 
 .business-profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   border: solid black;
+}
+.edit-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
 }
 
 .metric{
@@ -95,7 +97,8 @@
 
 .metrics-list{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /**************************** NAV BAR STYLES ************************/

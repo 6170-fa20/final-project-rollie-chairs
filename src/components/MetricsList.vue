@@ -1,7 +1,7 @@
 <template>
   <div class="metrics-list">
-    <div class="headers profile-headers">
-      Metrics
+    <div class="secondary-header">
+      Metrics: Safety rating {{score}}%
     </div>
 
     <div>
@@ -30,7 +30,7 @@
     -->
 
       <!-- will hold all of the freets for the selected filter-->
-      <div class="metrics-list">  
+      <div class="container">  
         <div>
             <Metric
             v-for="metric in metrics"
@@ -56,7 +56,8 @@ export default {
     return {
       error: "",
       success: "",
-      metrics: []
+      metrics: [],
+      score: undefined
     };
   },
 
@@ -83,6 +84,9 @@ export default {
     loadMetrics: function() {
       axios.get(`/api/metrics/${this.businessID}`).then(response => {
         this.metrics = response.data;
+        let allScores = this.metrics.map(metric => metric.confirms/(metric.confirms + metric.denies));
+        let totalScore = allScores.reduce((acc, current) => acc + current)*100/this.metrics.length;
+        this.score = Math.round(totalScore);
       });
     },
 
