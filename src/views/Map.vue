@@ -1,11 +1,12 @@
 <template>
   <div class='map'>
     <NavBar/>
-    <MapObject/>
+    <MapObject v-bind:businesses="businesses"/>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import NavBar from "../components/NavBar.vue";
 import MapObject from "../components/MapObject.vue";
 export default {
@@ -17,8 +18,20 @@ export default {
 
   data() {
     return {
-
+        businesses: []
     }
   },
+  methods: {
+    getAllBusinesses() {
+        /* eslint-disable no-console */
+        console.log("trying");
+        axios.get("/api/business/").then(response => {
+          this.businesses = response.data;
+        });
+    }
+  },
+  mounted() {
+    this.getAllBusinesses();
+  }
 };
 </script>

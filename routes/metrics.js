@@ -46,7 +46,7 @@ router.put('/confirm/:id', async (req, res) => {
  */
 router.put('/deny/:id', async (req, res) => {
 	try{
-		
+
 	const oldMetric = await Metrics.findOne(req.params.id);
 		const metric = await Metrics.deny(req.params.id);
 		res.status(200).json(metric).end();
