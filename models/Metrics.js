@@ -1,4 +1,5 @@
 const db = require('../db/db_config');
+const businesses = require('./Business.js');
 const metrics = ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
   "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
   "All aisles are directed and enforced"]
@@ -59,11 +60,11 @@ class Metrics {
        * Add all required Metrics
        *
        * @param {number} owner - id of the business
-       * @param {Boolean} isRestaurant - true if business is a restaurant
        * @return {Metrics} - created metric
        */
-      static async addAll(owner, isRestaurant) {
-        if (isRestaurant) {
+      static async addAll(owner) {
+        const business = await businesses.findOneByID(owner);
+        if (business.type == "Restaurant") {
           for (const metric of metrics.concat(restaurantMetrics)) {
             db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
             VALUES ('${metric}','${owner}','${0}','${0}')`)
