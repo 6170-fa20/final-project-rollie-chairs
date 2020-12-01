@@ -211,6 +211,7 @@ export default {
       presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
   "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
   "All aisles are directed and enforced"],
+      id:"",
       success: "",
     };
   },
@@ -231,7 +232,22 @@ export default {
         this.possibleTypes = response.data;
       });
     },
-    signUp: function () {
+    signUp: function(){
+      this.createBusiness();
+      this.setUpMetrics();
+      this.id="";
+
+    },
+    setUpMetrics: function(){
+      let isRestaurant=false;
+      if(this.businessType==="Restaurant"){
+        isRestaurant=true;
+      }
+      const bodyContent = {id:this.id,isRestaurant:isRestaurant};
+
+
+    },
+    createBusiness: function () {
       const bodyContent = {
         name: this.companyName,
         password: this.password,
@@ -253,6 +269,7 @@ export default {
         .post("/api/business", bodyContent)
         .then((business) => {
           // handle success
+          this.id=business.id;
           this.success = "Business created successfully!";
           eventBus.$emit("create-business-success", business);
         })
