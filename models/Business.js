@@ -1,6 +1,6 @@
 const db = require('../db/db_config');
 const statuses = ["Closed", "Delivery", "Take Out", "Outdoor Dining", "Indoor Dining"];
-const businessTypes = ["Restaurant", "Grocery Store", "Shop"];
+const businessTypes = ["Restaurant", "Non-restuarant"];
 /**
  * @typeof Business
  *
@@ -13,6 +13,13 @@ const businessTypes = ["Restaurant", "Grocery Store", "Shop"];
  * @prop {string} type - type of the business
  * @prop {string} description - description of the business
  * @prop {string} address - address of the business
+  * @prop {string} mondayHours - business hours for monday
+   * @prop {string} tuesdayHours - business hours for tuesday
+   * @prop {string} wednesdayHours- business hours for wednesday
+   * @prop {string} thursdayHours- business hours for thursday
+   * @prop {string} fridayHours- business hours for friday
+   * @prop {string} saturdayHours- business hours for saturday
+   * @prop {string} sundayHours- business hours for sunday
  */
 
 /**
@@ -47,8 +54,8 @@ class Businesses {
     // first insert the business into the db then fetch the user from the DB
     return db.run(`INSERT INTO businesses (${db.columnNames.businessName},${db.columnNames.businessPassword},${db.columnNames.businessStatus},${db.columnNames.businessEmail},${db.columnNames.businessPhone},${db.columnNames.businessType},${db.columnNames.businessDescription},${db.columnNames.businessAddress},${db.columnNames.mondayHours},
       ${db.columnNames.tuesdayHours},
-      ${db.columnNames.thursdayHours},
       ${db.columnNames.wednesdayHours},
+      ${db.columnNames.thursdayHours},
       ${db.columnNames.fridayHours} ,
       ${db.columnNames.saturdayHours},
       ${db.columnNames.sundayHours})
@@ -112,6 +119,38 @@ class Businesses {
       .then(() => {
         return Businesses.findOne(name);
       });
+  }
+
+  /**
+   * Update all columns
+   * @param {Business} business
+   * @return {Business | undefined} - updated business
+   * 
+   */
+  static async updateAll(business){
+    return db.run(`UPDATE businesses
+        SET ${db.columnNames.businessName} = '${business.name}',
+        ${db.columnNames.businessPassword} = '${business.password}',
+        ${db.columnNames.businessStatus} = '${business.status}',
+        ${db.columnNames.businessEmail} = '${business.email}',
+        ${db.columnNames.businessPhone} = '${business.phone}',
+        ${db.columnNames.businessType} = '${business.type}',
+        ${db.columnNames.businessDescription} = '${business.description}',
+        ${db.columnNames.businessAddress} = '${business.address}',
+        ${db.columnNames.mondayHours} = '${business.mondayHours}',
+        ${db.columnNames.tuesdayHours} = '${business.tuesdayHours}',
+        ${db.columnNames.thursdayHours} = '${business.thursdayHours}',
+        ${db.columnNames.wednesdayHours} = '${business.wednesdayHours}',
+        ${db.columnNames.fridayHours} = '${business.fridayHours}',
+        ${db.columnNames.saturdayHours} = '${business.saturdayHours}',
+        ${db.columnNames.sundayHours} = '${business.sundayHours}'
+        WHERE ${db.columnNames.businessId} = '${business.id}'`)
+      .then(() => {
+        return Businesses.findOneByID(business.id);
+
+
+      });
+
   }
 
   /**
