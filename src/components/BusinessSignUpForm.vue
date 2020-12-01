@@ -239,11 +239,7 @@ export default {
 
     },
     setUpMetrics: function(){
-      let isRestaurant=false;
-      if(this.businessType==="Restaurant"){
-        isRestaurant=true;
-      }
-      const bodyContent = {id:this.id,isRestaurant:isRestaurant};
+      const bodyContent = {id:this.id};
 
 
     },

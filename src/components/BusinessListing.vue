@@ -5,7 +5,7 @@
         <b>{{ business.name}} </b><br>
       </router-link>
       <i>{{ business.description }}</i>
-      <p>Safety Rating: {{ score }}% </p>
+      <p>Safety Rating: {{ score }} </p>
       <p> Business Type: {{business.type}} </p>
       <p> Status: {{business.status}} </p>
     </div>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       business: Object,
-      score: 100
+      score: "No rating yet"
     };
   },
   props: {
@@ -44,7 +44,7 @@ export default {
         let metrics = response.data;
         let allScores = metrics.map(metric => metric.confirms/(metric.confirms + metric.denies));
         let totalScore = allScores.reduce((acc, current) => acc + current)*100/metrics.length;
-        this.score = Math.round(totalScore);
+        this.score = `${Math.round(totalScore)}%`;
       });
     },
     getBusinessLink: function() {
