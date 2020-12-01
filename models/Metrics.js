@@ -3,6 +3,10 @@ const metrics = ["Staff face coverings required and enforced", "Customer face co
   "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
   "All aisles are directed and enforced"]
 
+const restaurantMetrics = ["No self serve areas permitted", "No free samples/tasting", "Hand sanitizer next to beverage station",
+"Straws and stirrers must be wrapped individually in cellophane or paper", "Cups and lids from single pull dispenser only",
+"Sweeteners/sugars/cream in individual packets", "No personal mugs/cups allowed"]
+
 /**
  * @typeof Metrics
  *
@@ -29,6 +33,14 @@ class Metrics {
       }
 
       /**
+       * Return an array of all of the unique types of metrics for restaurants.
+       * @return {String[]}
+       */
+      static async getRestaurantMetricTypes() {
+        return [...metrics].concat([...restaurantMetrics]);
+      }
+
+      /**
        * Add a Metric
        *
        * @param {string} name - description of Metric
@@ -39,8 +51,35 @@ class Metrics {
         return db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
         VALUES ('${name}','${owner}','${0}','${0}')`)
                   .then( () => {
-                    return Metrics.findOne(name);
+                    return Metrics.findBusinessMetrics(owner);
                   });
+      }
+
+      /**
+       * Add all required Metrics
+       *
+       * @param {number} owner - id of the business
+       * @param {Boolean} isRestaurant - true if business is a restaurant
+       * @return {Metrics} - created metric
+       */
+      static async addAll(owner, isRestaurant) {
+        if (isRestaurant) {
+          for (const metric of metrics.concat(restaurantMetrics)) {
+            db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
+            VALUES ('${metric}','${owner}','${0}','${0}')`)
+                      .then( () => {
+                        return Metrics.findBusinessMetrics(owner);
+                      });
+          }
+        } else {
+          for (const metric of metrics) {
+            db.run(`INSERT INTO metrics (${db.columnNames.metricName},${db.columnNames.metricOwner},${db.columnNames.metricConfirms},${db.columnNames.metricDenies})
+            VALUES ('${metric}','${owner}','${0}','${0}')`)
+                      .then( () => {
+                        return Metrics.findBusinessMetrics(owner);
+                      });
+          }
+        } 
       }
     
       /**
@@ -84,7 +123,7 @@ class Metrics {
       /**
        * Delete a Metric.
        * 
-       * @param {string} name - name of metric to delete
+       * @param {string} id - id of metric to delete
        * @return {Metric | undefined} - deleted metric
        */
       static async deleteOne(id) {
@@ -93,6 +132,19 @@ class Metrics {
                 db.run(`DELETE FROM metrics WHERE ${db.columnNames.metricId} = '${id}'`);
                 return metric;
             });
+      }
+
+      /**
+       * Delete all Metrics of a business.
+       * 
+       * @param {number} owner - id of the business
+       * @return {Metric | undefined} - deleted metric
+       */
+      static async deleteByBusiness(owner) {
+        return db.run(`DELETE FROM metrics WHERE ${db.columnNames.metricOwner} = '${owner}'`)
+                  .then( () => {
+                    return Metrics.findBusinessMetrics(owner);
+                  });
       }
 
       /**
