@@ -1,6 +1,7 @@
 const db = require('../db/db_config');
 const statuses = ["Closed", "Delivery", "Take Out", "Outdoor Dining", "Indoor Dining"];
 const businessTypes = ["Restaurant", "Non-restuarant"];
+const NodeGeocoder = require('node-geocoder');
 /**
  * @typeof Business
  *
@@ -89,6 +90,31 @@ class Businesses {
   static async findAll() {
     return db.all(`SELECT * FROM businesses`);
   }
+
+  /**
+   * Return an array of all of the Businesses.
+   * @return {Business[]}
+   */
+  static async findLocs(businesses) {
+      const locations = []
+
+      const options = {
+        provider: 'google',
+        apiKey: 'AIzaSyDT-zIN2RdmsSKHl88VHoFT0VOuMps2vA8'
+      };
+
+      const geocoder = NodeGeocoder(options);
+      var i;
+      console.log(businesses);
+      for (i = 0; i < businesses.length; i++) {
+          console.log(businesses[i].address);
+          const loc = await geocoder.geocode(businesses[i].address + " Cambridge MA");
+          locations[i] = loc;
+      }
+
+      return locations;
+  }
+
 
   /**
    * Update business name

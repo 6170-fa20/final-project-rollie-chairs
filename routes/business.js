@@ -19,6 +19,22 @@ router.get('/all', async (req, res) => {
 });
 
 /**
+ * List all businesses
+ * @name GET/api/business/locations
+ * @return {Business[]} - list of businesses
+ */
+router.get('/all/locations', async (req, res) => {
+	try{
+		let businesses = await Business.findAll();
+		let locs = await Business.findLocs(businesses);
+		res.status(200).json(locs).end();
+		console.log(businesses);
+    } catch(error){
+        res.status(503).json(`Could not get businesses: ${error}`);
+    }
+});
+
+/**
  * Get the business with the given ID
  * @name GET/api/business/:businessID
  * @return {Business} - business object

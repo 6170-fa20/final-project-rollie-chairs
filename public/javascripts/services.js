@@ -58,6 +58,12 @@ function viewAllBusinesses() {
     .catch(showResponse);
 }
 
+function viewAllBusinessesLocations(fields) {
+  axios.get('/api/business/locations', fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
+
 function deleteBusiness(fields) {
   axios.delete('/api/business/' + fields.id, fields)
     .then(showResponse)
@@ -88,6 +94,7 @@ const formsAndHandlers = {
   'create-business': createBusiness,
   'edit-business': editBusiness,
   'view-all-businesses': viewAllBusinesses,
+  'view-all-businesses-locations': viewAllBusinessesLocations,
   'delete-business': deleteBusiness,
   'get-business-metrics': getBusinessMetrics,
   'confirm-metric': confirmMetric,
