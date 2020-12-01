@@ -208,9 +208,7 @@ export default {
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
-      presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
-  "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
-  "All aisles are directed and enforced"],
+      presetMetrics: [],
       id:"",
       success: "",
     };
@@ -221,7 +219,12 @@ export default {
     this.loadMetrics();
   },
   methods: {
-    loadMetrics: function () {},
+    loadMetrics: function () {
+      /*axios.get("/api/metrics").then((response) => {
+        presetMetrics = response.data;
+      });
+      */
+    },
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
         this.possibleStatuses = response.data;
@@ -240,6 +243,24 @@ export default {
     },
     setUpMetrics: function(){
       const bodyContent = {id:this.id};
+      /*
+      axios
+        .post("/api/metrics", bodyContent)
+        .then((metrics) => {
+          // handle success
+          
+          this.success = "Metrics created successfully!";
+          eventBus.$emit("create-metrics-success", metrics);
+        })
+        .catch((err) => {
+          // handle error
+          this.errors.push(err.response.data.error);
+        })
+        .then(() => {
+          // always executed
+          this.resetForm();
+          this.clearMessages();
+        });*/
 
 
     },
