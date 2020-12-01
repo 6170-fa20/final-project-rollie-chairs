@@ -208,9 +208,8 @@ export default {
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
-      presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
-  "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
-  "All aisles are directed and enforced"],
+      presetMetrics: [],
+      id:"",
       success: "",
     };
   },
@@ -220,7 +219,12 @@ export default {
     this.loadMetrics();
   },
   methods: {
-    loadMetrics: function () {},
+    loadMetrics: function () {
+      /*axios.get("/api/metrics").then((response) => {
+        presetMetrics = response.data;
+      });
+      */
+    },
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
         this.possibleStatuses = response.data;
@@ -231,7 +235,36 @@ export default {
         this.possibleTypes = response.data;
       });
     },
-    signUp: function () {
+    signUp: function(){
+      this.createBusiness();
+      this.setUpMetrics();
+      this.id="";
+
+    },
+    setUpMetrics: function(){
+      const bodyContent = {id:this.id};
+      /*
+      axios
+        .post("/api/metrics", bodyContent)
+        .then((metrics) => {
+          // handle success
+          
+          this.success = "Metrics created successfully!";
+          eventBus.$emit("create-metrics-success", metrics);
+        })
+        .catch((err) => {
+          // handle error
+          this.errors.push(err.response.data.error);
+        })
+        .then(() => {
+          // always executed
+          this.resetForm();
+          this.clearMessages();
+        });*/
+
+
+    },
+    createBusiness: function () {
       const bodyContent = {
         name: this.companyName,
         password: this.password,
@@ -253,6 +286,7 @@ export default {
         .post("/api/business", bodyContent)
         .then((business) => {
           // handle success
+          this.id=business.id;
           this.success = "Business created successfully!";
           eventBus.$emit("create-business-success", business);
         })
