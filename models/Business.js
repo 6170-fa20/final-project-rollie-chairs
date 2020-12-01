@@ -98,7 +98,7 @@ class Businesses {
    */
   static async updateName(oldName, newName) {
     return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessName} = '${newName}' 
+        SET ${db.columnNames.businessName} = '${newName}'
         WHERE ${db.columnNames.businessName} = '${oldName}'`)
       .then(() => {
         return Businesses.findOne(newName);
@@ -114,7 +114,7 @@ class Businesses {
    */
   static async updateStatus(name, status) {
     return db.run(`UPDATE businesses
-        SET ${db.columnNames.businessStatus} = '${status}' 
+        SET ${db.columnNames.businessStatus} = '${status}'
         WHERE ${db.columnNames.businessName} = '${name}'`)
       .then(() => {
         return Businesses.findOne(name);
@@ -125,7 +125,7 @@ class Businesses {
    * Update all columns
    * @param {Business} business
    * @return {Business | undefined} - updated business
-   * 
+   *
    */
   static async updateAll(business){
     return db.run(`UPDATE businesses
@@ -176,7 +176,7 @@ class Businesses {
 
   /**
    * Delete a Business.
-   * 
+   *
    * @param {string} name - name of business to delete
    * @return {Business | undefined} - deleted business
    */
