@@ -26,11 +26,5 @@ export default new Router({
         name: 'Map',
         component: () => import('./views/Map.vue')
     },
-
-    {
-      path: '/test/:businessID',
-      name: 'Test',
-      component: () => import('./views/Test.vue')
-    },
   ]
 })
