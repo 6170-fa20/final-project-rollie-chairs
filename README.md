@@ -1,5 +1,5 @@
 
-# [Scope ](https://rollie-chairs-scope.herokuapp.com/)
+# [Scope ](https://rollie-chair-scope.herokuapp.com/)
 
 ## [RO]
 ### Purpose and Functionality
