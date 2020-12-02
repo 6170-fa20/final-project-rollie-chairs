@@ -80,7 +80,6 @@ router.delete('/:id', (req, res) => {
 });
 
 # metrics.js  
-
 /**
  * List all metrics for restaurants
  * @name GET/api/metrics/list/restaurants
