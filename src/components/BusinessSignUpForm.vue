@@ -208,13 +208,8 @@ export default {
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
-      // possibleStatuses: ["Closed", "Delivery", "Take Out", "Outdoor Dining", "Indoor Dining"],
-      // possibleTypes: ["Restaurant", "Non-restuarant"],
-      // presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
-      //   "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
-      //   "All aisles are directed and enforced"],
       presetMetrics: [],
-      id:"",
+      
       success: "",
     };
   },
@@ -250,32 +245,10 @@ export default {
     signUp: function(){
       this.createBusiness();
       this.setUpMetrics();
-      this.id="";
+      
 
     },
-    setUpMetrics: function(){
     
-      const bodyContent = {id:this.id};
-      axios
-        .post("/api/metrics", bodyContent)
-        .then((metrics) => {
-          // handle success
-
-          this.success = "Metrics created successfully!";
-          eventBus.$emit("create-metrics-success", metrics);
-        })
-        .catch((err) => {
-          // handle error
-          this.errors.push(err.response.data.error);
-        })
-        .then(() => {
-          // always executed
-          this.resetForm();
-          this.clearMessages();
-        });
-
-
-    },
     createBusiness: function () {
       const bodyContent = {
         name: this.companyName,
@@ -298,8 +271,9 @@ export default {
         .post("/api/business", bodyContent)
         .then((business) => {
           // handle success
-          this.id=business.id;
-          this.success = "Business created successfully!";
+
+          
+          this.success = "Business successfully created";
           eventBus.$emit("create-business-success", business);
         })
         .catch((err) => {
@@ -320,6 +294,14 @@ export default {
       this.phone = "";
       this.status = "";
       this.businessType = "";
+      this.address= "";
+      this.mondayHours = "";
+      this.tuesdayHours= "";
+      this.wednesdayHours= "";
+      this.thursdayHours= "";
+      this.fridayHours= "";
+      this.saturdayHours= "";
+      this.sundayHours= "";
     },
     clearMessages: function () {
       setInterval(() => {

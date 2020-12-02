@@ -70,15 +70,22 @@ router.get('/types',(req, res) => {
  * @param {string} name - the name of the business
  * @return {Business} - the created business
  */
-router.post('/', (req, res) => {
-	const business = Business.addOne(req.body.name,
+router.post('/', async (req, res) => {
+	const business = await Business.addOne(req.body.name,
 									req.body.password,
 									req.body.status,
 									req.body.email,
 									req.body.phone,
 									req.body.type,
 									req.body.description,
-									req.body.address);
+									req.body.address,
+									req.body.mondayHours,
+       								req.body.tuesdayHours,
+        							req.body.wednesdayHours,
+        							req.body.thursdayHours,
+        							req.body.fridayHours,
+        							req.body.saturdayHours,
+        							req.body.sundayHours);
 	Metrics.addAll(business.id);
 	res.status(201).json(business).end();
 	}
