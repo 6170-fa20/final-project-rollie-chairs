@@ -54,3 +54,6 @@ then you will find the application at `localhost:8080` in the browser
   * db:  
     * db_config.js. 
       * createMetricTable()
+  * src:  
+    * components/BusinessListing.vue  
+    * views/Home.vue
