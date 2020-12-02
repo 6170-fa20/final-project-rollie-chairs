@@ -3,10 +3,40 @@ const express = require('express');
 const router = express.Router();
 const Metrics = require('../models/Metrics');
 
+
+/**
+ * List all metrics for restaurants
+ * @name GET/api/metrics/list/restaurants
+ * @return {Metric[]} - list of metrics
+ */
+router.get('/list/restaurants', async (req, res) => {
+	try{
+		let metrics = await Metrics.getRestaurantMetricTypes();
+        res.status(200).json(metrics).end();
+    } catch(error){
+        res.status(503).json(`Could not find metrics for businesses`);
+    }
+});
+
+
+/**
+ * List all metrics for general businesses
+ * @name GET/api/metrics/list/general
+ * @return {Metric[]} - list of metrics
+ */
+router.get('/list/general', async (req, res) => {
+	try{
+		let metrics = await Metrics.getMetricTypes();
+        res.status(200).json(metrics).end();
+    } catch(error){
+        res.status(503).json(`Could not find metrics for businesses`);
+    }
+});
+
 /**
  * List all metrics for a business
  * @name GET/api/metrics/:businessID
- * @return {Metric[]} - list of businesses
+ * @return {Metric[]} - list of metrics
  */
 router.get('/:businessID', async (req, res) => {
 	try{

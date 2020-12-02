@@ -70,6 +70,18 @@ function deleteBusiness(fields) {
     .catch(showResponse);
 }
 
+function getGeneralMetrics(fields) {
+  axios.get('/api/metrics/list/general', fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
+
+function getRestaurantMetrics(fields) {
+  axios.get('/api/metrics/list/restaurants', fields)
+    .then(showResponse)
+    .catch(showResponse);
+}
+
 function getBusinessMetrics(fields) {
   axios.get('/api/metrics/' + fields.businessID, fields)
     .then(showResponse)
@@ -98,7 +110,9 @@ const formsAndHandlers = {
   'delete-business': deleteBusiness,
   'get-business-metrics': getBusinessMetrics,
   'confirm-metric': confirmMetric,
-  'denyMetric': denyMetric
+  'denyMetric': denyMetric,
+  'get-general-metrics': getGeneralMetrics,
+  'get-restaurant-metrics': getRestaurantMetrics
 };
 
 // attach handlers to forms
