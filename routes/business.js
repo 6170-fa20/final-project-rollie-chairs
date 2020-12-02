@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const router = express.Router();
 const Business = require('../models/Business');
+const Metrics = require('../models/Metrics');
 
 /**
  * List all businesses
@@ -78,6 +79,7 @@ router.post('/', (req, res) => {
 									req.body.type,
 									req.body.description,
 									req.body.address);
+	Metrics.addAll(business.id);
 	res.status(201).json(business).end();
 	}
 );

@@ -208,6 +208,11 @@ export default {
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
+      // possibleStatuses: ["Closed", "Delivery", "Take Out", "Outdoor Dining", "Indoor Dining"],
+      // possibleTypes: ["Restaurant", "Non-restuarant"],
+      // presetMetrics: ["Staff face coverings required and enforced", "Customer face coverings required and enforced", 
+      //   "Occupancy limited to 50% capacity and enforced", "Visual social distancing markers to encourage 6ft distancing and enforced",
+      //   "All aisles are directed and enforced"],
       presetMetrics: [],
       id:"",
       success: "",
@@ -220,10 +225,17 @@ export default {
   },
   methods: {
     loadMetrics: function () {
-      /*axios.get("/api/metrics").then((response) => {
-        presetMetrics = response.data;
-      });
-      */
+      if (this.businessType == "Restaurant") {
+        axios.get("/api/metrics/list/restaurants").then((response) => {
+          this.presetMetrics = response.data;
+        });
+      } else {
+        axios.get("/api/metrics/list/general").then((response) => {
+          this.presetMetrics = response.data;
+        });
+      }
+      
+      
     },
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
@@ -242,7 +254,7 @@ export default {
 
     },
     setUpMetrics: function(){
-    /*
+    
       const bodyContent = {id:this.id};
       axios
         .post("/api/metrics", bodyContent)
@@ -260,7 +272,7 @@ export default {
           // always executed
           this.resetForm();
           this.clearMessages();
-        });*/
+        });
 
 
     },
