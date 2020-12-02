@@ -4,7 +4,7 @@
 ## [RO]
 ### Purpose and Functionality
 Describe the purpose and functionality of your application (~50 words)
-Scope is a crowd-sourced app that communicates to what extent a business is taking necessary safety precautions during COVID-19, creating peace of mind for prospective customers. Currently, in our app users can create business profiles which displays the business information and the metrics associated that display how the business is following COVID protocols and can access different business profiles through the business listings displayed on the home page. Users can also search for a specific business by name or look for businesses on the map. 
+Scope is a crowd-sourced app that communicates to what extent a business is taking necessary safety precautions during COVID-19, creating peace of mind for prospective customers. Currently, in our app users can create business profiles which displays the business information and the metrics associated that display how the business is following COVID protocols and can access different business profiles through the business listings displayed on the home page. Users can also search for a specific business by name or look for businesses on the map.
 ### Instructions to Run Locally:
 In command line:
 ```console
@@ -24,7 +24,7 @@ then you will find the application at `localhost:8080` in the browser
 * **Sam Sappenfield**:
   * models/Business.js
   * db_config.js
-      createBusinessTable() 
+      createBusinessTable()
   * src/components/NavBar.vue
   * src/components/BusinessSignUpForm.vue
   * src/views/BusinessSignUp.vue
@@ -34,25 +34,35 @@ then you will find the application at `localhost:8080` in the browser
     * MetricsList.vue
     * BusinessInfo.vue
     * Home.vue
-    * BusinessProfile.vue 
+    * BusinessProfile.vue
   * models:
     * Debugged Business.js and metrics.js
   * routes:
     * index.js
   * Boilerplate code (main.js, web.css, babel.config.js, router.js, etc.)
 * **Noah Zamzow-Schmidt**:
+  * models
+    * business.js
+      * findLocs
   * public:
     * javascripts
-        * services.js
+      * services.js
   * routes:
     * business.js
     * index.js
     * metrics.js
+  * src
+    * components
+      * MapObject.vue
+      * NavBar.Vue
+        * added map tab
+    * views
+      * Map.vue
 * **Shariqah Hossain**:  
   * models:
     * Metrics.js
   * db:  
-    * db_config.js. 
+    * db_config.js.
       * createMetricTable()
   * src:  
     * components/BusinessListing.vue  
