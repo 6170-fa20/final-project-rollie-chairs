@@ -49,12 +49,12 @@ router.get('/:businessID', async (req, res) => {
 
 /**
  * Confirm a metric
- * @name PUT/api/metrics/confirm/:id
+ * @name PUT/api/metrics/confirmation/:id
  * :id the id of the metric
  * @return {Metric} - the newly confirmed metric
  * @throws {404} - if metric does not exist
  */
-router.put('/confirm/:id', async (req, res) => {
+router.put('/confirmation/:id', async (req, res) => {
 	try{
 		// const oldMetric = await Metrics.findOne(req.params.id);
 		// console.log(metric)
@@ -69,12 +69,12 @@ router.put('/confirm/:id', async (req, res) => {
 
 /**
  * Deny a metric
- * @name PUT/api/metrics/deny/:id
+ * @name PUT/api/metrics/refutation/:id
  * :id the id of the metric
  * @return {Metric} - the newly denied metric
  * @throws {404} - if metric does not exist
  */
-router.put('/deny/:id', async (req, res) => {
+router.put('/refutation/:id', async (req, res) => {
 	try{
 
 	const oldMetric = await Metrics.findOne(req.params.id);

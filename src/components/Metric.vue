@@ -1,6 +1,6 @@
 <template>
   <div class="metric">
-    <div class="metric-name"> 
+    <div class="metric-name">
       <p>{{metric.metric}}: </p>
       <p><button v-on:click="addConfirm">Confirm</button> {{metric.confirms}} / <button v-on:click="addDeny">Deny</button> {{metric.denies}}</p>
     </div>
@@ -22,12 +22,12 @@ export default {
   },
   methods: {
     addConfirm: function() {
-      axios.put(`/api/metrics/confirm/${this.metric.metric_id}`)
+      axios.put(`/api/metrics/confirmation/${this.metric.metric_id}`)
            .then((res) => {eventBus.$emit("confirm-success", res);})
            .catch(err => {eventBus.$emit("confirm-error", err);})
     },
     addDeny: function() {
-      axios.put(`/api/metrics/deny/${this.metric.metric_id}`)
+      axios.put(`/api/metrics/refutation/${this.metric.metric_id}`)
            .then((res) => {eventBus.$emit("deny-success", res);})
            .catch(err => {eventBus.$emit("deny-error", err);})
     }
