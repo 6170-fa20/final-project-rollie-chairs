@@ -161,9 +161,15 @@
         name="sundayHours"
         placeholder="Sunday Hours"
       />
-      <label for="metrics">Preset Metrics:</label>
+      <label for="metrics">Preset Metrics for Non-Restuarants:</label>
       <ul id="metricslist">
         <li v-for="metric in presetMetrics" :key="metric">
+          {{ metric }}
+        </li>
+      </ul>
+      <label for="metricsrest">Preset Metrics for Restaurants:</label>
+      <ul id="metricslistrest">
+        <li v-for="metric in presetMetricsRestuarant" :key="metric">
           {{ metric }}
         </li>
       </ul>
@@ -209,7 +215,7 @@ export default {
       possibleStatuses: [],
       possibleTypes: [],
       presetMetrics: [],
-      
+      presetMetricsRestuarant: [],
       success: "",
     };
   },
@@ -220,15 +226,15 @@ export default {
   },
   methods: {
     loadMetrics: function () {
-      if (this.businessType == "Restaurant") {
+      
         axios.get("/api/metrics/list/restaurants").then((response) => {
-          this.presetMetrics = response.data;
+          this.presetMetricsRestuarant = response.data;
         });
-      } else {
+      
         axios.get("/api/metrics/list/general").then((response) => {
-          this.presetMetrics = response.data;
+           this.presetMetrics= response.data;
         });
-      }
+      
       
       
     },
