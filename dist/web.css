@@ -10,12 +10,12 @@
     justify-content: center;
     text-align: center;
   }
-
+  
   .secondary-header {
     font-size: 2em;
     text-decoration: underline;
     margin-bottom: 1%;
-  }
+  } 
 
   .profile-headers {
     font-size: 3em;
@@ -46,7 +46,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  border: solid red;
+  border: solid red; 
 }
 .business-container {
   height: 500px;

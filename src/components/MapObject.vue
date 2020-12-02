@@ -21,8 +21,6 @@ import L from "leaflet";
 export default {
   name: "MapObject",
 
-  props: ['businesses'],
-
   data() {
     return {
     error: "",

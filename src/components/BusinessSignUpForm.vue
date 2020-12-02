@@ -242,13 +242,13 @@ export default {
 
     },
     setUpMetrics: function(){
+    /*
       const bodyContent = {id:this.id};
-      /*
       axios
         .post("/api/metrics", bodyContent)
         .then((metrics) => {
           // handle success
-          
+
           this.success = "Metrics created successfully!";
           eventBus.$emit("create-metrics-success", metrics);
         })
