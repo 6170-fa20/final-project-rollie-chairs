@@ -32,7 +32,7 @@ router.get('/statuses',(req, res) => {
 /**
  * Get list of available business types
  */
-router.get('/types',(req, res) => {
+#router.get('/types',(req, res) => {
 });
 
 /**
@@ -41,7 +41,7 @@ router.get('/types',(req, res) => {
  * @param {string} name - the name of the business
  * @return {Business} - the created business
  */
-router.post('/', async (req, res) => {
+#router.post('/', async (req, res) => {
 });
 
 /**
@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
  * @return {Business} - the updated business
  * @throws {404} - if business does not exist
  */
-router.put('/id/:id', async (req, res) => {
+#router.put('/id/:id', async (req, res) => {
 });
 
 /**
@@ -69,6 +69,6 @@ router.put('/id/:id', async (req, res) => {
  * @return {Business} - the deleted business
  * @throws {404} - if business does not exist
  */
-router.delete('/:id', (req, res) => {
+#router.delete('/:id', (req, res) => {
 });
 
