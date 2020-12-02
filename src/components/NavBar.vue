@@ -30,14 +30,28 @@
               Map
             </span>
         </router-link>
+       
       <div class = "link">
             <a href="https://www.cambridgema.gov/covid19" target="_blank" style="text-decoration: none;">
         Cambridge COVID Resources
       </a>
         </div>
+         <div v-if="currentBusinessUser!==''" class="form-container">
+      My Account
+      <!--link to business/id-->
+    </div>
+    <div v-else>
+      
+    </div>
         <div>
             <router-link to="/businesssignup" v-bind:style= "['BusinessSignUp'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]"> SignUp </router-link>
             </div>
+             <router-link to="/settings" v-bind:style= "['Settings'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]">
+            <span>
+             Settings
+            </span>
+        </router-link>
+
     </div>
   </div>
 </template>
@@ -50,6 +64,7 @@ export default {
     return {
       searchContent:"",
       currentPath:this.$route.name,
+      currentBusinessUser:"", //this.$cookie.get('url-shortener-auth')
     };
   },
   methods:{

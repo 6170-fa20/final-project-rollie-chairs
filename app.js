@@ -11,6 +11,7 @@ const history = require('connect-history-api-fallback');
 const indexRouter = require('./routes/index');
 const businessRouter = require('./routes/business');
 const metricsRouter = require('./routes/metrics');
+const accountRouter = require('./routes/account');
 
 
 
@@ -32,7 +33,8 @@ app.use(session({
 }))
 app.use('/', indexRouter);
 app.use('/api/business', businessRouter);
-app.use('/api/metrics', metricsRouter)
+app.use('/api/metrics', metricsRouter);
+app.use('/api/account', accountRouter);
 
 app.use('*', (req, res) => {
     res.status(404).json({
