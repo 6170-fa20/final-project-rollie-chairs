@@ -1,7 +1,7 @@
 <template>
   <div class='filter-panel'>
     <form
-      id="filterFomr"
+      id="filterForm"
       class="component"
       v-on:submit.prevent="filter"
       method="post"
@@ -53,6 +53,7 @@
 
 <script>
 import axios from "axios";
+import { eventBus } from "../main";
 export default {
   name: "FilterPanel",
   data() {
@@ -80,6 +81,10 @@ export default {
         this.possibleTypes = response.data;
       });
     },
+    filter: function(){
+      let filters={type:this.type,status:this.status}
+      eventBus.$emit('filter-submit', filters);
+    }
   }
  
 };
