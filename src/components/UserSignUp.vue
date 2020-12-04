@@ -48,7 +48,9 @@ export default {
           });
     },
     resetForm: function() {
-      this.username = ""
+      this.username = "";
+      this.password = "";
+      this.email = "";
     },
     clearMessages: function() {
       setInterval(() => {

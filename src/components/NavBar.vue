@@ -38,14 +38,11 @@
         </div>
          <div v-if="currentBusinessUser!==''" class="form-container">
       My Account
-      <!--link to business/id-->
+      
     </div>
     <div v-else>
       
     </div>
-        <div>
-            <router-link to="/businesssignup" v-bind:style= "['BusinessSignUp'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]"> SignUp </router-link>
-            </div>
              <router-link to="/settings" v-bind:style= "['Settings'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]">
             <span>
              Settings
@@ -78,6 +75,9 @@ export default {
     eventBus.$on("signin-success", res => {
       this.currentBusinessUser=res.userID;
     });
-   }
+   },
+    getBusinessLink: function() {
+      return "/businesses/" + this.currentBusinessUser;
+    }
 };
 </script>

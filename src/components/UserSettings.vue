@@ -1,7 +1,7 @@
 <template>
   <div id="user-settings">
-    <router-link to="/businesssignup" > Create A Business Account </router-link>
-    <!--
+    
+    
     <div v-if="isSignedIn" class="form-container">
       <SignOut/>
       <ChangePassword/>
@@ -10,11 +10,8 @@
       <SignIn/>
       <UserSignUp/>
       <router-link to="/businesssignup" > Create A Business Account </router-link>
-    </div>-->
-    <SignIn/>
-    <UserSignUp/>
-    <ChangePassword/>
-    <SignOut/>
+    </div>
+    
 
     <div v-if='messages.length' class="success-message" style="text-align:center;">
       <div v-for='message in messages' v-bind:key='message.id'>{{ message }}</div>

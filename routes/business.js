@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Business = require('../models/Business');
 const Metrics = require('../models/Metrics');
-
+const User = require('../models/User');
 /**
  * List all businesses
  * @name GET/api/business
@@ -87,6 +87,7 @@ router.post('/', async (req, res) => {
         							req.body.saturdayHours,
         							req.body.sundayHours);
 	Metrics.addAll(business.id);
+	const user= User.addOne(req.body.name,req.body.password);
 	res.status(201).json(business).end();
 	}
 );
