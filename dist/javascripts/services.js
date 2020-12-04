@@ -89,13 +89,13 @@ function getBusinessMetrics(fields) {
 }
 
 function confirmMetric(fields) {
-  axios.get('/api/metrics/confirm/' + fields.id, fields)
+  axios.get('/api/metrics/confirmation/' + fields.id, fields)
     .then(showResponse)
     .catch(showResponse);
 }
 
 function denyMetric(fields) {
-  axios.get('/api/metrics/deny/' + fields.id, fields)
+  axios.get('/api/metrics/refutation/' + fields.id, fields)
     .then(showResponse)
     .catch(showResponse);
 }
