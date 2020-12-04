@@ -28,6 +28,14 @@ then you will find the application at `localhost:8080` in the browser
   * src/components/NavBar.vue
   * src/components/BusinessSignUpForm.vue
   * src/views/BusinessSignUp.vue
+  * routes/account.js
+  * routes/validators.js
+  * src/components/SignIn.vue
+  * src/components/UserSignUp.vue
+  * src/components/UserSettings.vue
+  * src/components/ChangePassword.vue
+  * src/components/FilterPanel.vue
+  * src/views/Settings.vue
 * **Kylie Carpenter**:
   * src
     * Metric.vue

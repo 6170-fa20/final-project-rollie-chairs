@@ -1,9 +1,9 @@
 <template>
   <div>
     <form id="sign-up" class='component' v-on:submit.prevent="signUp" method="post">
-      <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name">
-      <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password">
-      <input id='email' v-model.trim='email' type='text' name='email' placeholder="Email">
+      <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name" required>
+      <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password" required>
+      <input id='email' v-model.trim='email' type='text' name='email' placeholder="Email" required>
       <input type='submit' value='Create User Account' class="button">
     </form>
     <div v-if='errors.length' class="error-message" style="width: 250px;">

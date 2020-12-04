@@ -2,8 +2,8 @@
   <div>
     <div>{{temp}}</div>
     <form id="sign-in" class='component' v-on:submit.prevent="signIn" method="post">
-      <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name">
-      <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password">
+      <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name" required>
+      <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password" required>
       <input type='submit' value='Sign In' class="button">
     </form>
     <div v-if='errors.length' class="error-message" style="width: 250px;">
