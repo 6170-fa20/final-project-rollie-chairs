@@ -75,7 +75,7 @@ function createMetricTable(){
 
   function createUserTable(){
       sqlDb.run(`CREATE TABLE IF NOT EXISTS users (
-      ${columnNames.userId} INTEGER PRIMARY KEY AUTOINCREMENT,
+      ${columnNames.userID} INTEGER PRIMARY KEY AUTOINCREMENT,
       ${columnNames.userName} TEXT NOT NULL,
       ${columnNames.userPassword} TEXT NOT NULL
   )`);

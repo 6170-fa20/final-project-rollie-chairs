@@ -22,7 +22,7 @@ class User {
        * @return {User} - created user
        */
       static async addOne(username, password) {
-        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword}})
+        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword})
         VALUES ('${username}','${password}')`)
                   .then( () => {
                     return User.findUserByName(username);

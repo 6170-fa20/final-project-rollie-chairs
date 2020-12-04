@@ -14,7 +14,8 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
+import { eventBus } from "../main";
 export default {
   name: "ChangePassword",
   data() {
@@ -27,6 +28,10 @@ export default {
   },
   methods:{
       changePassword:function(){
+        let bodycontent = {password:this.newPassword};
+        axios.put("/api/account/",bodycontent).then(
+          eventBus.$emit('password-change-success', true)
+        );
 
       }
   }

@@ -44,3 +44,12 @@ const ensureValidPasswordInBody = function(req, res, next) {
     }
     next();
   };
+
+
+  module.exports = {
+    ensureUserNotLoggedIn,
+    ensureUserLoggedIn,
+    ensureValidUsernameInBody,
+    ensureValidPasswordInBody,
+    ensureValidEmailInBody
+  };
