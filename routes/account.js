@@ -95,13 +95,13 @@ router.put(
       let user = await Users.findUserById(id);
 
       //change password
-      let newUser= await Users.changePassword(id,password)
+      let newUser= await Users.changePassword(id,password);
 
      
-      res.status(201).json({ data: newUser, message: "You are signed in." }).end();
+      res.status(201).json({ data: newUser, message: "Password has been changed." }).end();
 
     } catch (error) {
-      res.status(503).json({ error: "Could not sign user in" }).end();
+      res.status(503).json({ error: "Could not change password" }).end();
     }
 
   });

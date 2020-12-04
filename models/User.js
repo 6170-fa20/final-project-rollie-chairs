@@ -35,7 +35,7 @@ class User {
        * @return {User | undefined} - found user
        */
       static async findUserById(id) {
-        return db.get(`SELECT * FROM  users WHERE ${db.columnNames.userId} == '${id}'`);
+        return db.get(`SELECT * FROM  users WHERE ${db.columnNames.userID} == '${id}'`);
       }
 
       /**
@@ -58,7 +58,7 @@ class User {
       static async changePassword(id, newPassword){
         return db.run(`UPDATE users
         SET ${db.columnNames.userPassword} = '${newPassword}'
-        WHERE ${db.columnNames.userId} = '${id}'`)
+        WHERE ${db.columnNames.userID} = '${id}'`)
       }
 
       /**
@@ -70,7 +70,7 @@ class User {
       static async deleteOne(id) {
         return User.findUserById(id)
             .then( (user) => {
-                db.run(`DELETE FROM users WHERE ${db.columnNames.userId} = '${id}'`);
+                db.run(`DELETE FROM users WHERE ${db.columnNames.userID} = '${id}'`);
                 return user;
             });
       }

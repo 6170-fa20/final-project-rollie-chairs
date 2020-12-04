@@ -21,14 +21,14 @@ export default {
   data() {
     return {
       currentUser:"",
-      newPassword:"",
+      password:"",
       errors: [],
       success: "",
     };
   },
   methods:{
       changePassword:function(){
-        let bodycontent = {password:this.newPassword};
+        let bodycontent = {password:this.password};
         axios.put("/api/account/",bodycontent).then(
           eventBus.$emit('password-change-success', true)
         );
