@@ -25,7 +25,10 @@ const columnNames = {
     metricName: "metric",
     metricOwner: "owner",
     metricConfirms: "confirms",
-    metricDenies: "denies"
+    metricDenies: "denies",
+    userID: "id",
+    userName: "username",
+    userPassword: "password"
   };
   Object.freeze(columnNames);
 
@@ -34,6 +37,7 @@ function createDb() {
     sqlDb = new sqlite3.Database('scopedb.db', function() {
       createBusinessTable();
       createMetricTable();
+      createUserTable();
     });
   };
 
@@ -65,7 +69,15 @@ function createMetricTable(){
     ${columnNames.metricOwner} INTEGER NOT NULL,
     ${columnNames.metricConfirms} INTEGER,
     ${columnNames.metricDenies} INTEGER
+    )`);
+  };
 
+
+  function createUserTable(){
+      sqlDb.run(`CREATE TABLE IF NOT EXISTS users (
+      ${columnNames.userId} INTEGER PRIMARY KEY AUTOINCREMENT,
+      ${columnNames.userName} TEXT NOT NULL,
+      ${columnNames.userPassword} TEXT NOT NULL
   )`);
 };
 
@@ -83,7 +95,7 @@ function run(sqlQuery) {
       })
     });
   };
-  
+
   function get(sqlQuery) {
     return new Promise((resolve, reject) => {
       sqlDb.get(sqlQuery, (err, row) => {
@@ -95,7 +107,7 @@ function run(sqlQuery) {
       })
     });
   };
-  
+
   function all(sqlQuery) {
     return new Promise((resolve, reject) => {
       sqlDb.all(sqlQuery, (err, rows) => {
@@ -107,9 +119,9 @@ function run(sqlQuery) {
       })
     });
   };
-  
+
   createDb();
-  
+
   module.exports = {
     columnNames,
     get,
