@@ -1,0 +1,91 @@
+<template>
+  <div class='filter-panel'>
+    <form
+      id="filterForm"
+      class="component"
+      v-on:submit.prevent="filter"
+      method="post"
+    >
+   <label for="status"
+        >Filter by Status</label
+      >
+
+      <select
+        name="status"
+        id="status"
+        v-model.trim="status"
+        type="text"
+        placeholder="Status"
+        required
+      >
+        <option
+          v-for="stat in possibleStatuses"
+          v-bind:key="stat"
+          v-bind:value="stat"
+        >
+          {{ stat }}
+        </option>
+      </select>
+      <label for="businessType"
+        >Filter by Business Type</label
+      >
+
+      <select
+        name="businessType"
+        id="businessType"
+        v-model.trim="businessType"
+        type="text"
+        placeholder="Business Type"
+        required
+      >
+        <option
+          v-for="bType in possibleTypes"
+          v-bind:key="bType"
+          v-bind:value="bType"
+        >
+          {{ bType }}
+        </option>
+      </select>
+      <input type="submit" value="Filter" class="button" />
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import { eventBus } from "../main";
+export default {
+  name: "FilterPanel",
+  data() {
+    return {
+      status:"",
+      type:"",
+      errors: [],
+      possibleStatuses: [],
+      possibleTypes: [],
+      success: "",
+    };
+  },
+  mounted: function () {
+    this.loadStatuses();
+    this.loadBusinessTypes();
+  },
+  methods: {
+    loadStatuses: function () {
+      axios.get("/api/business/statuses").then((response) => {
+        this.possibleStatuses = response.data;
+      });
+    },
+    loadBusinessTypes: function () {
+      axios.get("/api/business/types").then((response) => {
+        this.possibleTypes = response.data;
+      });
+    },
+    filter: function(){
+      let filters={type:this.type,status:this.status}
+      eventBus.$emit('filter-submit', filters);
+    }
+  }
+ 
+};
+</script>

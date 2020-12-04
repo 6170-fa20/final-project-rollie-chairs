@@ -26,5 +26,10 @@ export default new Router({
         name: 'Map',
         component: () => import('./views/Map.vue')
     },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import('./views/Settings.vue')
+  }
   ]
 })
