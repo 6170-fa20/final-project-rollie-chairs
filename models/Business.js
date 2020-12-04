@@ -1,6 +1,6 @@
 const db = require('../db/db_config');
 const statuses = ["Closed", "Delivery", "Take Out", "Outdoor Dining", "Indoor Dining","Open"];
-const businessTypes = ["Restaurant", "Non-restuarant"];
+const businessTypes = ["Restaurant", "Arts & Entertainment","Shopping","Beauty & Spas","Financial Services","Hotels & Travel","Pets","Active Life","Food","Other"];
 const NodeGeocoder = require('node-geocoder');
 /**
  * @typeof Business

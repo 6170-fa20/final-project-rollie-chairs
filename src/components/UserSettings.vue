@@ -4,6 +4,7 @@
     <!--
     <div v-if="isSignedIn" class="form-container">
       <SignOut/>
+      <ChangePassword/>
     </div>
     <div v-else class="form-container">
       <SignIn/>
@@ -12,6 +13,7 @@
     </div>-->
     <SignIn/>
     <UserSignUp/>
+    <ChangePassword/>
     <SignOut/>
 
     <div v-if='messages.length' class="success-message" style="text-align:center;">
@@ -24,13 +26,15 @@
 import SignIn from "./SignIn.vue";
 import SignOut from "./SignOut.vue";
 import UserSignUp from "./UserSignUp.vue";
+import ChangePassword from "./ChangePassword.vue";
 import { eventBus } from "../main";
 export default {
   name: "UserSettings",
   components: {
     SignIn,
     SignOut,
-    UserSignUp
+    UserSignUp,
+    ChangePassword
   },
   data() {
     return {
@@ -43,8 +47,8 @@ export default {
     if (authenticated) {
       this.isSignedIn = true;
     }
-    eventBus.$on("signin-success", (userName) => {
-      this.$cookie.set('scope-auth', userName);
+    eventBus.$on("signin-success", (userID) => {
+      this.$cookie.set('scope-auth', userID);
       this.isSignedIn = true;
       this.messages.push("You have been signed in!");
       this.clearMessages();

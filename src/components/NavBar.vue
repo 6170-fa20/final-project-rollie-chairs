@@ -64,7 +64,7 @@ export default {
     return {
       searchContent:"",
       currentPath:this.$route.name,
-      currentBusinessUser:"", //this.$cookie.get('url-shortener-auth')
+      currentBusinessUser:this.$cookie.get('scope-auth')
     };
   },
   methods:{
@@ -74,5 +74,10 @@ export default {
     }
 
   },
+   created: function() {
+    eventBus.$on("signin-success", res => {
+      this.currentBusinessUser=res.userID;
+    });
+   }
 };
 </script>

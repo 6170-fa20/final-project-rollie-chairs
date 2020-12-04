@@ -16,7 +16,8 @@ const router = express.Router();
 router.post(
     '/',
      (req, res) => {
-        res.status(201).json(req.data).end();
+       
+        res.status(201).json(req.body).end();
     
   });
   
@@ -30,7 +31,18 @@ router.post(
  */
 router.post(
   '/SignIn',(req, res) => {
-    res.status(201).json(req.data).end();
+    
+    res.status(201).json(req.body).end();
+  
+});
+
+/**
+ * Change password for user 
+ * @name PUT /api/account/
+ */
+router.put(
+  '/',(req, res) => {
+    res.status(201).json(req.body).end();
   
 });
 
@@ -42,7 +54,7 @@ router.post(
 router.delete(
   '/', 
    (req, res) => {
-    res.status(200).json(req.data).end();
+    res.status(200).json(req.body).end();
   
 });
 

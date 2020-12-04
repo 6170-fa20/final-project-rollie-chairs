@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>{{temp}}</div>
     <form id="sign-in" class='component' v-on:submit.prevent="signIn" method="post">
       <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name">
       <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password">
@@ -23,7 +24,8 @@ export default {
     return {
       errors: [],
       username: "",
-      password: ""
+      password: "",
+      temp:""
     }
   },
   methods: {
@@ -33,6 +35,7 @@ export default {
           .post("/api/account/SignIn", bodyContent)
           .then((res) => {
             // handle success
+            this.temp=res.data.username;
             eventBus.$emit('signin-success', res.data.username);
           })
           .catch(err => {

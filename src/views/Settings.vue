@@ -9,7 +9,7 @@
 import UserSettings from "../components/UserSettings.vue";
 import NavBar from "../components/NavBar.vue";
 export default {
-  name: "account",
+  name: "Settings",
   components: {
     UserSettings,
     NavBar
