@@ -21,7 +21,7 @@
     font-size: 3em;
     margin-bottom: 0%;
     text-decoration: underline;
-    border-bottom: solid black;
+    
 }
 
 /**************************** HOME VIEW STYLES ************************/
@@ -37,16 +37,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  border-bottom: solid black;
-  border-left: solid black;
-  border-right: solid black;
+  
 }
 
 .container {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  border: solid; 
+  
 }
 .business-container {
   height: 500px;

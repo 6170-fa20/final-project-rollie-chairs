@@ -1,6 +1,30 @@
 <template>
   <div>
-   
+    <b-button v-b-toggle.restaurantPresetMetrics class="m-1">Restaurant Preset Metrics</b-button>
+        <b-button v-b-toggle.nonrestaurantPresetMetrics class="m-1">Non-Restaurant Preset Metrics</b-button>
+
+        <b-collapse id="restaurantPresetMetrics">
+
+    <b-card><b-list-group>
+      <b-list-group-item
+      v-for="metric in presetMetricsRestuarant" :key="metric"
+      >
+      {{metric}}
+      </b-list-group-item>
+      </b-list-group>
+    </b-card>
+  </b-collapse>
+        <b-collapse id="nonrestaurantPresetMetrics">
+
+    <b-card><b-list-group>
+      <b-list-group-item
+      v-for="metric in presetMetrics" :key="metric"
+      >
+      {{metric}}
+      </b-list-group-item>
+      </b-list-group>
+    </b-card>
+  </b-collapse>
 
     <b-form @submit.prevent="signUp">
       <b-form-group
@@ -188,6 +212,8 @@
         placeholder="Sunday Hours"
         ></b-form-input>
         </b-form-group>
+        
+        
         <b-button type="submit" >Create Business</b-button>
     </b-form>
     
@@ -250,11 +276,11 @@ export default {
       
         axios.get("/api/metrics/list/restaurants").then((response) => {
           
-          this.presetMetricsRestuarant = this.starter.concat(response.data);
+          this.presetMetricsRestuarant = response.data;
         });
       
         axios.get("/api/metrics/list/general").then((response) => {
-           this.presetMetrics= this.starter.concat(response.data);
+           this.presetMetrics= response.data;
         });
       
       
@@ -262,12 +288,12 @@ export default {
     },
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
-        this.possibleStatuses = response.data;
+        this.possibleStatuses = this.starter.concat(response.data);
       });
     },
     loadBusinessTypes: function () {
       axios.get("/api/business/types").then((response) => {
-        this.possibleTypes = response.data;
+        this.possibleTypes = this.starter.concat(response.data);
       });
     },
     signUp: function(){
