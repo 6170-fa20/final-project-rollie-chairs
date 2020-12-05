@@ -27,7 +27,7 @@ router.post(
       const email = req.body.email;
       const type = "user";
       // issue a call to the DB to create a new user with the given username
-      let user = await Users.addOne(username, password);
+      let user = await Users.addOne(username, password,email,"user");
       res.status(201).json({ user, message: "Please sign in to continue." }).end();
 
     } catch (error) {

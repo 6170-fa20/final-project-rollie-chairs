@@ -40,9 +40,11 @@
       My Account
       
     </div>
+    
     <div v-else>
       
     </div>
+   
              <router-link to="/settings" v-bind:style= "['Settings'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]">
             <span>
              Settings

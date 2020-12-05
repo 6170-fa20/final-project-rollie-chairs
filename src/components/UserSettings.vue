@@ -44,8 +44,8 @@ export default {
     if (authenticated) {
       this.isSignedIn = true;
     }
-    eventBus.$on("signin-success", (userID) => {
-      this.$cookie.set('scope-auth', userID);
+    eventBus.$on("signin-success", (userInfo) => {
+      this.$cookie.set('scope-auth', userInfo);
       this.isSignedIn = true;
       this.messages.push("You have been signed in!");
       this.clearMessages();

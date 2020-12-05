@@ -22,7 +22,7 @@ class User {
        * @param {string} username - username of the user
        * @param {string} password - password of the user
        * @param {string} email - email of the user
-       * @param {string} typr - type of user
+       * @param {string} type - type of user
        * @return {User} - created user
        */
       static async addOne(username, password, email, type) {
