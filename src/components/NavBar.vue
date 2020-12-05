@@ -38,12 +38,11 @@
       </a>
         </div>
          <div v-if="currentBusinessUser!==''" class="form-container">
-      My Account
-      <!--
+      
         <router-link :to="getBusinessLink()">
         My Account
       </router-link>
-        -->
+        
       
     </div>
     
@@ -76,6 +75,9 @@ export default {
     search: function(){
       eventBus.$emit("search-success", this.searchContent);
       this.$router.push("/");
+    },
+    getBusinessLink: function() {
+      return "/businesses/" + this.currentBusinessUser;
     }
 
   },
@@ -84,8 +86,6 @@ export default {
       this.currentBusinessUser=res.userID;
     });
    },
-    getBusinessLink: function() {
-      return "/businesses/" + this.currentBusinessUser;
-    }
+    
 };
 </script>
