@@ -1,11 +1,33 @@
 <template>
   <div>
+    <b-form @submit.prevent="signIn">
+      <b-form-group
+        class="username-input-group"
+        >
+      <b-form-input
+        class= "username-input"
+        v-model="form.username"
+      
+        required
+        placeholder="Enter Username"
+        ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+        class="password-input-group"
+        >
+      <b-form-input
+        class= "password-input"
+        v-model="form.password"
+        required
+        placeholder="Enter Password"
+        ></b-form-input>
+        </b-form-group>
+
+        <b-button type="submit" >Sign in</b-button>
+    </b-form>
     
-    <form id="sign-in" class='component' v-on:submit.prevent="signIn" method="post">
-      <input id='username' v-model.trim='username' type='text' name='username' placeholder="User's name" required>
-      <input id='password' v-model.trim='password' type='text' name='password' placeholder="Password" required>
-      <input type='submit' value='Sign In' class="button">
-    </form>
+    
     <div v-if='errors.length' class="error-message" style="width: 250px;">
       <b>Please correct the following error(s):</b>
       <ul>
@@ -22,15 +44,17 @@ export default {
   name: "UserSignIn",
   data() {
     return {
-      errors: [],
-      username: "",
-      password: "",
+      form:{
+        username:"",
+        password:"",
+      },
+      errors: []
       
     }
   },
   methods: {
     signIn: function() {
-      const bodyContent = { username: this.username , password: this.password};
+      const bodyContent = { username: this.form.username , password: this.form.password};
         axios
           .post("/api/account/SignIn", bodyContent)
           .then((res) => {
@@ -40,6 +64,7 @@ export default {
           })
           .catch(err => {
             // handle error
+            this.errors.push(this.$cookie.get('scope-auth'));
             this.errors.push(err.response.data.error);
           })
           .then(() => {
@@ -49,8 +74,8 @@ export default {
           });
     },
     resetForm: function() {
-      this.username = "";
-      this.password = "";
+      this.form.username = "";
+      this.form.password = "";
     },
     clearMessages: function() {
       setInterval(() => {
@@ -61,12 +86,3 @@ export default {
 }
 </script>
 
-<style scoped>
-form {
-  width: fit-content;
-}
-input[type="text"],
-input[type="url"] {
-  width: 15rem;
-}
-</style>

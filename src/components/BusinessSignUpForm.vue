@@ -1,181 +1,196 @@
 <template>
   <div>
-    <form
-      id="sign-up"
-      class="component"
-      v-on:submit.prevent="signUp"
-      method="post"
-    >
-      <label for="companyName"
-        >Company Name<abbr class="req" title="required">*</abbr>:</label
-      >
-      <input
-        id="companyName"
-        v-model.trim="companyName"
-        type="text"
-        name="companyName"
-        placeholder="Company name"
-        required
-      />
-      <label for="password"
-        >Password<abbr class="req" title="required">*</abbr>:</label
-      >
-      <input
-        id="password"
-        v-model.trim="password"
-        type="text"
-        name="password"
-        placeholder="Password"
-        required
-      />
-      <label for="description">Description:</label>
-      <input
-        id="description"
-        v-model.trim="description"
-        type="text"
-        name="description"
-        placeholder="Description"
-        maxlength="150"
-      />
-      <label for="status"
-        >Choose a Status<abbr class="req" title="required">*</abbr>:</label
-      >
+   
 
-      <select
-        name="status"
-        id="status"
-        v-model.trim="status"
-        type="text"
-        placeholder="Status"
-        required
-      >
-        <option
-          v-for="stat in possibleStatuses"
-          v-bind:key="stat"
-          v-bind:value="stat"
+    <b-form @submit.prevent="signUp">
+      <b-form-group
+        class="company-name-input-group"
+        label="Company Name:"
+        label-for="company-name-input"
         >
-          {{ stat }}
-        </option>
-      </select>
-      <label for="email"
-        >Email<abbr class="req" title="required">*</abbr>:</label
-      >
-      <input
-        id="email"
-        v-model.trim="email"
-        type="text"
-        name="email"
-        placeholder="Email"
+      <b-form-input
+        id= "company-name-input"
+        v-model="form.companyName"
         required
-      />
-      <label for="phone">Phone:</label>
-      <input
-        id="phone"
-        v-model.trim="phone"
-        type="text"
-        name="phone"
-        placeholder="Phone"
-      />
-      <label for="businessType"
-        >Choose a Business Type<abbr class="req" title="required">*</abbr
-        >:</label
-      >
+        placeholder="Enter Company Name"
+        ></b-form-input>
+        </b-form-group>
+        
 
-      <select
-        name="businessType"
-        id="businessType"
-        v-model.trim="businessType"
-        type="text"
-        placeholder="Business Type"
-        required
-      >
-        <option
-          v-for="bType in possibleTypes"
-          v-bind:key="bType"
-          v-bind:value="bType"
+        <b-form-group
+        id="company-password-input-group"
+        label="Password:"
+        label-for="company-password-input"
         >
-          {{ bType }}
-        </option>
-      </select>
-      <label for="address">Address:</label>
-      <input
-        id="address"
-        v-model.trim="address"
-        type="text"
-        name="address"
-        placeholder="Address"
-      />
-      <label for="mondayHours">Monday Hours:</label>
-      <input
-        id="mondayHours"
-        v-model.trim="mondayHours"
-        type="text"
-        name="mondayHours"
+      <b-form-input
+        id= "company-password-input"
+        v-model="form.password"
+        required
+        placeholder="Enter Password"
+        ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+        id="description-input-group"
+        label="Description:"
+        label-for="description-input"
+        >
+      <b-form-input
+        id= "description-input"
+        v-model="form.description"
+        
+        placeholder="Enter Description"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group id="status-input-group" label="Status:" label-for="status-input">
+        <b-form-select
+          id="status-input"
+          v-model="form.status"
+          :options="possibleStatuses"
+          
+        ></b-form-select>
+         </b-form-group>
+        <b-form-group
+        id="email-input-group"
+        label="Email:"
+        label-for="email-input"
+        >
+      <b-form-input
+        id= "email-input"
+        v-model="form.email"
+        type="email"
+        required
+        placeholder="Enter Email"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="phone-input-group"
+        label="Phone:"
+        label-for="phone-input"
+        >
+      <b-form-input
+        id= "phone-input"
+        v-model="form.phone"
+        
+        
+        placeholder="Enter Phone Number"
+        ></b-form-input>
+        </b-form-group>
+        <b-form-group id="type-input-group" label="Business Type:" label-for="type-input">
+        <b-form-select
+          id="type-input"
+          v-model="form.type"
+          :options="possibleTypes"
+          
+        ></b-form-select>
+         </b-form-group>
+         <b-form-group
+        id="address-input-group"
+        label="Address:"
+        label-for="address-input"
+        >
+      <b-form-input
+        id= "Address-input"
+        v-model="form.address"
+        
+        
+        placeholder="Enter Address"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="monday-input-group"
+        label="Monday Hours:"
+        label-for="monday-input"
+        >
+      <b-form-input
+        id= "monday-input"
+        v-model="form.mondayHours"
+        
+        
         placeholder="Monday Hours"
-      />
-      <label for="tuesdayHours">Tuesday Hours:</label>
-      <input
-        id="tuesdayHours"
-        v-model.trim="tuesdayHours"
-        type="text"
-        name="tuesdayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="tuesday-input-group"
+        label="Tuesday Hours:"
+        label-for="tuesday-input"
+        >
+      <b-form-input
+        id= "tuesday-input"
+        v-model="form.tuesdayHours"
+        
+        
         placeholder="Tuesday Hours"
-      />
-      <label for="wednesdayHours">Wednesday Hours:</label>
-      <input
-        id="wednesdayHours"
-        v-model.trim="wednesdayHours"
-        type="text"
-        name="wednesdayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="wednesday-input-group"
+        label="Wednesday Hours:"
+        label-for="wednesday-input"
+        >
+      <b-form-input
+        id= "wednesday-input"
+        v-model="form.wednesdayHours"
+        
+        
         placeholder="Wednesday Hours"
-      />
-      <label for="thursdayHours">Thursday Hours:</label>
-      <input
-        id="thursdayHours"
-        v-model.trim="thursdayHours"
-        type="text"
-        name="thursdayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="thursday-input-group"
+        label="Thursday Hours:"
+        label-for="thursday-input"
+        >
+      <b-form-input
+        id= "thursday-input"
+        v-model="form.thursdayHours"
+        
+        
         placeholder="Thursday Hours"
-      />
-      <label for="fridayHours">Friday Hours:</label>
-      <input
-        id="fridayHours"
-        v-model.trim="fridayHours"
-        type="text"
-        name="fridayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="friday-input-group"
+        label="Friday Hours:"
+        label-for="Friday-input"
+        >
+      <b-form-input
+        id= "friday-input"
+        v-model="form.fridayHours"
+        
+        
         placeholder="Friday Hours"
-      />
-      <label for="saturdayHours">Saturday Hours:</label>
-      <input
-        id="saturdayHours"
-        v-model.trim="saturdayHours"
-        type="text"
-        name="saturdayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="saturday-input-group"
+        label="Saturday Hours:"
+        label-for="saturday-input"
+        >
+      <b-form-input
+        id= "saturday-input"
+        v-model="form.saturdayHours"
+        
+        
         placeholder="Saturday Hours"
-      />
-      <label for="sundayHours">Sunday Hours:</label>
-      <input
-        id="sundayHours"
-        v-model.trim="sundayHours"
-        type="text"
-        name="sundayHours"
+        ></b-form-input>
+        </b-form-group>
+         <b-form-group
+        id="sunday-input-group"
+        label="Sunday Hours:"
+        label-for="sunday-input"
+        >
+      <b-form-input
+        id= "sunday-input"
+        v-model="form.sundayHours"
+        
+        
         placeholder="Sunday Hours"
-      />
-      <label for="metrics">Preset Metrics for Non-Restuarants:</label>
-      <ul id="metricslist">
-        <li v-for="metric in presetMetrics" :key="metric">
-          {{ metric }}
-        </li>
-      </ul>
-      <label for="metricsrest">Preset Metrics for Restaurants:</label>
-      <ul id="metricslistrest">
-        <li v-for="metric in presetMetricsRestuarant" :key="metric">
-          {{ metric }}
-        </li>
-      </ul>
-      <div><abbr class="req" title="required">*</abbr>:Required Fields</div>
-      <input type="submit" value="Submit" class="button" />
-    </form>
+        ></b-form-input>
+        </b-form-group>
+        <b-button type="submit" >Create Business</b-button>
+    </b-form>
+    
     <div v-if="success" class="success-message">
       {{ success }}
     </div>
@@ -196,6 +211,8 @@ export default {
 
   data() {
     return {
+      form:{
+        
       companyName: "",
       password: "",
       description: "",
@@ -211,11 +228,15 @@ export default {
       fridayHours: "",
       saturdayHours: "",
       sundayHours: "",
-      errors: [],
-      possibleStatuses: [],
+        
+      },
+       possibleStatuses: [],
       possibleTypes: [],
       presetMetrics: [],
       presetMetricsRestuarant: [],
+      errors: [],
+      starter:[{ text: 'Select One', value: "" }],
+   
       success: "",
     };
   },
@@ -228,11 +249,12 @@ export default {
     loadMetrics: function () {
       
         axios.get("/api/metrics/list/restaurants").then((response) => {
-          this.presetMetricsRestuarant = response.data;
+          
+          this.presetMetricsRestuarant = this.starter.concat(response.data);
         });
       
         axios.get("/api/metrics/list/general").then((response) => {
-           this.presetMetrics= response.data;
+           this.presetMetrics= this.starter.concat(response.data);
         });
       
       
@@ -257,21 +279,21 @@ export default {
     
     createBusiness: function () {
       const bodyContent = {
-        name: this.companyName,
-        password: this.password,
-        status: this.status,
-        email: this.email,
-        phone: this.phone,
-        type: this.businessType,
-        description: this.description,
-        address: this.address,
-        mondayHours: this.mondayHours,
-        tuesdayHours: this.tuesdayHours,
-        wednesdayHours: this.wednesdayHours,
-        thursdayHours: this.thursdayHours,
-        fridayHours: this.fridayHours,
-        saturdayHours: this.saturdayHours,
-        sundayHours: this.sundayHours,
+        name: this.form.companyName,
+        password: this.form.password,
+        status: this.form.status,
+        email: this.form.email,
+        phone: this.form.phone,
+        type: this.form.businessType,
+        description: this.form.description,
+        address: this.form.address,
+        mondayHours: this.form.mondayHours,
+        tuesdayHours: this.form.tuesdayHours,
+        wednesdayHours: this.form.wednesdayHours,
+        thursdayHours: this.form.thursdayHours,
+        fridayHours: this.form.fridayHours,
+        saturdayHours: this.form.saturdayHours,
+        sundayHours: this.form.sundayHours,
       };
       axios
         .post("/api/business", bodyContent)
@@ -293,21 +315,21 @@ export default {
         });
     },
     resetForm: function () {
-      this.companyName = "";
-      this.password = "";
-      this.description = "";
-      this.email = "";
-      this.phone = "";
-      this.status = "";
-      this.businessType = "";
-      this.address= "";
-      this.mondayHours = "";
-      this.tuesdayHours= "";
-      this.wednesdayHours= "";
-      this.thursdayHours= "";
-      this.fridayHours= "";
-      this.saturdayHours= "";
-      this.sundayHours= "";
+      this.form.companyName = "";
+      this.form.password = "";
+      this.form.description = "";
+      this.form.email = "";
+      this.form.phone = "";
+      this.form.status = "";
+      this.form.businessType = "";
+      this.form.address= "";
+      this.form.mondayHours = "";
+      this.form.tuesdayHours= "";
+      this.form.wednesdayHours= "";
+      this.form.thursdayHours= "";
+      this.form.fridayHours= "";
+      this.form.saturdayHours= "";
+      this.form.sundayHours= "";
     },
     clearMessages: function () {
       setInterval(() => {

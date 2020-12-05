@@ -1,6 +1,7 @@
 <template>
   <div id="sign-out" class="component">
-    <button v-on:click="signOut">Sign Out</button>
+    
+  <b-button v-on:click="signOut"> Sign Out</b-button>
   </div>
 </template>
 

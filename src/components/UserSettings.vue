@@ -2,15 +2,30 @@
   <div id="user-settings">
     
     
-    <div v-if="isSignedIn" class="form-container">
-      <SignOut/>
-      <ChangePassword/>
-    </div>
-    <div v-else class="form-container">
-      <SignIn/>
-      <UserSignUp/>
-      <router-link to="/businesssignup" > Create A Business Account </router-link>
-    </div>
+    
+      <b-container v-if="isSignedIn" class="signedin-container" >
+      <b-row align-h="center">
+        <SignOut/>
+      </b-row>
+      <b-row align-h="center">
+        <ChangePassword/>
+        </b-row>
+    </b-container>
+    
+    
+      <b-container v-else  class="signedup-container">
+        <b-row align-h="center">
+        <SignIn/>
+      </b-row>
+       
+      <b-row align-h="center">
+        <UserSignUp/>
+      </b-row>
+      <b-row align-h="center">
+      <b-button v-on:click="businessLink">Create A Business Account</b-button>
+      </b-row>
+      </b-container>
+    
     
 
     <div v-if='messages.length' class="success-message" style="text-align:center;">
@@ -67,7 +82,12 @@ export default {
       setInterval(() => {
         this.messages = [];
       }, 5000);
+    },
+    businessLink: function(){
+      this.$router.push("/businesssignup");
     }
   }
 };
 </script>
+<style scoped>
+</style>
