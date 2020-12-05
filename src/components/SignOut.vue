@@ -1,7 +1,6 @@
 <template>
   <div id="sign-out" class="component">
-    
-  <b-button v-on:click="signOut"> Sign Out</b-button>
+    <b-button v-on:click="signOut"> Sign Out</b-button>
   </div>
 </template>
 
@@ -10,19 +9,20 @@ import axios from "axios";
 import { eventBus } from "../main";
 export default {
   name: "SignOut",
-  
+
   methods: {
-    signOut: function() {
-      axios.delete("/api/account/")
+    signOut: function () {
+      axios
+        .delete("/api/account/")
         .then(() => {
           // handle success
-          eventBus.$emit('signout-success', true);
+          eventBus.$emit("signout-success", true);
         })
         .catch(() => {
           // Still sign User out so they have to sign in again.
-          eventBus.$emit('signout-success', true);
-        })
-    }
-  }
-}
+          eventBus.$emit("signout-success", true);
+        });
+    },
+  },
+};
 </script>

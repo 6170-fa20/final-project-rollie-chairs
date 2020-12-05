@@ -56,6 +56,16 @@
             </span>
         </router-link>
 
+      <router-link
+        to="/settings"
+        v-bind:style="[
+          'Settings' === currentPath
+            ? { 'text-decoration': 'underline' }
+            : { 'text-decoration': 'none' },
+        ]"
+      >
+        <span> Settings </span>
+      </router-link>
     </div>
   </div>
 </template>
@@ -66,13 +76,13 @@ export default {
   name: "NavBar",
   data() {
     return {
-      searchContent:"",
-      currentPath:this.$route.name,
-      currentBusinessUser:1//this.$cookie.get('scope-auth')
+      searchContent: "",
+      currentPath: this.$route.name,
+      currentBusinessUser: 1, //this.$cookie.get('scope-auth')
     };
   },
-  methods:{
-    search: function(){
+  methods: {
+    search: function () {
       eventBus.$emit("search-success", this.searchContent);
       this.$router.push("/");
     },
@@ -81,9 +91,9 @@ export default {
     }
 
   },
-   created: function() {
-    eventBus.$on("signin-success", res => {
-      this.currentBusinessUser=res.userID;
+  created: function () {
+    eventBus.$on("signin-success", (res) => {
+      this.currentBusinessUser = res.userID;
     });
    },
     
