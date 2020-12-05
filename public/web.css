@@ -27,10 +27,7 @@
 /**************************** HOME VIEW STYLES ************************/
 
 .home {
-  display: flex;
-  flex-direction: row;
-  /* align-items: center; */
-  /*border: solid red;*/
+  /*background-color: #F0D6BD;*/
 }
 
 .view-container {
@@ -47,14 +44,25 @@
 }
 
 .business-container {
-  height: 500px;
+  height: 700px;
   overflow: auto;
-  padding-right: 0px;
 }
 
 .filter-panel {
+  /*background-color: #142664;*/
   background-color: lightgrey;
   padding: .5%;
+
+}
+
+#filter-form {
+  margin:5px;
+  /*color: white;*/
+}
+
+#filter-inputs {
+  margin-top:10px;
+  margin-bottom: 10px;
 }
 
 /**************************** BUSINESS PROFILE VIEW STYLES ************************/
