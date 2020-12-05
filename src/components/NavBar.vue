@@ -39,6 +39,11 @@
         </div>
          <div v-if="currentBusinessUser!==''" class="form-container">
       My Account
+      <!--
+        <router-link :to="getBusinessLink()">
+        My Account
+      </router-link>
+        -->
       
     </div>
     
@@ -64,7 +69,7 @@ export default {
     return {
       searchContent:"",
       currentPath:this.$route.name,
-      currentBusinessUser:this.$cookie.get('scope-auth')
+      currentBusinessUser:1//this.$cookie.get('scope-auth')
     };
   },
   methods:{

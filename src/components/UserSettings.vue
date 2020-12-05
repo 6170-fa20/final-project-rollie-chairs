@@ -5,24 +5,34 @@
     
       <b-container v-if="isSignedIn" class="signedin-container" >
       <b-row align-h="center">
+        <b-card>
         <SignOut/>
+        </b-card>
       </b-row>
       <b-row align-h="center">
+        <b-card>
         <ChangePassword/>
+        </b-card>
         </b-row>
     </b-container>
     
     
       <b-container v-else  class="signedup-container">
         <b-row align-h="center">
+          <b-card>
         <SignIn/>
+          </b-card>
       </b-row>
        
       <b-row align-h="center">
+        <b-card>
         <UserSignUp/>
+        </b-card>
       </b-row>
       <b-row align-h="center">
+        <b-card>
       <b-button v-on:click="businessLink">Create A Business Account</b-button>
+      </b-card>
       </b-row>
       </b-container>
     
