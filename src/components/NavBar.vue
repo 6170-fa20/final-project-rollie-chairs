@@ -13,14 +13,14 @@
             name="searchContent"
             placeholder="Search for Business"
           />
-
+<!--
           <input
             type="submit"
             value="search"
             id="searchButton"
             class="button"
-          />
-          <!-- <b-button>Search</b-button> -->
+          />-->
+           <b-button>Search</b-button> 
         </form>
       </div>
 

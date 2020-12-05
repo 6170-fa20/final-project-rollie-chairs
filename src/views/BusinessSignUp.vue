@@ -1,10 +1,11 @@
 <template>
   <div class='business-signup-page'>
     <NavBar/>
-    <header >
-      Create a Business Profile
-    </header>
+    <b-card
+    title="Create a Business">
     <BusinessSignUpForm/>
+    </b-card>
+    
   </div>
 </template>
 
