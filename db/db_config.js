@@ -28,7 +28,9 @@ const columnNames = {
     metricDenies: "denies",
     userID: "id",
     userName: "username",
-    userPassword: "password"
+    userPassword: "password",
+    userEmail: "email",
+    userType: "type",
   };
   Object.freeze(columnNames);
 
@@ -77,7 +79,9 @@ function createMetricTable(){
       sqlDb.run(`CREATE TABLE IF NOT EXISTS users (
       ${columnNames.userID} INTEGER PRIMARY KEY AUTOINCREMENT,
       ${columnNames.userName} TEXT NOT NULL,
-      ${columnNames.userPassword} TEXT NOT NULL
+      ${columnNames.userPassword} TEXT NOT NULL,
+      ${columnNames.userEmail} TEXT NOT NULL,
+      ${columnNames.userType} TEXT NOT NULL
   )`);
 };
 

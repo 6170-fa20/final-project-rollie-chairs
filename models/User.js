@@ -5,6 +5,8 @@ const db = require('../db/db_config');
  * @prop {string} id - id of the user
  * @prop {string} username - username of the user
  * @prop {string} password - password of the user
+ * @prop {string} email - email of the user
+ * @prop {string} type - type of user
  */
 
 /**
@@ -19,11 +21,13 @@ class User {
        *
        * @param {string} username - username of the user
        * @param {string} password - password of the user
+       * @param {string} email - email of the user
+       * @param {string} typr - type of user
        * @return {User} - created user
        */
-      static async addOne(username, password) {
-        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword})
-        VALUES ('${username}','${password}')`)
+      static async addOne(username, password, email, type) {
+        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword},${db.columnNames.userEmail}, ${db.columnNames.userType})
+        VALUES ('${username}','${password}','${email}','${type}')`)
                   .then( () => {
                     return User.findUserByName(username);
                   });
@@ -39,12 +43,21 @@ class User {
       }
 
       /**
-       * Find a user by id.
+       * Find a user by name.
        * @param {string} name - name of user to find
        * @return {User | undefined} - found user
        */
       static async findUserByName(name) {
         return db.get(`SELECT * FROM  users WHERE ${db.columnNames.userName} == '${name}'`);
+      }
+
+      /**
+       * Find a user by email.
+       * @param {string} email - email of user to find
+       * @return {User | undefined} - found user
+       */
+      static async findUserByEmail(email) {
+        return db.get(`SELECT * FROM  users WHERE ${db.columnNames.userEmail} == '${email}'`);
       }
 
 
