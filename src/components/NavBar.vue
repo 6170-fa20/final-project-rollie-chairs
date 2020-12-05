@@ -20,6 +20,7 @@
             id="searchButton"
             class="button"
           />
+          <!-- <b-button>Search</b-button> -->
         </form>
       </div>
 
