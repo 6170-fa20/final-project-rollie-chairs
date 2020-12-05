@@ -52,6 +52,11 @@
   padding-right: 0px;
 }
 
+.filter-panel {
+  background-color: lightgrey;
+  padding: .5%;
+}
+
 /**************************** BUSINESS PROFILE VIEW STYLES ************************/
 .business-profile-name {
   display: flex;

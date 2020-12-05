@@ -1,53 +1,55 @@
 <template>
-  <div class='filter-panel'>
-    <form
-      id="filterForm"
-      class="component"
-      v-on:submit.prevent="filter"
-      method="post"
-    >
-   <label for="status"
-        >Filter by Status</label
+  <div>
+    <b-container>
+      <form
+        id="filterForm"
+        class="component"
+        v-on:submit.prevent="filter"
+        method="post"
       >
-
-      <select
-        name="status"
-        id="status"
-        v-model.trim="status"
-        type="text"
-        placeholder="Status"
-        required
-      >
-        <option
-          v-for="stat in possibleStatuses"
-          v-bind:key="stat"
-          v-bind:value="stat"
+     <label for="status"
+          >Filter by Status</label
         >
-          {{ stat }}
-        </option>
-      </select>
-      <label for="businessType"
-        >Filter by Business Type</label
-      >
 
-      <select
-        name="businessType"
-        id="businessType"
-        v-model.trim="businessType"
-        type="text"
-        placeholder="Business Type"
-        required
-      >
-        <option
-          v-for="bType in possibleTypes"
-          v-bind:key="bType"
-          v-bind:value="bType"
+        <select
+          name="status"
+          id="status"
+          v-model.trim="status"
+          type="text"
+          placeholder="Status"
+          required
         >
-          {{ bType }}
-        </option>
-      </select>
-      <input type="submit" value="Filter" class="button" />
-    </form>
+          <option
+            v-for="stat in possibleStatuses"
+            v-bind:key="stat"
+            v-bind:value="stat"
+          >
+            {{ stat }}
+          </option>
+        </select>
+        <label for="businessType"
+          >Filter by Business Type</label
+        >
+
+        <select
+          name="businessType"
+          id="businessType"
+          v-model.trim="businessType"
+          type="text"
+          placeholder="Business Type"
+          required
+        >
+          <option
+            v-for="bType in possibleTypes"
+            v-bind:key="bType"
+            v-bind:value="bType"
+          >
+            {{ bType }}
+          </option>
+        </select>
+        <input type="submit" value="Filter" class="button" />
+      </form>
+    </b-container>
   </div>
 </template>
 
