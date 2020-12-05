@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: row;
   /* align-items: center; */
-  border: solid red;
+  /*border: solid red;*/
 }
 
 .view-container {
@@ -46,7 +46,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  border: solid red; 
+  /*border: solid red; */
 }
 .business-container {
   height: 500px;
@@ -69,7 +69,7 @@
   /* flex-grow: 1; */
   justify-content: space-between;
   /* align-items: stretch; */
-  border: solid black
+  /*border: solid black*/
 }
 
 .business-profile {

@@ -1,8 +1,8 @@
 <template>
   <div class="business-profile-info">
-    <div class="headers profile-headers">
+    <!-- <div class="headers profile-headers">
       Browse Businesses
-    </div>
+    </div> -->
 
     <div>
       <div v-if='success' class="success-message">
@@ -14,13 +14,12 @@
 
 
       <div class="business-container">  
-        <div>
-            <BusinessListing
-            v-for="business in businesses"
-            v-bind:key="business.id"
-            v-bind:businessID="business.id"
-            />
-        </div>
+        <b-list-group>
+          <b-list-group-item v-for="business in businesses" v-bind:key="business.id">
+            <BusinessListing v-bind:businessID="business.id"/>
+          </b-list-group-item>
+        </b-list-group>
+            
       </div>
 
     </div>
