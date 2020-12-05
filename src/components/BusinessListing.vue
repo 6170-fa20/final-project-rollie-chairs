@@ -4,7 +4,7 @@
       <router-link :to="getBusinessLink()">
         <b>{{ business.name}} </b><br>
       </router-link>
-      <i>{{ business.description }}</i>
+      <p><i>{{ business.description }}</i></p>
       <p>Safety Rating: {{ score }} </p>
       <p> Business Type: {{business.type}} </p>
       <p> Status: {{business.status}} </p>

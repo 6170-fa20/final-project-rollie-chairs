@@ -1,8 +1,11 @@
 <template>
   <div class='home-page'>
     <NavBar/>
-    <FilterPanel/>
-    <BusinessContainer/>
+    
+    <b-container>
+        <FilterPanel/>
+        <BusinessContainer/>
+    </b-container>
   </div>
 </template>
 
