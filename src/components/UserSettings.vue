@@ -1,45 +1,47 @@
 <template>
   <div id="user-settings">
-    
-    
-    
-      <b-container v-if="isSignedIn" class="signedin-container" >
+    <b-container v-if="isSignedIn" class="signedin-container">
       <b-row align-h="center">
         <b-card>
-        <SignOut/>
+          <SignOut />
         </b-card>
       </b-row>
       <b-row align-h="center">
         <b-card>
-        <ChangePassword/>
+          <ChangePassword />
         </b-card>
-        </b-row>
+      </b-row>
     </b-container>
-    
-    
-      <b-container v-else  class="signedup-container">
-        <b-row align-h="center">
-          <b-card>
-        <SignIn/>
-          </b-card>
-      </b-row>
-       
+
+    <b-container v-else class="signedup-container">
       <b-row align-h="center">
         <b-card>
-        <UserSignUp/>
+          <SignIn />
+        </b-card>
+      </b-row>
+
+      <b-row align-h="center">
+        <b-card>
+          <UserSignUp />
         </b-card>
       </b-row>
       <b-row align-h="center">
         <b-card>
-      <b-button v-on:click="businessLink">Create A Business Account</b-button>
-      </b-card>
+          <b-button v-on:click="businessLink"
+            >Create A Business Account</b-button
+          >
+        </b-card>
       </b-row>
-      </b-container>
-    
-    
+    </b-container>
 
-    <div v-if='messages.length' class="success-message" style="text-align:center;">
-      <div v-for='message in messages' v-bind:key='message.id'>{{ message }}</div>
+    <div
+      v-if="messages.length"
+      class="success-message"
+      style="text-align: center"
+    >
+      <div v-for="message in messages" v-bind:key="message.id">
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
@@ -56,28 +58,28 @@ export default {
     SignIn,
     SignOut,
     UserSignUp,
-    ChangePassword
+    ChangePassword,
   },
   data() {
     return {
       isSignedIn: false,
-      messages: []
+      messages: [],
     };
   },
-  created: function() {
-    let authenticated = this.$cookie.get('scope-auth');
+  created: function () {
+    let authenticated = this.$cookie.get("scope-auth");
     if (authenticated) {
       this.isSignedIn = true;
     }
     eventBus.$on("signin-success", (userInfo) => {
-      this.$cookie.set('scope-auth', userInfo);
+      this.$cookie.set("scope-auth", userInfo);
       this.isSignedIn = true;
       this.messages.push("You have been signed in!");
       this.clearMessages();
     });
-    
+
     eventBus.$on("signout-success", () => {
-      this.$cookie.set('scope-auth', '');
+      this.$cookie.set("scope-auth", "");
       this.isSignedIn = false;
       this.messages.push("You have been signed out!");
       this.clearMessages();
@@ -88,15 +90,15 @@ export default {
     });
   },
   methods: {
-    clearMessages: function() {
+    clearMessages: function () {
       setInterval(() => {
         this.messages = [];
       }, 5000);
     },
-    businessLink: function(){
+    businessLink: function () {
       this.$router.push("/businesssignup");
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
