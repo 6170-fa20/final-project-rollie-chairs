@@ -7,7 +7,7 @@
           <FilterPanel/>
         </b-col>
         <b-col>
-          <BusinessContainer/>
+          <BusinessContainer v-bind:search="query"/>
         </b-col>
       </b-row>
     </b-container>
@@ -24,6 +24,9 @@ export default {
     NavBar,
     BusinessContainer,
     FilterPanel
+  },
+  props:{
+    query: String
   }
 };
 </script>

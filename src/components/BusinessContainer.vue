@@ -28,7 +28,7 @@
 
 <script>
 import axios from "axios";
-// import { eventBus } from "../main";
+import { eventBus } from "../main";
 import BusinessListing from "./BusinessListing";
 
 export default {
@@ -42,8 +42,18 @@ export default {
     };
   },
 
+  props: {
+    search: String
+  },
+
   mounted: function() {
-    this.loadAllBusinesses();
+    if (this.search){
+      this.searchBusinesses(this.search);
+    }else{
+      this.loadAllBusinesses();
+    }
+    eventBus.$on("search-success", (name) =>
+      {this.searchBusinesses(name)});
   },
 
   methods: {
@@ -53,6 +63,20 @@ export default {
         this.success = "Showing you all businesses on Scope"
       })
       .catch(error => {this.error = error.response.data.error});
+      this.clearMessages();
+    },
+
+    searchBusinesses: function(name) {
+      axios.get(`/api/business/results/`+name).then(response => {
+        if (response.data.length === 0){
+          this.businesses = [];
+          this.success = "No businesses match your search";
+        }else{
+          this.businesses = response.data.length > 1? response.data: [response.data];
+          this.success = "The following businesses match your search for " + name;
+        }
+        })
+        .catch(error => {this.error = error.response.data.error});
       this.clearMessages();
     },
 

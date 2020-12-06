@@ -72,7 +72,7 @@ class Businesses {
    * @return {Business | undefined} - found business
    */
   static async findOneByName(name) {
-    return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessName} == '${name}'`);
+    return db.get(`SELECT * FROM businesses WHERE ${db.columnNames.businessName} == '${name}' COLLATE NOCASE`);
   }
 
   /**

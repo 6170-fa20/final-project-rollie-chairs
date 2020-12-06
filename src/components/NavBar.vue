@@ -79,7 +79,7 @@ export default {
   methods: {
     search: function () {
       eventBus.$emit("search-success", this.searchContent);
-      this.$router.push("/");
+      this.$router.push({ path: '/search', query: { name: this.searchContent }})
     },
     getBusinessLink: function() {
       return "/businesses/" + this.currentBusinessUser;
