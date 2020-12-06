@@ -1,7 +1,7 @@
 <template>
   <div class="business-signup-page">
     <NavBar />
-    <b-card title="Create a Business">
+    <b-card title="Create a Business Account">
       <BusinessSignUpForm />
     </b-card>
   </div>

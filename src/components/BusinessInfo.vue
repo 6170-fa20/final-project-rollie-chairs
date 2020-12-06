@@ -143,8 +143,9 @@
     </div>
 
     <div class="container" v-else>
-      <p> Business Type: {{business.type}} </p>
       <p> Status: {{business.status}} </p>
+      <p> Business Type: {{business.type}} </p>
+      <p> Description: {{business.description}} </p>
       <p> Email: {{business.email}} </p>
       <p> Monday Hours: {{business.monday_hours}} </p>
       <p> Tuesday Hours: {{business.tuesday_hours}} </p>
@@ -196,16 +197,31 @@ export default {
   },
 
   created: function() {
-    this.getBusiness();
     this.loadStatuses();
     this.loadBusinessTypes();
+    this.getBusiness();
   },
 
   methods: {
     getBusiness: function() {
       axios.get(`/api/business/id/${this.businessID}`).then(response => {
         this.business = response.data;
-      });
+        this.name = this.business.name;
+        this.password = this.business.password;
+        this.status = this.business.status;
+        this.email = this.business.email;
+        this.phone = this.business.phone;
+        this.type = this.business.type;
+        this.description = this.business.description;
+        this.address = this.business.address;
+        this.monday_hours = this.business.monday_hours;
+        this.tuesday_hours = this.business.tuesday_hours;
+        this.wednesday_hours = this.business.wednesday_hours;
+        this.thursday_hours = this.business.thursday_hours;
+        this.friday_hours = this.business.friday_hours;
+        this.saturday_hours = this.business.saturday_hours;
+        this.sunday_hours = this.business.sunday_hours;
+        }); 
     },
     editBusinessInfo: function(){
       this.editing = true;
@@ -213,25 +229,21 @@ export default {
     
     cancelChanges: function(){
       this.editing = false;
-      this.name = "";
-      this.password = "";
-      this.status = "";
-      this.email = "";
-      this.phone = "";
-      this.type = "";
-      this.description = "";
-      this.address = "";
-      this.mondayHours ="";
-      this.tuesdayHours ="";
-      this.wednesdayHours ="";
-      this.thursdayHours ="";
-      this.fridayHours ="";
-      this.saturdayHours ="";
-      this.sundayHours ="";
-      this.possibleStatuses = [];
-      this.possibleTypes = [];
-      this.address = "";
-      this.phone = ""
+      this.name = this.business.name;
+      this.password = this.business.password;
+      this.status = this.business.status;
+      this.email = this.business.email;
+      this.phone = this.business.phone;
+      this.type = this.business.type;
+      this.description = this.business.description;
+      this.address = this.business.address;
+      this.monday_hours = this.business.monday_hours;
+      this.tuesday_hours = this.business.tuesday_hours;
+      this.wednesday_hours = this.business.wednesday_hours;
+      this.thursday_hours = this.business.thursday_hours;
+      this.friday_hours = this.business.friday_hours;
+      this.saturday_hours = this.business.saturday_hours;
+      this.sunday_hours = this.business.sunday_hours;
     },
     saveChanges: function(){
       let req = this.$data;

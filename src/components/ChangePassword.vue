@@ -10,7 +10,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit">Sign in</b-button>
+      <b-button type="submit">Change Password</b-button>
     </b-form>
 
     <div v-if="errors.length" class="error-message" style="width: 250px">

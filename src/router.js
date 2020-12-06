@@ -12,6 +12,11 @@ export default new Router({
       component: () => import('./views/BusinessSignUp.vue')
     },
     {
+      path: '/usersignup',
+      name: 'UserSignUp',
+      component: () => import('./views/UserSignUp.vue')
+    },
+    {
       path: '/businesses/:businessID',
       name: 'BusinessProfile',
       component: () => import('./views/BusinessProfile.vue')
@@ -30,6 +35,12 @@ export default new Router({
       path: '/settings',
       name: 'Settings',
       component: () => import('./views/Settings.vue')
-  }
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      props: route => ({ query: route.query.name }),
+      component: () => import('./views/Home.vue')
+    },
   ]
 })

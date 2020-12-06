@@ -1,5 +1,16 @@
 <template>
   <div>
+     <b-alert
+      :show="errorDismissCountDown"
+      dismissible
+      variant="danger"
+      @dismissed="errorDismissCountDown=0"
+      @dismiss-count-down="errorCountDownChanged"
+    >
+      <p>{{errors }}</p>
+      
+      
+    </b-alert>
     <b-form @submit.prevent="signIn">
       <b-form-group class="username-input-group">
         <b-form-input
@@ -22,12 +33,7 @@
       <b-button type="submit">Sign in</b-button>
     </b-form>
 
-    <div v-if="errors.length" class="error-message" style="width: 250px">
-      <b>Please correct the following error(s):</b>
-      <ul>
-        <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
-      </ul>
-    </div>
+    
   </div>
 </template>
 
@@ -42,7 +48,10 @@ export default {
         username: "",
         password: "",
       },
-      errors: [],
+       dismissSecs: 10,
+      dismissCountDown: 0,
+      errorDismissCountDown:0,
+      errors: "",
     };
   },
   methods: {
@@ -56,12 +65,12 @@ export default {
         .then((res) => {
           // handle success
 
-          eventBus.$emit("signin-success", res.data.id);
+          eventBus.$emit("signin-success", res.data.businessID);
         })
         .catch((err) => {
           // handle error
-          this.errors.push(this.$cookie.get("scope-auth"));
-          this.errors.push(err.response.data.error);
+          this.errors=err.response.data.error;
+          this.showErrorAlert();
         })
         .then(() => {
           // always executed
@@ -73,11 +82,13 @@ export default {
       this.form.username = "";
       this.form.password = "";
     },
-    clearMessages: function () {
-      setInterval(() => {
-        this.errors = [];
-      }, 5000);
-    },
+    
+     showErrorAlert() {
+        this.errorDismissCountDown = this.dismissSecs
+      },
+      errorCountDownChanged(errorDismissCountDown) {
+        this.errorDismissCountDown = errorDismissCountDown
+      },
   },
 };
 </script>
