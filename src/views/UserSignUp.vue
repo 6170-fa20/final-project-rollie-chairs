@@ -1,9 +1,13 @@
 <template>
   <div class="user-signup-page">
     <NavBar />
-    <b-card title="Create A User Account" align-h="center">
+    <b-container>
+      <b-row align-h="center">
+    <b-card title="Create A User Account" >
       <UserSignUpForm/>
     </b-card>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
