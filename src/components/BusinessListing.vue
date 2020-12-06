@@ -27,13 +27,6 @@ export default {
   props: {
     businessID: Number
   },
-  computed: {
-    business: function(){
-      axios.get(`/api/business/id/${this.businessID}`).then(response => {
-        this.business = response.data;
-      });
-    }
-  },
 
   created: function() {
     this.getBusiness();
