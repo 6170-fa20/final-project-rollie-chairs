@@ -37,7 +37,7 @@
         Cambridge COVID Resources
       </a>
         </div>
-         <div v-if="currentBusinessUser!==''" class="form-container">
+         <div v-if="currentBusinessUser" class="form-container">
       
         <router-link :to="getBusinessLink()">
         My Account
@@ -50,11 +50,6 @@
       
     </div>
    
-             <router-link to="/settings" v-bind:style= "['Settings'===currentPath ? {'text-decoration': 'underline'} : {'text-decoration': 'none'}]">
-            <span>
-             Settings
-            </span>
-        </router-link>
 
       <router-link
         to="/settings"
@@ -78,7 +73,7 @@ export default {
     return {
       searchContent: "",
       currentPath: this.$route.name,
-      currentBusinessUser: 1, //this.$cookie.get('scope-auth')
+      currentBusinessUser: 1//this.$cookie.get('scope-auth')
     };
   },
   methods: {

@@ -12,6 +12,11 @@ export default new Router({
       component: () => import('./views/BusinessSignUp.vue')
     },
     {
+      path: '/usersignup',
+      name: 'UserSignUp',
+      component: () => import('./views/UserSignUp.vue')
+    },
+    {
       path: '/businesses/:businessID',
       name: 'BusinessProfile',
       component: () => import('./views/BusinessProfile.vue')

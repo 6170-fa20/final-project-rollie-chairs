@@ -25,9 +25,9 @@ class User {
        * @param {string} type - type of user
        * @return {User} - created user
        */
-      static async addOne(username, password, email, type) {
-        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword},${db.columnNames.userEmail}, ${db.columnNames.userType})
-        VALUES ('${username}','${password}','${email}','${type}')`)
+      static async addOne(username, password, email, type,businessid) {
+        return db.run(`INSERT INTO users (${db.columnNames.userName},${db.columnNames.userPassword},${db.columnNames.userEmail}, ${db.columnNames.userType},${db.columnNames.businessUserID})
+        VALUES ('${username}','${password}','${email}','${type}','${businessid}')`)
                   .then( () => {
                     return User.findUserByName(username);
                   });

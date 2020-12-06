@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
         							req.body.saturdayHours,
         							req.body.sundayHours);
 	Metrics.addAll(business.id);
-	const user= User.addOne(req.body.name,req.body.password,req.body.email,"business");
+	const user= User.addOne(req.body.name,req.body.password,req.body.email,"business",business.id);
 	res.status(201).json(business).end();
 	}
 );

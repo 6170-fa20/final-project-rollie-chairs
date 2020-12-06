@@ -1,39 +1,42 @@
 <template>
   <div id="user-settings">
+    <b-card>
     <b-container v-if="isSignedIn" class="signedin-container">
       <b-row align-h="center">
-        <b-card>
+        
           <SignOut />
-        </b-card>
+       
       </b-row>
       <b-row align-h="center">
-        <b-card>
+        
           <ChangePassword />
-        </b-card>
+        
       </b-row>
     </b-container>
 
     <b-container v-else class="signedup-container">
       <b-row align-h="center">
-        <b-card>
+        
           <SignIn />
-        </b-card>
+        
       </b-row>
 
       <b-row align-h="center">
-        <b-card>
-          <UserSignUp />
-        </b-card>
+        
+          <b-button v-on:click="userLink"
+            >Create A User Account</b-button
+          >
+        
       </b-row>
       <b-row align-h="center">
-        <b-card>
+        
           <b-button v-on:click="businessLink"
             >Create A Business Account</b-button
           >
-        </b-card>
+        
       </b-row>
     </b-container>
-
+ </b-card>
     <div
       v-if="messages.length"
       class="success-message"
@@ -49,7 +52,7 @@
 <script>
 import SignIn from "./SignIn.vue";
 import SignOut from "./SignOut.vue";
-import UserSignUp from "./UserSignUp.vue";
+
 import ChangePassword from "./ChangePassword.vue";
 import { eventBus } from "../main";
 export default {
@@ -57,7 +60,7 @@ export default {
   components: {
     SignIn,
     SignOut,
-    UserSignUp,
+    
     ChangePassword,
   },
   data() {
@@ -94,6 +97,9 @@ export default {
       setInterval(() => {
         this.messages = [];
       }, 5000);
+    },
+    userLink: function(){
+      this.$router.push("/usersignup");
     },
     businessLink: function () {
       this.$router.push("/businesssignup");

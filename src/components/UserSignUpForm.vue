@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="signUp()">
+    <b-form @submit="signUp()" align-h="center">
       <b-form-group class="username-input-group">
         <b-form-input
           class="username-input"

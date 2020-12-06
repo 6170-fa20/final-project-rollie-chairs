@@ -38,7 +38,7 @@
         <b-form-input
           id="company-name-input"
           v-model="form.companyName"
-          required
+         required
           placeholder="Enter Company Name"
         ></b-form-input>
       </b-form-group>

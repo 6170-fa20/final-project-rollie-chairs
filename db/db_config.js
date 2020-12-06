@@ -31,6 +31,7 @@ const columnNames = {
     userPassword: "password",
     userEmail: "email",
     userType: "type",
+    businessUserID:"businessID"
   };
   Object.freeze(columnNames);
 
@@ -81,7 +82,8 @@ function createMetricTable(){
       ${columnNames.userName} TEXT NOT NULL,
       ${columnNames.userPassword} TEXT NOT NULL,
       ${columnNames.userEmail} TEXT NOT NULL,
-      ${columnNames.userType} TEXT NOT NULL
+      ${columnNames.userType} TEXT NOT NULL,
+      ${columnNames.businessUserID} TEXT NOT NULL
   )`);
 };
 
