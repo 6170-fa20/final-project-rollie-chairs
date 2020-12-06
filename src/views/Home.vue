@@ -1,9 +1,15 @@
 <template>
-  <div class='home-page'>
+  <div class='home'>
     <NavBar/>
-    <FilterPanel class="filter-panel"/>
     <b-container>
-        <BusinessContainer/>
+      <b-row>
+        <b-col cols="3" class="filter-panel">
+          <FilterPanel/>
+        </b-col>
+        <b-col>
+          <BusinessContainer/>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
