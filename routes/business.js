@@ -13,7 +13,20 @@ router.get('/all', async (req, res) => {
 	try{
 		let businesses = await Business.findAll();
 		res.status(200).json(businesses).end();
-		console.log(businesses);
+    } catch(error){
+        res.status(503).json(`Could not get businesses: ${error}`);
+    }
+});
+
+/**
+ * List all businesses with the given name
+ * @name GET/api/business/search/:name
+ * @return {Business[]} - list of businesses
+ */
+router.get('/results/:name', async (req, res) => {
+	try{
+		let businesses = await Business.findOneByName(req.params.name);
+		res.status(200).json(businesses).end();
     } catch(error){
         res.status(503).json(`Could not get businesses: ${error}`);
     }
@@ -29,7 +42,6 @@ router.get('/all/locations', async (req, res) => {
 		let businesses = await Business.findAll();
 		let locs = await Business.findLocs(businesses);
 		res.status(200).json(locs).end();
-		console.log(businesses);
     } catch(error){
         res.status(503).json(`Could not get businesses: ${error}`);
     }

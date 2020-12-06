@@ -35,6 +35,12 @@ export default new Router({
       path: '/settings',
       name: 'Settings',
       component: () => import('./views/Settings.vue')
-  }
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      props: route => ({ query: route.query.name }),
+      component: () => import('./views/Home.vue')
+    },
   ]
 })
