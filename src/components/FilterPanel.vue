@@ -12,7 +12,6 @@
       <b-form-select
         v-model="type"
         :options="possibleTypes"
-            
       ></b-form-select>
     </div>
   <!--   <form
