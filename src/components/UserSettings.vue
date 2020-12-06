@@ -1,6 +1,6 @@
 <template>
   <div id="user-settings">
-    <b-card>
+    <b-card title="Settings" align-h="center" style="text-align:center">
       
    
     <b-container v-if="isSignedIn" class="signedin-container">
@@ -14,12 +14,12 @@
       <p>{{messages}}</p>
       
     </b-alert>
-      <b-row align-h="center">
+      <b-row align-h="center" style="padding-bottom: 20px;">
         
           <SignOut />
        
       </b-row>
-      <b-row align-h="center">
+      <b-row align-h="center" style="padding-bottom: 20px;">
         
           <ChangePassword />
         
@@ -37,20 +37,20 @@
       <p>{{messages}}</p>
       
     </b-alert>
-      <b-row align-h="center">
+      <b-row align-h="center" style="padding-bottom: 20px;">
         
           <SignIn />
         
       </b-row>
 
-      <b-row align-h="center">
+      <b-row align-h="center" style="padding-bottom: 20px;">
         
           <b-button v-on:click="userLink"
             >Create A User Account</b-button
           >
         
       </b-row>
-      <b-row align-h="center">
+      <b-row align-h="center" style="padding-bottom: 20px;">
         
           <b-button v-on:click="businessLink"
             >Create A Business Account</b-button
@@ -142,4 +142,7 @@ export default {
 };
 </script>
 <style scoped>
+b-row{
+    padding-bottom: 50px;
+}
 </style>
