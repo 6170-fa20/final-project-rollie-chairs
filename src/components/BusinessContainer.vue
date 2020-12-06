@@ -57,6 +57,11 @@ export default {
       {this.searchBusinesses(name)});
     eventBus.$on("filter-submit", (filters) => {
       this.filterBusinesses(filters)});
+    eventBus.$on("resetBusinesses", () => {
+      this.search = undefined;
+      this.clearFilters();
+      this.loadAllBusinesses();
+    });
   },
 
   methods: {
