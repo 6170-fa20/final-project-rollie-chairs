@@ -59,7 +59,7 @@
       </select><br>
       
     </form> -->
-    <b-button>Filter</b-button>
+    <b-button v-on:click.prevent="filter">Filter</b-button>
   </div>
 </template>
 
