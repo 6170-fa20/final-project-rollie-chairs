@@ -81,7 +81,7 @@ function createMetricTable(){
       ${columnNames.userID} INTEGER PRIMARY KEY AUTOINCREMENT,
       ${columnNames.userName} TEXT NOT NULL,
       ${columnNames.userPassword} TEXT NOT NULL,
-      ${columnNames.userEmail} TEXT NOT NULL,
+      ${columnNames.userEmail} TEXT NOT NULL UNIQUE,
       ${columnNames.userType} TEXT NOT NULL,
       ${columnNames.businessUserID} TEXT NOT NULL
   )`);

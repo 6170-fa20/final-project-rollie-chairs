@@ -55,12 +55,7 @@
       <b-button type="submit">Sign Up</b-button>
     </b-form>
 
-    <div v-if="errors.length" class="error-message" style="width: 250px">
-      <b>Please correct the following error(s):</b>
-      <ul>
-        <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
-      </ul>
-    </div>
+   
   </div>
 </template>
 
