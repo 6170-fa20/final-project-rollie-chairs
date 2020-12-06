@@ -1,7 +1,19 @@
 <template>
   <div id="user-settings">
     <b-card>
+      
+   
     <b-container v-if="isSignedIn" class="signedin-container">
+      <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="success"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      <p>{{messages}}</p>
+      
+    </b-alert>
       <b-row align-h="center">
         
           <SignOut />
@@ -15,6 +27,16 @@
     </b-container>
 
     <b-container v-else class="signedup-container">
+      <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="success"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      <p>{{messages}}</p>
+      
+    </b-alert>
       <b-row align-h="center">
         
           <SignIn />
@@ -37,15 +59,7 @@
       </b-row>
     </b-container>
  </b-card>
-    <div
-      v-if="messages.length"
-      class="success-message"
-      style="text-align: center"
-    >
-      <div v-for="message in messages" v-bind:key="message.id">
-        {{ message }}
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -66,7 +80,10 @@ export default {
   data() {
     return {
       isSignedIn: false,
-      messages: [],
+      messages: "",
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      errorDismissCountDown:0,
     };
   },
   created: function () {
@@ -77,19 +94,24 @@ export default {
     eventBus.$on("signin-success", (userInfo) => {
       this.$cookie.set("scope-auth", userInfo);
       this.isSignedIn = true;
-      this.messages.push("You have been signed in!");
-      this.clearMessages();
+      this.messages="You have been signed in!";
+      this.showSuccessAlert();
+      
     });
 
     eventBus.$on("signout-success", () => {
       this.$cookie.set("scope-auth", "");
       this.isSignedIn = false;
-      this.messages.push("You have been signed out!");
-      this.clearMessages();
+      this.messages="You have been signed out!";
+      this.showSuccessAlert();
     });
     eventBus.$on("signup-success", () => {
-      this.messages.push("You have been signed up! Sign in to continue.");
-      this.clearMessages();
+      this.messages="You have been signed up! Sign in to continue.";
+      this.showSuccessAlert();
+    });
+    eventBus.$on("password-change-success", () => {
+      this.messages="Your password has been changed";
+      this.showSuccessAlert();
     });
   },
   methods: {
@@ -104,6 +126,18 @@ export default {
     businessLink: function () {
       this.$router.push("/businesssignup");
     },
+    countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+    showSuccessAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
+      showErrorAlert() {
+        this.errorDismissCountDown = this.dismissSecs
+      },
+      errorCountDownChanged(errorDismissCountDown) {
+        this.errorDismissCountDown = errorDismissCountDown
+      },
   },
 };
 </script>

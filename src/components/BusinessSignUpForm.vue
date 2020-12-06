@@ -1,5 +1,29 @@
 <template>
   <div>
+     <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="success"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      <p>Business successfully created</p>
+      
+    </b-alert>
+    <b-alert
+      :show="errorDismissCountDown"
+      dismissible
+      variant="danger"
+      @dismissed="errorDismissCountDown=0"
+      @dismiss-count-down="errorCountDownChanged"
+    >
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
+      </ul>
+      
+    </b-alert>
+
     <b-button v-b-toggle.restaurantPresetMetrics class="m-1"
       >Restaurant Preset Metrics</b-button
     >
@@ -32,22 +56,26 @@
     <b-form @submit.prevent="signUp">
       <b-form-group
         class="company-name-input-group"
-        label="Company Name:"
         label-for="company-name-input"
       >
+        <template v-slot:label>
+          Company Name:<span class="text-danger">*</span>
+        </template>
         <b-form-input
           id="company-name-input"
           v-model="form.companyName"
-         required
+          required
           placeholder="Enter Company Name"
         ></b-form-input>
       </b-form-group>
 
       <b-form-group
         id="company-password-input-group"
-        label="Password:"
         label-for="company-password-input"
       >
+        <template v-slot:label>
+          Password:<span class="text-danger">*</span>
+        </template>
         <b-form-input
           id="company-password-input"
           v-model="form.password"
@@ -78,11 +106,10 @@
           :options="possibleStatuses"
         ></b-form-select>
       </b-form-group>
-      <b-form-group
-        id="email-input-group"
-        label="Email:"
-        label-for="email-input"
-      >
+      <b-form-group id="email-input-group" label-for="email-input">
+        <template v-slot:label>
+          Email:<span class="text-danger">*</span>
+        </template>
         <b-form-input
           id="email-input"
           v-model="form.email"
@@ -102,15 +129,15 @@
           placeholder="Enter Phone Number"
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="type-input-group"
-        label="Business Type:"
-        label-for="type-input"
-      >
+      <b-form-group id="type-input-group" label-for="type-input">
+        <template v-slot:label>
+          Business Type:<span class="text-danger">*</span>
+        </template>
         <b-form-select
           id="type-input"
           v-model="form.type"
           :options="possibleTypes"
+          required
         ></b-form-select>
       </b-form-group>
       <b-form-group
@@ -205,9 +232,7 @@
       <b-button type="submit">Create Business</b-button>
     </b-form>
 
-    <div v-if="success" class="success-message">
-      {{ success }}
-    </div>
+   
     <div v-if="errors.length" class="error-message" style="width: 250px">
       <b>Please correct the following error(s):</b>
       <ul>
@@ -241,7 +266,11 @@ export default {
         fridayHours: "",
         saturdayHours: "",
         sundayHours: "",
+        
       },
+      dismissSecs: 10,
+      dismissCountDown: 0,
+      errorDismissCountDown:0,
       possibleStatuses: [],
       possibleTypes: [],
       presetMetrics: [],
@@ -274,7 +303,9 @@ export default {
     },
     loadBusinessTypes: function () {
       axios.get("/api/business/types").then((response) => {
-        this.possibleTypes = this.starter.concat(response.data);
+        this.possibleTypes = [{ text: "Select One", value: "" }].concat(
+          response.data
+        );
       });
     },
     signUp: function () {
@@ -304,13 +335,14 @@ export default {
         .post("/api/business", bodyContent)
         .then((business) => {
           // handle success
-
-          this.success = "Business successfully created";
+          this.showSuccessAlert();
+          
           eventBus.$emit("create-business-success", business);
         })
         .catch((err) => {
           // handle error
           this.errors.push(err.response.data.error);
+          this.showErrorAlert();
         })
         .then(() => {
           // always executed
@@ -341,6 +373,18 @@ export default {
         this.success = "";
       }, 5000);
     },
+    countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+    showSuccessAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
+      showErrorAlert() {
+        this.errorDismissCountDown = this.dismissSecs
+      },
+      errorCountDownChanged(errorDismissCountDown) {
+        this.errorDismissCountDown = errorDismissCountDown
+      },
   },
 };
 </script>

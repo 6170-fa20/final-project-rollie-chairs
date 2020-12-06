@@ -1,6 +1,27 @@
 <template>
   <div>
-    <b-form @submit="signUp()" align-h="center">
+    <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="success"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      <p>User successfully created</p>
+      
+    </b-alert>
+    <b-alert
+      :show="errorDismissCountDown"
+      dismissible
+      variant="danger"
+      @dismissed="errorDismissCountDown=0"
+      @dismiss-count-down="errorCountDownChanged"
+    >
+    <p>{{errors}}</p>
+      
+      
+    </b-alert>
+    <b-form @submit.prevent="signUp()" align-h="center">
       <b-form-group class="username-input-group">
         <b-form-input
           class="username-input"
@@ -50,12 +71,15 @@ export default {
   name: "SignUp",
   data() {
     return {
-      errors: [],
+      errors: "",
       form: {
         username: "",
         password: "",
         email: "",
       },
+      dismissSecs: 10,
+      dismissCountDown: 0,
+      errorDismissCountDown:0,
     };
   },
   methods: {
@@ -69,16 +93,18 @@ export default {
         .post("/api/account/", bodyContent)
         .then(() => {
           // handle success
+          this.showSuccessAlert();
           eventBus.$emit("signup-success", true);
         })
         .catch((err) => {
           // handle error
-          this.errors.push(err.response.data.error);
+          this.errors=err.response.data.error;
+           this.showErrorAlert();
         })
         .then(() => {
           // always executed
           this.resetForm();
-          this.clearMessages();
+          
         });
     },
     resetForm: function () {
@@ -86,9 +112,21 @@ export default {
       this.form.password = "";
       this.form.email = "";
     },
+    countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+    showSuccessAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
+      showErrorAlert() {
+        this.errorDismissCountDown = this.dismissSecs
+      },
+      errorCountDownChanged(errorDismissCountDown) {
+        this.errorDismissCountDown = errorDismissCountDown
+      },
     clearMessages: function () {
       setInterval(() => {
-        this.errors = [];
+        this.errors = "";
       }, 5000);
     },
   },
