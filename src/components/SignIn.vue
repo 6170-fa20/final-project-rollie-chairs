@@ -64,11 +64,8 @@ export default {
         .post("/api/account/SignIn", bodyContent)
         .then((res) => {
           // handle success
-          /*const payload={
-            userID:res.data.id,
-            businessID: res.data.businessID
-          };*/
-          eventBus.$emit("signin-success", res.data.id);
+          
+          eventBus.$emit("signin-success", res.data.data);
         })
         .catch((err) => {
           // handle error

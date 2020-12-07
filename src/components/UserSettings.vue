@@ -91,9 +91,11 @@ export default {
     if (authenticated) {
       this.isSignedIn = true;
     }
-    eventBus.$on("signin-success", (businessUserID) => {
+    eventBus.$on("signin-success", (userObject) => {
       
-      this.$cookie.set("scope-auth", businessUserID);
+      this.$cookie.set("scope-auth", userObject.id);
+      this.$cookie.set("business-auth", userObject.businessID);
+      //console.log(this.$cookie.get("scope-auth"));
       this.isSignedIn = true;
       this.messages="You have been signed in!";
       this.showSuccessAlert();
@@ -102,6 +104,7 @@ export default {
 
     eventBus.$on("signout-success", () => {
       this.$cookie.set("scope-auth", "");
+      this.$cookie.set("business-auth", "");
       this.isSignedIn = false;
       this.messages="You have been signed out!";
       this.showSuccessAlert();

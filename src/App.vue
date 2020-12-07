@@ -9,10 +9,10 @@
 export default {
   name: "app",
   beforeCreate: function() {
-    /*let authenticated = this.$cookie.get('scope-auth');
+    let authenticated = this.$cookie.get('scope-auth');
     if (!authenticated) {
       this.$router.push("settings");
-    }*/
+    }
   }
 };
 </script>

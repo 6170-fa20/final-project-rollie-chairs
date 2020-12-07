@@ -310,7 +310,7 @@ export default {
     },
     signUp: function () {
       this.createBusiness();
-      this.setUpMetrics();
+      
     },
 
     createBusiness: function () {

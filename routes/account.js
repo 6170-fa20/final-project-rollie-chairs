@@ -42,7 +42,7 @@ router.post(
 /**
  * Create an authentication session for the user after authentication.
  * 
- * @name POST /api/account/login
+ * @name POST /api/account/SignIn
  */
 router.post(
   '/SignIn', [
@@ -70,7 +70,7 @@ router.post(
       // authenticate and sign the user in
 
       req.session.uid = user.id;
-      console.log(req.session.uid)
+      
       res.status(201).json({ data: user, message: "You are signed in." }).end();
 
     } catch (error) {
@@ -96,6 +96,7 @@ router.put(
 
       //change password
       let newUser= await Users.changePassword(id,password);
+
 
      
       res.status(201).json({ data: newUser, message: "Password has been changed." }).end();

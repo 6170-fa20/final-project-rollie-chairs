@@ -35,7 +35,7 @@
  -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item to="/map">Map</b-nav-item>
-        <div v-if="currentBusinessUser">
+        <div v-if="isUserBusiness">
           <b-nav-item :to="getBusinessLink()">My Account</b-nav-item>
         </div>
         <b-nav-item to="/settings">Settings</b-nav-item>
@@ -89,27 +89,41 @@ export default {
     return {
       searchContent: "",
       currentPath: this.$route.name,
-      currentBusinessUser: 1//this.$cookie.get('scope-auth')
+      currentBusinessUser: this.$cookie.get('business-auth')
     };
   },
+  created: function () {
+    eventBus.$on("signin-success", (userObject) => {
+      this.currentBusinessUser=userObject.businessID;
+      
+    });
+    eventBus.$on("signout-success", () => {
+      this.currentBusinessUser="";
+    });
+  },
+  
   methods: {
     search: function () {
       eventBus.$emit("search-success", this.searchContent);
       this.$router.push({ path: '/search', query: { name: this.searchContent }})
     },
     getBusinessLink: function() {
-      return "/businesses/" + this.currentBusinessUser;
+      
+      return "/businesses/" + this.$cookie.get("business-auth");
     },
     resetHome: function(){
       eventBus.$emit("resetBusinesses");
     }
 
   },
-  created: function () {
-    eventBus.$on("signin-success", (res) => {
-      this.currentBusinessUser = res.userID;
-    });
-   },
+  
+   computed:{
+    isUserBusiness: function(){
+      
+      return this.currentBusinessUser !== "undefined" && this.currentBusinessUser !== "";
+    }
+
+  },
     
 };
 </script>
