@@ -4,22 +4,20 @@
       :show="dismissCountDown"
       dismissible
       variant="success"
-      @dismissed="dismissCountDown=0"
+      @dismissed="dismissCountDown = 0"
       @dismiss-count-down="countDownChanged"
     >
       <p>User successfully created</p>
-      
+      <b-button v-on:click="settingLink">Sign In Here</b-button>
     </b-alert>
     <b-alert
       :show="errorDismissCountDown"
       dismissible
       variant="danger"
-      @dismissed="errorDismissCountDown=0"
+      @dismissed="errorDismissCountDown = 0"
       @dismiss-count-down="errorCountDownChanged"
     >
-    <p>{{errors}}</p>
-      
-      
+      <p>{{ errors }}</p>
     </b-alert>
     <b-form @submit.prevent="signUp()" align-h="center">
       <b-form-group class="username-input-group">
@@ -54,8 +52,6 @@
 
       <b-button type="submit">Sign Up</b-button>
     </b-form>
-
-   
   </div>
 </template>
 
@@ -74,7 +70,7 @@ export default {
       },
       dismissSecs: 10,
       dismissCountDown: 0,
-      errorDismissCountDown:0,
+      errorDismissCountDown: 0,
     };
   },
   methods: {
@@ -93,13 +89,12 @@ export default {
         })
         .catch((err) => {
           // handle error
-          this.errors=err.response.data.error;
-           this.showErrorAlert();
+          this.errors = err.response.data.error;
+          this.showErrorAlert();
         })
         .then(() => {
           // always executed
           this.resetForm();
-          
         });
     },
     resetForm: function () {
@@ -107,18 +102,21 @@ export default {
       this.form.password = "";
       this.form.email = "";
     },
+    settingLink: function () {
+      this.$router.push("/settings");
+    },
     countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
-      },
+      this.dismissCountDown = dismissCountDown;
+    },
     showSuccessAlert() {
-        this.dismissCountDown = this.dismissSecs
-      },
-      showErrorAlert() {
-        this.errorDismissCountDown = this.dismissSecs
-      },
-      errorCountDownChanged(errorDismissCountDown) {
-        this.errorDismissCountDown = errorDismissCountDown
-      },
+      this.dismissCountDown = this.dismissSecs;
+    },
+    showErrorAlert() {
+      this.errorDismissCountDown = this.dismissSecs;
+    },
+    errorCountDownChanged(errorDismissCountDown) {
+      this.errorDismissCountDown = errorDismissCountDown;
+    },
     clearMessages: function () {
       setInterval(() => {
         this.errors = "";

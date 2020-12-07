@@ -1,15 +1,13 @@
 <template>
   <div>
-     <b-alert
+    <b-alert
       :show="errorDismissCountDown"
       dismissible
       variant="danger"
-      @dismissed="errorDismissCountDown=0"
+      @dismissed="errorDismissCountDown = 0"
       @dismiss-count-down="errorCountDownChanged"
     >
-      <p>{{errors }}</p>
-      
-      
+      <p>{{ errors }}</p>
     </b-alert>
     <b-form @submit.prevent="signIn">
       <b-form-group class="username-input-group">
@@ -32,8 +30,6 @@
 
       <b-button type="submit">Sign in</b-button>
     </b-form>
-
-    
   </div>
 </template>
 
@@ -48,9 +44,9 @@ export default {
         username: "",
         password: "",
       },
-       dismissSecs: 10,
+      dismissSecs: 10,
       dismissCountDown: 0,
-      errorDismissCountDown:0,
+      errorDismissCountDown: 0,
       errors: "",
     };
   },
@@ -64,31 +60,30 @@ export default {
         .post("/api/account/signin", bodyContent)
         .then((res) => {
           // handle success
-          
+
           eventBus.$emit("signin-success", res.data.data);
         })
         .catch((err) => {
           // handle error
-          this.errors=err.response.data.error;
+          this.errors = err.response.data.error;
           this.showErrorAlert();
         })
         .then(() => {
           // always executed
           this.resetForm();
-         
         });
     },
     resetForm: function () {
       this.form.username = "";
       this.form.password = "";
     },
-    
-     showErrorAlert() {
-        this.errorDismissCountDown = this.dismissSecs
-      },
-      errorCountDownChanged(errorDismissCountDown) {
-        this.errorDismissCountDown = errorDismissCountDown
-      },
+
+    showErrorAlert() {
+      this.errorDismissCountDown = this.dismissSecs;
+    },
+    errorCountDownChanged(errorDismissCountDown) {
+      this.errorDismissCountDown = errorDismissCountDown;
+    },
   },
 };
 </script>

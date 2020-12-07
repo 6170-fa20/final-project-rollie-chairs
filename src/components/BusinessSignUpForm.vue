@@ -1,27 +1,26 @@
 <template>
   <div>
-     <b-alert
+    <b-alert
       :show="dismissCountDown"
       dismissible
       variant="success"
-      @dismissed="dismissCountDown=0"
+      @dismissed="dismissCountDown = 0"
       @dismiss-count-down="countDownChanged"
     >
       <p>Business successfully created</p>
-      
+      <b-button v-on:click="settingLink">Sign In Here</b-button>
     </b-alert>
     <b-alert
       :show="errorDismissCountDown"
       dismissible
       variant="danger"
-      @dismissed="errorDismissCountDown=0"
+      @dismissed="errorDismissCountDown = 0"
       @dismiss-count-down="errorCountDownChanged"
     >
       <b>Please correct the following error(s):</b>
       <ul>
         <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
       </ul>
-      
     </b-alert>
 
     <b-button v-b-toggle.restaurantPresetMetrics class="m-1"
@@ -232,7 +231,6 @@
       <b-button type="submit">Create Business</b-button>
     </b-form>
 
-   
     <div v-if="errors.length" class="error-message" style="width: 250px">
       <b>Please correct the following error(s):</b>
       <ul>
@@ -266,11 +264,10 @@ export default {
         fridayHours: "",
         saturdayHours: "",
         sundayHours: "",
-        
       },
       dismissSecs: 10,
       dismissCountDown: 0,
-      errorDismissCountDown:0,
+      errorDismissCountDown: 0,
       possibleStatuses: [],
       possibleTypes: [],
       presetMetrics: [],
@@ -310,7 +307,9 @@ export default {
     },
     signUp: function () {
       this.createBusiness();
-      
+    },
+    settingLink: function () {
+      this.$router.push("/settings");
     },
 
     createBusiness: function () {
@@ -336,7 +335,7 @@ export default {
         .then((business) => {
           // handle success
           this.showSuccessAlert();
-          
+
           eventBus.$emit("create-business-success", business);
         })
         .catch((err) => {
@@ -374,17 +373,17 @@ export default {
       }, 5000);
     },
     countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
-      },
+      this.dismissCountDown = dismissCountDown;
+    },
     showSuccessAlert() {
-        this.dismissCountDown = this.dismissSecs
-      },
-      showErrorAlert() {
-        this.errorDismissCountDown = this.dismissSecs
-      },
-      errorCountDownChanged(errorDismissCountDown) {
-        this.errorDismissCountDown = errorDismissCountDown
-      },
+      this.dismissCountDown = this.dismissSecs;
+    },
+    showErrorAlert() {
+      this.errorDismissCountDown = this.dismissSecs;
+    },
+    errorCountDownChanged(errorDismissCountDown) {
+      this.errorDismissCountDown = errorDismissCountDown;
+    },
   },
 };
 </script>
