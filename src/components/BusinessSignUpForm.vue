@@ -135,7 +135,7 @@
         </template>
         <b-form-select
           id="type-input"
-          v-model="form.type"
+          v-model="form.businessType"
           :options="possibleTypes"
           required
         ></b-form-select>
