@@ -2,7 +2,7 @@
   <div>
     <b-card
       :title="business.name"
-      class="m-4"
+      class="mb-5"
     >
 
       <div v-if = "editing">

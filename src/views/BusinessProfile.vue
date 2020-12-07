@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="business-profile">
-      <b-row>
+      <b-row no-gutters class="m-5">
         <b-col cols="4">
           <BusinessInfo v-bind:businessID="businessID" />
         </b-col>

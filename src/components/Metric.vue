@@ -1,8 +1,15 @@
 <template>
   <div class="metric">
     <div class="metric-name">
-      <p>{{metric.metric}}: </p>
-      <p><button v-on:click="addConfirm">Confirm</button> {{metric.confirms}} / <button v-on:click="addDeny">Deny</button> {{metric.denies}}</p>
+      <b-row>
+        <b-col>
+          <p>{{metric.metric}}: </p>
+        </b-col>
+        <b-col cols="3">
+          <p><b-button class="mr-2" v-on:click="addConfirm">Confirm</b-button> {{metric.confirms}}</p>
+          <p> <b-button class="mr-2" v-on:click="addDeny">Deny</b-button> {{metric.denies}}</p>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
