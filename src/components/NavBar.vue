@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar">
-    <b-navbar type="light">
-      <b-navbar-brand to="/">
+    <b-navbar>
+      <b-navbar-brand to="/" @click.native="resetHome">
         Scope
       </b-navbar-brand>
 
@@ -99,6 +99,9 @@ export default {
     },
     getBusinessLink: function() {
       return "/businesses/" + this.currentBusinessUser;
+    },
+    resetHome: function(){
+      eventBus.$emit("resetBusinesses");
     }
 
   },
