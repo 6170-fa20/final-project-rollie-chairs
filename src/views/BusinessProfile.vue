@@ -2,8 +2,14 @@
   <div>
     <NavBar/>
     <div class="business-profile">
-      <BusinessInfo v-bind:businessID="businessID" />
-      <MetricsList  v-bind:businessID="businessID" />
+      <b-row no-gutters class="m-5">
+        <b-col cols="4">
+          <BusinessInfo v-bind:businessID="businessID" />
+        </b-col>
+        <b-col>
+          <MetricsList  v-bind:businessID="businessID" />
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>

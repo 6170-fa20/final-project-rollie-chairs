@@ -1,6 +1,8 @@
 :root {
     font-family: Arial, Helvetica, sans-serif;
     --main-color: blue;
+    background-color: #EFEFEF;
+    color: #142664;
   }
 
 /********************* Styles for Headers/Titles/Etc. *********************/
@@ -13,8 +15,8 @@
   
   .secondary-header {
     font-size: 2em;
-    text-decoration: underline;
     margin-bottom: 1%;
+    font-weight: bold;
   } 
 
   .profile-headers {
@@ -24,10 +26,14 @@
     
 }
 
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #142664 !important;
+}
+
 /**************************** HOME VIEW STYLES ************************/
 
 .home {
-  /*background-color: #F0D6BD;*/
+  background-color: #EFEFEF;
 }
 
 .view-container {
@@ -49,7 +55,6 @@
 }
 
 .filter-panel {
-  /*background-color: #142664;*/
   background-color: lightgrey;
   padding: .5%;
 
@@ -66,7 +71,7 @@
 }
 
 /**************************** BUSINESS PROFILE VIEW STYLES ************************/
-.business-profile-name {
+/*.business-profile-name {
   display: flex;
 }
 .business-profile-picture {
@@ -77,17 +82,16 @@
 .business-profile-info {
   display: flex;
   flex-direction: column;
-  /* flex-grow: 1; */
+   flex-grow: 1; 
   justify-content: space-between;
-  /* align-items: stretch; */
-  /*border: solid black*/
+   align-items: stretch; 
+  border: solid black
 }
 
 .business-profile {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: solid black;
 }
 .edit-info {
   margin-top: 10px;
@@ -99,8 +103,8 @@
 .metric{
   display: flex;
   flex-direction: column;
-  border: solid black;
 }
+
 .metric-name{
   display: flex;
   flex-direction: row;
@@ -110,21 +114,18 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
+}*/
 
 /**************************** NAV BAR STYLES ************************/
 .nav-bar{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  box-shadow:  0px 2px 1px grey;
+  background-color: #d7c5e3;
 }
 
 .links-container{
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  text-align: right;
 }
 
 #sign-up{

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-bar">
     <b-navbar>
       <b-navbar-brand to="/" @click.native="resetHome">
         Scope
@@ -33,13 +33,14 @@
         </form>
       </div>
  -->
-      <b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
         <b-nav-item to="/map">Map</b-nav-item>
-        <b-nav-item href="https://www.cambridgema.gov/covid19">Cambridge COVID Resources</b-nav-item>
         <div v-if="currentBusinessUser">
           <b-nav-item :to="getBusinessLink()">My Account</b-nav-item>
         </div>
         <b-nav-item to="/settings">Settings</b-nav-item>
+        <b-nav-text>|</b-nav-text>
+        <b-nav-item href="https://www.cambridgema.gov/covid19">Cambridge COVID Resources</b-nav-item>
       </b-navbar-nav>
 
      <!--  <div class="links-container">

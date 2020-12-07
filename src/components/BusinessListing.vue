@@ -44,7 +44,7 @@ export default {
         let metrics = response.data;
         let allScores = metrics.map(metric => metric.confirms/(metric.confirms + metric.denies));
         let totalScore = allScores.reduce((acc, current) => acc + current)*100/metrics.length;
-        this.score = isNaN(totalScore)? "No score yet!" :`${Math.round(totalScore)}%`;
+        this.score = isNaN(totalScore)? "No rating yet!" :`${Math.round(totalScore)}%`;
       });
     },
     getBusinessLink: function() {

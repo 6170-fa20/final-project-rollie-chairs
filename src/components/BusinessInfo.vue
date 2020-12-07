@@ -1,165 +1,188 @@
 <template>
   <div>
-    <div class = "secondary-header">{{ business.name}}</div>
-    <div class="container" v-if = "editing">
-      <div>
-        <label for="status">Edit Status: </label>
-        <select
-          name="status"
-          id="status"
-          v-model.trim="status"
-          type="text"
-        >
-        <option
-          v-for="stat in possibleStatuses"
-          v-bind:key="stat"
-          v-bind:value="stat"
-        >
-          {{ stat }}
-        </option>
+    <b-card
+      :title="business.name"
+      class="mb-5"
+    >
 
-        </select>
-      </div>
-      <div>
-        <label for="businessType"
-        >Business Type:</label>
-    
-      <select
-        name="businessType"
-        id="businessType"
-        v-model.trim="type"
-        type="text"
-      >
-        <option
-          v-for="bType in possibleTypes"
-          v-bind:key="bType"
-          v-bind:value="bType"
-        >
-          {{ bType }}
-        </option>
-        
-      </select>
-      </div>
-      <div class= "edit-info">
-        <label for="description" >Description:</label>
-        <textarea
-          id="description"
-          v-model.trim="description"
-          type="text"
-          name="description"
-          placeholder="Description"
+      <div v-if = "editing">
+        <b-form-textarea
+          id="textarea"
+          v-model="description"
+          placeholder="Enter new description"
+          rows="2"
           maxlength="150"
-        />
-      </div>
-      
-      <div class="edit-info">
-      <label for="email"
-        >Email:</label
-      >
-      <input
-        id="email"
-        v-model.trim="email"
-        type="text"
-        name="email"
-        placeholder="Email"
-      />
-      </div>
-      <p> Address: <input class="edit" v-model.trim='address' type="text" name="editAddress" placeholder="Enter New Address" > </p>
-      <p> Phone: <input class="edit" v-model.trim='phone' type="text" name="editPhone" placeholder="Enter New Phone #" > </p>
-      <div class="edit-info">
-      <label for="mondayHours">Monday Hours:</label>
-      <input
-        id="mondayHours"
-        v-model.trim="monday_hours"
-        type="text"
-        name="mondayHours"
-        placeholder="Monday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="tuesdayHours">Tuesday Hours:</label>
-      <input
-        id="tuesdayHours"
-        v-model.trim="tuesday_hours"
-        type="text"
-        name="tuesdayHours"
-        placeholder="Tuesday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="wednesdayHours">Wednesday Hours:</label>
-      <input
-        id="wednesdayHours"
-        v-model.trim="wednesday_hours"
-        type="text"
-        name="wednesdayHours"
-        placeholder="Wednesday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="thursdayHours">Thursday Hours:</label>
-      <input
-        id="thursdayHours"
-        v-model.trim="thursday_hours"
-        type="text"
-        name="thursdayHours"
-        placeholder="Thursday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="fridayHours">Friday Hours:</label>
-      <input
-        id="fridayHours"
-        v-model.trim="friday_hours"
-        type="text"
-        name="fridayHours"
-        placeholder="Friday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="saturdayHours">Saturday Hours:</label>
-      <input
-        id="saturdayHours"
-        v-model.trim="saturday_hours"
-        type="text"
-        name="saturdayHours"
-        placeholder="Saturday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <label for="sundayHours">Sunday Hours:</label>
-      <input
-        id="sundayHours"
-        v-model.trim="sunday_hours"
-        type="text"
-        name="sundayHours"
-        placeholder="Sunday Hours"
-      />
-      </div>
-      <div class="edit-info">
-      <button v-on:click="cancelChanges"> Cancel Changes</button>
-      <button v-on:click="saveChanges">Save Changes</button>
-      </div>
-    </div>
+        ></b-form-textarea>
 
-    <div class="container" v-else>
-      <p> Status: {{business.status}} </p>
-      <p> Business Type: {{business.type}} </p>
-      <p> Description: {{business.description}} </p>
-      <p> Email: {{business.email}} </p>
-      <p> Monday Hours: {{business.monday_hours}} </p>
-      <p> Tuesday Hours: {{business.tuesday_hours}} </p>
+        <b-form-group
+          label-cols-sm="4"
+          label="Business Type: "
+          label-for="businessType">
+          <b-form-select
+            id="businessType"
+            v-model.trim="type"
+            :options="possibleTypes"
+          ></b-form-select>
+        </b-form-group>
 
-      <p> Wednesday Hours: {{business.wednesday_hours}} </p>
-      <p> Thursday Hours: {{business.thursday_hours}} </p>
-      <p> Friday Hours: {{business.friday_hours}} </p>
-      <p> Saturday Hours: {{business.saturday_hours}} </p>
-      <p> Sunday Hours: {{business.sunday_hours}} </p>
-      <p> Address: {{business.address}} </p>
+        <b-form-group
+          label-cols-sm="4"
+          label="Status: "
+          label-for="status"
+          class="mt-1">
+          <b-form-select
+            id="status"
+            v-model.trim="status"
+            :options="possibleStatuses"
+          ></b-form-select>
+        </b-form-group>
 
-      <p> Phone: {{business.phone}} </p>
-      <button v-on:click="editBusinessInfo">Edit business info</button>
-    </div>
+        <u>Contact</u>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Address: "
+          label-for="address">
+          <b-form-input
+            id="address"
+            v-model="address"
+            placeholder="Enter new address"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Phone: "
+          label-for="phone">
+          <b-form-input
+            id="phone"
+            v-model="phone"
+            placeholder="Enter new number"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Email: "
+          label-for="email">
+          <b-form-input
+            id="email"
+            v-model="email"
+            placeholder="Enter new email"
+          ></b-form-input>
+        </b-form-group>
+
+        <u>Hours</u>
+        <b-form-group
+          label-cols-sm="4"
+          label="Monday: "
+          label-for="mondayHours">
+          <b-form-input
+            id="mondayHours"
+            v-model="monday_hours"
+            placeholder="Enter Monday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Tuesday: "
+          label-for="tuesdayHours">
+          <b-form-input
+            id="tuesdayHours"
+            v-model="tuesday_hours"
+            placeholder="Enter Tuesday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Wednesday: "
+          label-for="wednesdayHours">
+          <b-form-input
+            id="wednesdayHours"
+            v-model="wednesday_hours"
+            placeholder="Enter Wednesday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Thursday: "
+          label-for="thursdayHours">
+          <b-form-input
+            id="thursdayHours"
+            v-model="thursday_hours"
+            placeholder="Enter Thursday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Friday: "
+          label-for="fridayHours">
+          <b-form-input
+            id="fridayHours"
+            v-model="friday_hours"
+            placeholder="Enter Friday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Saturday: "
+          label-for="saturdayHours">
+          <b-form-input
+            id="saturdayHours"
+            v-model="saturday_hours"
+            placeholder="Enter Saturday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label-cols-sm="4"
+          label="Sunday: "
+          label-for="sundayHours">
+          <b-form-input
+            id="sundayHours"
+            v-model="sunday_hours"
+            placeholder="Enter Sunday hours"
+          ></b-form-input>
+        </b-form-group>
+
+        <div class="edit-info">
+
+        <b-row class="mt-4" >
+          <b-button class="ml-3" v-on:click="cancelChanges"> Cancel Changes</b-button>
+          <b-button class="ml-2" v-on:click="saveChanges">Save Changes</b-button>
+        </b-row>
+        </div>
+      </div>
+
+      <div v-else>
+        <b-card-sub-title>{{ business.description }}</b-card-sub-title><br>
+        <p> Business Type: {{business.type}} </p>
+        <p> Status: {{business.status}} </p>
+        
+        
+        <p><u> Contact </u> </p>
+        Address: {{business.address}} <br>
+        Phone: {{business.phone}} <br>
+        Email: {{business.email}} <br><br>
+
+        <p><u> Hours </u></p>
+        Monday: {{business.monday_hours}} <br>
+        Tuesday: {{business.tuesday_hours}} <br>
+        Wednesday: {{business.wednesday_hours}} <br>
+        Thursday: {{business.thursday_hours}} <br>
+        Friday: {{business.friday_hours}}<br>
+        Saturday: {{business.saturday_hours}} <br>
+        Sunday: {{business.sunday_hours}} <br>
+        
+        <b-button class="mt-4" v-on:click="editBusinessInfo">Edit business info</b-button>
+      </div>
+
+    </b-card>
   </div>
 </template>
 
