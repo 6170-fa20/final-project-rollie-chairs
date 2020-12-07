@@ -64,8 +64,11 @@ export default {
         .post("/api/account/SignIn", bodyContent)
         .then((res) => {
           // handle success
-
-          eventBus.$emit("signin-success", res.data.businessID);
+          /*const payload={
+            userID:res.data.id,
+            businessID: res.data.businessID
+          };*/
+          eventBus.$emit("signin-success", res.data.id);
         })
         .catch((err) => {
           // handle error
@@ -75,7 +78,7 @@ export default {
         .then(() => {
           // always executed
           this.resetForm();
-          this.clearMessages();
+         
         });
     },
     resetForm: function () {
