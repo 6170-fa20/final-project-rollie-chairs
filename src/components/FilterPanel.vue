@@ -1,5 +1,5 @@
 <template>
-  <div id="filter-form">
+  <div id="filter-form" class="mt-3">
     <b>Filter by:</b><br>
     <div id="filter-inputs">
       Status
@@ -14,51 +14,19 @@
         :options="possibleTypes"
       ></b-form-select>
     </div>
-  <!--   <form
-      id="filterForm"
-      class="component"
-      v-on:submit.prevent="filter"
-      method="post"
-    >
-   <label for="status">Status</label><br>
+  
+    <b-button class="mb-5" v-on:click.prevent="filter">Filter</b-button><br>
 
-      <select
-        name="status"
-        id="status"
-        v-model.trim="status"
-        type="text"
-        placeholder="Status"
-        required
-      >
-        <option
-          v-for="stat in possibleStatuses"
-          v-bind:key="stat"
-          v-bind:value="stat"
-        >
-          {{ stat }}
-        </option>
-      </select><br>
-      <label for="businessType">Business Type</label>
 
-      <select
-        name="businessType"
-        id="businessType"
-        v-model.trim="businessType"
-        type="text"
-        placeholder="Business Type"
-        required
-      >
-        <option
-          v-for="bType in possibleTypes"
-          v-bind:key="bType"
-          v-bind:value="bType"
-        >
-          {{ bType }}
-        </option>
-      </select><br>
-      
-    </form> -->
-    <b-button v-on:click.prevent="filter">Filter</b-button>
+    <b>Sort by metric:</b><br>
+    <div id="filter-inputs">
+      <b-form-checkbox-group
+        v-model="metrics"
+        :options="possibleMetrics"
+      ></b-form-checkbox-group>
+    </div>
+  
+    <b-button v-on:click.prevent="filter">Sort</b-button>
   </div>
 </template>
 
@@ -71,15 +39,18 @@ export default {
     return {
       status:"",
       type:"",
+      metrics:[],
       errors: [],
       possibleStatuses: [],
       possibleTypes: [],
+      possibleMetrics: [], //["All"],
       success: "",
     };
   },
   mounted: function () {
     this.loadStatuses();
     this.loadBusinessTypes();
+    this.loadMetrics();
   },
   methods: {
     loadStatuses: function () {
@@ -90,6 +61,11 @@ export default {
     loadBusinessTypes: function () {
       axios.get("/api/business/types").then((response) => {
         this.possibleTypes = response.data;
+      });
+    },
+    loadMetrics: function() {
+      axios.get("/api/metrics/list/general").then(response => {
+        this.possibleMetrics = this.possibleMetrics.concat(response.data);
       });
     },
     filter: function(){

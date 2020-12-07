@@ -9,16 +9,7 @@
         {{ error }}
       </div>
 
-      <!-- <div class="container">  
-        <div>
-            <Metric
-            v-for="metric in metrics"
-            v-bind:key="metric.metric_id"
-            v-bind:metric="metric"
-            />
-        </div>
-      </div> -->
-      <div class="business-container">
+      <div class="metric-container">
         <b-list-group>
           <b-list-group-item v-for="metric in metrics" v-bind:key="metric.metric_id">
             <Metric v-bind:metric="metric"/>

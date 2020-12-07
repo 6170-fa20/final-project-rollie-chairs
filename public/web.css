@@ -116,6 +116,12 @@
   justify-content: flex-start;
 }*/
 
+.metric-container {
+  height: 550px;
+  overflow: auto;
+}
+
+
 /**************************** NAV BAR STYLES ************************/
 .nav-bar{
   background-color: #d7c5e3;
