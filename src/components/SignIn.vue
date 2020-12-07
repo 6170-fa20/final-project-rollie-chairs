@@ -61,7 +61,7 @@ export default {
         password: this.form.password,
       };
       axios
-        .post("/api/account/SignIn", bodyContent)
+        .post("/api/account/signin", bodyContent)
         .then((res) => {
           // handle success
           

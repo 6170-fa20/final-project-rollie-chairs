@@ -45,7 +45,7 @@ router.post(
  * @name POST /api/account/SignIn
  */
 router.post(
-  '/SignIn', [
+  '/signin', [
   v.ensureUserNotLoggedIn,
   v.ensureValidUsernameInBody,
   v.ensureValidPasswordInBody

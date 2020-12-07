@@ -178,8 +178,10 @@
         Friday: {{business.friday_hours}}<br>
         Saturday: {{business.saturday_hours}} <br>
         Sunday: {{business.sunday_hours}} <br>
+        <div v-if="correctBusiness"> 
+          <b-button class="mt-4" v-on:click="editBusinessInfo">Edit business info</b-button>
+        </div>
         
-        <b-button class="mt-4" v-on:click="editBusinessInfo">Edit business info</b-button>
       </div>
 
     </b-card>
@@ -212,7 +214,8 @@ export default {
       saturday_hours:"",
       sunday_hours:"",
       possibleStatuses: [],
-      possibleTypes: []
+      possibleTypes: [],
+      correctBusiness: false
     };
   },
   props: {
@@ -223,6 +226,7 @@ export default {
     this.loadStatuses();
     this.loadBusinessTypes();
     this.getBusiness();
+    this.correctBusiness=this.businessID.toString()===this.$cookie.get('business-auth');
   },
 
   methods: {
@@ -247,7 +251,10 @@ export default {
         }); 
     },
     editBusinessInfo: function(){
-      this.editing = true;
+      
+        this.editing = true;
+      
+      
     },
     
     cancelChanges: function(){
