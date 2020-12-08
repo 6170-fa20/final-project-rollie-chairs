@@ -5,9 +5,11 @@
         <b>{{ business.name}} </b><br>
       </router-link>
       <p><i>{{ business.description }}</i></p>
-      <p>Safety Rating: {{ score }} </p>
+      <p><b>Safety Rating: {{ score }}</b></p>
       <p> Business Type: {{business.type}} </p>
-      <p> Status: {{business.status}} </p>
+      <div v-if="business.status">
+        <p>Status: {{ business.status }}</p>
+      </div>
     </div>
   </div>
 </template>

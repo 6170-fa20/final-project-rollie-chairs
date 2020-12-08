@@ -162,7 +162,9 @@
         <b-card-sub-title>{{ business.description }}</b-card-sub-title
         ><br />
         <p>Business Type: {{ business.type }}</p>
-        <p>Status: {{ business.status }}</p>
+        <div v-if="business.status">
+          <p>Status: {{ business.status }}</p>
+        </div>
 
         <p><u> Contact </u></p>
         Address: {{ business.address }} <br />
