@@ -113,5 +113,6 @@ async mounted() {
 width: 1000px;
 height: 600px;
 max-height: none;
+margin: auto;
 }
 </style>
