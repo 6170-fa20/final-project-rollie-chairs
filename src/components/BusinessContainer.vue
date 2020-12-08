@@ -3,7 +3,6 @@
     <!-- <div class="headers profile-headers">
       Browse Businesses
     </div> -->
-
     <div>
       <div v-if='success' class="success-message">
         {{ success }}
@@ -57,6 +56,10 @@ export default {
       {this.searchBusinesses(name)});
     eventBus.$on("filter-submit", (filters) => {
       this.filterBusinesses(filters)});
+    eventBus.$on("sort-submit", (metrics) => {
+      this.loadScores(metrics);
+      // this.sortBusinesses()
+    });
     eventBus.$on("resetBusinesses", () => {
       this.search = undefined;
       this.clearFilters();
@@ -101,6 +104,47 @@ export default {
       }
       
       this.success = this.businesses.length === 0?"No businesses match those filters": "Here are the businesses that match those filters";
+    },
+    loadScores: function(metrics){
+      let promises = [];
+      for (let business of this.businesses) {
+        promises.push(
+          axios.get(`/api/metrics/${business.id}`).then(response => {
+            let remaining_metrics = response.data;
+
+            if (metrics != "Total COVID Safety Rating") {
+              remaining_metrics = remaining_metrics.filter(metric => metrics.includes(metric.metric));
+            }
+            
+            let allScores = remaining_metrics.map(metric => metric.confirms/(metric.confirms + metric.denies));
+            let totalScore = allScores.reduce((acc, current) => acc + current)*100/remaining_metrics.length;
+            business.score =  Math.round(totalScore);
+            console.log(business);
+          })
+        )
+        
+      }
+      Promise.all(promises).then(() => this.sortBusinesses());
+      // this.businesses.sort(function (a, b) {
+      //   return a.score - b.score;
+      // });
+      // this.success = "Here are the businesses, sorted by your priorities";
+    },
+    sortBusinesses: function(){
+      this.businesses = this.businesses.sort(function (a, b) {
+        if(isNaN(a.score) && !isNaN(b.score)){
+          return 1;
+        } else if(isNaN(b.score) && !isNaN(a.score)){
+          return -1;
+        } else if (a.score > b.score) {
+          return -1;
+        } else if (a.score < b.score) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.success = "Here are the businesses, sorted by your priorities";
     },
     clearFilters: function(){
       this.businesses = this.originalBusinesses;
