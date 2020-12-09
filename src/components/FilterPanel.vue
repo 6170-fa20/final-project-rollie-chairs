@@ -18,15 +18,19 @@
     <b-button class="mb-5" v-on:click.prevent="filter">Filter</b-button><br>
 
 
-    <b>Sort by metric:</b><br>
+    <b>Prioritize by:</b><br>
     <div id="filter-inputs">
-      <b-form-checkbox-group
+      <!-- <b-form-checkbox-group
         v-model="metrics"
         :options="possibleMetrics"
-      ></b-form-checkbox-group>
+      ></b-form-checkbox-group> -->
+      <b-form-select
+        v-model="metrics"
+        :options="possibleMetrics"
+      ></b-form-select>
     </div>
   
-    <b-button v-on:click.prevent="filter">Sort</b-button>
+    <b-button v-on:click.prevent="sort">Sort</b-button>
   </div>
 </template>
 
@@ -41,9 +45,9 @@ export default {
       type:"",
       metrics:[],
       errors: [],
-      possibleStatuses: [],
-      possibleTypes: [],
-      possibleMetrics: [], //["All"],
+      possibleStatuses: [""],
+      possibleTypes: [""],
+      possibleMetrics: ["Total COVID Safety Rating"],
       success: "",
     };
   },
@@ -55,12 +59,12 @@ export default {
   methods: {
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
-        this.possibleStatuses = response.data;
+        this.possibleStatuses = this.possibleStatuses.concat(response.data);
       });
     },
     loadBusinessTypes: function () {
       axios.get("/api/business/types").then((response) => {
-        this.possibleTypes = response.data;
+        this.possibleTypes = this.possibleTypes.concat(response.data);
       });
     },
     loadMetrics: function() {
@@ -71,6 +75,9 @@ export default {
     filter: function(){
       let filters={type:this.type,status:this.status}
       eventBus.$emit('filter-submit', filters);
+    },
+    sort: function(){
+      eventBus.$emit('sort-submit', this.metrics);
     }
   }
  
