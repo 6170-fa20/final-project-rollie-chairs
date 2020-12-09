@@ -10,7 +10,7 @@
       </div>
       <b-popover target="safety-rating" triggers="hover" placement="top">
         <template #title>How is the COVID Safety Rating determined?</template>
-        We calculate the rating by taking the ratio of confirms / denies for each safety metric, and then averaging those together.
+        We calculate the rating by taking the ratio of <sup>confirms</sup> &#8260; <sub>total votes</sub>  for each safety metric, and then averaging those together.
       </b-popover>
       <p> Business Type: {{business.type}} </p>
       <div v-if="business.status">
