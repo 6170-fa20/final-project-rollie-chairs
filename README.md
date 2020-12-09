@@ -43,10 +43,17 @@ then you will find the application at `localhost:8080` in the browser
     * BusinessInfo.vue
     * Home.vue
     * BusinessProfile.vue
+    * BusinessContainer.vue
+    * 
   * models:
-    * Debugged Business.js and metrics.js
+    * ConfirmDeny.js
+    * Debugged Business.js and Metrics.js
+  * db:  
+    * db_config.js.
+      * createConfirmDenyTable()
   * routes:
     * index.js
+    * updated metrics.js
   * Boilerplate code (main.js, web.css, babel.config.js, router.js, etc.)
 * **Noah Zamzow-Schmidt**:
   * models
