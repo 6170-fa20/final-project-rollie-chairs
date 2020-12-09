@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const router = express.Router();
 const Metrics = require('../models/Metrics');
+const ConfirmDeny = require('../models/ConfirmDeny');
 
 
 /**
@@ -56,13 +57,20 @@ router.get('/:businessID', async (req, res) => {
  */
 router.put('/confirmation/:id', async (req, res) => {
 	try{
-		// const oldMetric = await Metrics.findOne(req.params.id);
-		// console.log(metric)
-		const metric = await Metrics.confirm(req.params.id);
-		res.status(200).json(metric).end();
-	} catch(error){
+		const existingConfirmDeny = await ConfirmDeny.findConfirmDeny(req.params.id, req.body.userID);
+		if (existingConfirmDeny){
+			let existingType = existingConfirmDeny.type == "confirm"? "confirmed":"denied";
+			res.status(409).json({error: `Cannot confirm metric because you have already ${existingType} it.`})
+		}else{
+			const oldMetric = await Metrics.findOne(req.params.id);
+			const metric = await Metrics.confirm(req.params.id);
+			const confirm = await ConfirmDeny.addOne(req.params.id, req.body.userID, "confirm");
+			res.status(200).json({success: "You have confirmed this metric!", metric: `${metric}`}).end();
+		}
+	} catch(err){
+		console.log(err);
 		res.status(404).json({
-			error: `Metric ${req.params.id} does not exist.`,
+			error: `Metric ${req.params.id} does not exist. ${err}`,
 		}).end();
 	}
 });
@@ -76,10 +84,17 @@ router.put('/confirmation/:id', async (req, res) => {
  */
 router.put('/refutation/:id', async (req, res) => {
 	try{
-
-	const oldMetric = await Metrics.findOne(req.params.id);
-		const metric = await Metrics.deny(req.params.id);
-		res.status(200).json(metric).end();
+		const existingConfirmDeny = await ConfirmDeny.findConfirmDeny(req.params.id, req.body.userID);
+		if (existingConfirmDeny){
+			let existingType = existingConfirmDeny.type == "confirm"? "confirmed":"denied";
+			res.status(409).json({error: `Cannot deny metric because you have already ${existingType} it.`})
+		}else{
+			const oldMetric = await Metrics.findOne(req.params.id);
+			const metric = await Metrics.deny(req.params.id);
+			const deny = await ConfirmDeny.addOne(req.params.id, req.body.userID, "deny");
+			res.status(200).json(metric).end();
+		}
+		
 	}catch(error){
 		res.status(404).json({
 			error: `Metric ${req.params.id} does not exist.`,
