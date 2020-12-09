@@ -44,7 +44,6 @@ then you will find the application at `localhost:8080` in the browser
     * Home.vue
     * BusinessProfile.vue
     * BusinessContainer.vue
-    * FilterPanel.vue
   * models:
     * ConfirmDeny.js
     * Debugged Business.js and Metrics.js
