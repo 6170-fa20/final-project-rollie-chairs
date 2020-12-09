@@ -87,7 +87,7 @@ export default {
     };
   },
   created: function () {
-    let authenticated = this.$cookie.get("scope-auth");
+    let authenticated = this.$cookie.get("scope-auth") || this.$cookie.get("business-auth");
     if (authenticated) {
       this.isSignedIn = true;
     }

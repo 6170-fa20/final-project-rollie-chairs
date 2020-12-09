@@ -31,7 +31,11 @@ const columnNames = {
     userPassword: "password",
     userEmail: "email",
     userType: "type",
-    businessUserID:"businessID"
+    businessUserID:"businessID",
+    confirmDenyID: "confirm_deny_ID",
+    confirmDenyOwner: "owner",
+    confirmDenyType: "type"
+
   };
   Object.freeze(columnNames);
 
@@ -41,6 +45,7 @@ function createDb() {
       createBusinessTable();
       createMetricTable();
       createUserTable();
+      createConfirmDenyTable();
     });
   };
 
@@ -71,7 +76,8 @@ function createMetricTable(){
     ${columnNames.metricName} TEXT NOT NULL,
     ${columnNames.metricOwner} INTEGER NOT NULL,
     ${columnNames.metricConfirms} INTEGER,
-    ${columnNames.metricDenies} INTEGER
+    ${columnNames.metricDenies} INTEGER,
+    FOREIGN KEY(${columnNames.metricOwner}) REFERENCES businesses(${columnNames.businessId})
     )`);
   };
 
@@ -84,6 +90,17 @@ function createMetricTable(){
       ${columnNames.userEmail} TEXT NOT NULL UNIQUE,
       ${columnNames.userType} TEXT NOT NULL,
       ${columnNames.businessUserID} TEXT NOT NULL
+  )`);
+};
+
+function createConfirmDenyTable(){
+  sqlDb.run(`CREATE TABLE IF NOT EXISTS confirmsDenies (
+  ${columnNames.confirmDenyID} INTEGER PRIMARY KEY AUTOINCREMENT,
+  ${columnNames.metricId} INTEGER NOT NULL,
+  ${columnNames.confirmDenyOwner} INTEGER NOT NULL,
+  ${columnNames.confirmDenyType} TEXT NOT NULL,
+  FOREIGN KEY(${columnNames.metricId}) REFERENCES metrics(${columnNames.metricId}),
+  FOREIGN KEY(${columnNames.confirmDenyOwner}) REFERENCES users(${columnNames.userID})
   )`);
 };
 
