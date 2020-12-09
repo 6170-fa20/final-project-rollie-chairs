@@ -45,8 +45,8 @@ export default {
       type:"",
       metrics:[],
       errors: [],
-      possibleStatuses: [],
-      possibleTypes: [],
+      possibleStatuses: [""],
+      possibleTypes: [""],
       possibleMetrics: ["Total COVID Safety Rating"],
       success: "",
     };
@@ -59,12 +59,12 @@ export default {
   methods: {
     loadStatuses: function () {
       axios.get("/api/business/statuses").then((response) => {
-        this.possibleStatuses = response.data;
+        this.possibleStatuses = this.possibleStatuses.concat(response.data);
       });
     },
     loadBusinessTypes: function () {
       axios.get("/api/business/types").then((response) => {
-        this.possibleTypes = response.data;
+        this.possibleTypes = this.possibleTypes.concat(response.data);
       });
     },
     loadMetrics: function() {

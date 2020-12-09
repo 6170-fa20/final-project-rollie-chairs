@@ -3,6 +3,7 @@
     <!-- <div class="headers profile-headers">
       Browse Businesses
     </div> -->
+    
     <div>
       <div v-if='success' class="success-message">
         {{ success }}
