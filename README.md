@@ -49,9 +49,12 @@ then you will find the application at `localhost:8080` in the browser
     * index.js
   * Boilerplate code (main.js, web.css, babel.config.js, router.js, etc.)
 * **Noah Zamzow-Schmidt**:
+  * db
+    * added User Database
   * models
-    * business.js
+    * Business.js
       * findLocs
+    * User.js
   * public:
     * javascripts
       * services.js
