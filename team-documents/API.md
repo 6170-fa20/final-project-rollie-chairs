@@ -124,3 +124,60 @@ router.put('/confirmation/:id', async (req, res) => {
  */  
 router.put('/refutation/:id', async (req, res) => {
 });
+
+# accounts.js  
+/**
+  * Create an account
+  * @name POST /api/account
+  * @return {User} the newly created user object with a 201  status
+  * @throws {400} if the username already exists or is empty
+  */
+  router.post(
+    '/',
+    [v.ensureValidUsernameInBody,
+    v.ensureValidPasswordInBody,
+    v.ensureValidEmailInBody],
+    async (req, res) => {
+    });
+
+/**
+  * login an account
+  * @name POST /api/account/SignIn
+  * @return {User} the newly signed in user object with a 201  status
+  * @throws {404} if the username does not exist
+  * @throws {401} if the password is incorrect
+  * @throws {503} other signin issues
+  */
+  router.post(
+    '/signin', [
+    v.ensureUserNotLoggedIn,
+    v.ensureValidUsernameInBody,
+    v.ensureValidPasswordInBody
+  ],
+    async (req, res) => {
+    });
+
+/**
+  * Change password for user
+  * @name PUT /api/account/
+  * @return {User} the updated user in user object with a 201 status
+  * @throws {503} if the password can not be changed
+  */
+  router.put(
+    '/',
+    [v.ensureUserLoggedIn,
+      v.ensureValidPasswordInBody],
+    async (req, res) => {
+    });
+
+/**
+  * Sign out a user
+  * @name DELETE /api/account
+  * @return a 201 status if successful signout
+  * @throws {503} if the user could not signout
+  */
+  router.delete(
+    '/',
+    [v.ensureUserLoggedIn],
+    async (req, res) => {
+    });
