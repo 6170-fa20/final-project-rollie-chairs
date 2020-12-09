@@ -44,7 +44,6 @@ then you will find the application at `localhost:8080` in the browser
     * Home.vue
     * BusinessProfile.vue
     * BusinessContainer.vue
-    * 
   * models:
     * ConfirmDeny.js
     * Debugged Business.js and Metrics.js
@@ -84,4 +83,9 @@ then you will find the application at `localhost:8080` in the browser
       * createMetricTable()
   * src:  
     * components/BusinessListing.vue  
+    * components/FilterPanel.vue
     * views/Home.vue
+  * styling:
+    * home page
+    * business profile page
+    * navigation bar
