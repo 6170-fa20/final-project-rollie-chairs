@@ -1,0 +1,150 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    --main-color: blue;
+    background-color: #EFEFEF;
+    color: #142664;
+  }
+
+/********************* Styles for Headers/Titles/Etc. *********************/
+  .headers {
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .secondary-header {
+    font-size: 2em;
+    margin-bottom: 1%;
+    font-weight: bold;
+  } 
+
+  .profile-headers {
+    font-size: 3em;
+    margin-bottom: 0%;
+    text-decoration: underline;
+    
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #142664 !important;
+}
+
+/**************************** HOME VIEW STYLES ************************/
+
+.home {
+  background-color: #EFEFEF;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+}
+
+.container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.business-container {
+  height: 700px;
+  overflow: auto;
+}
+
+.filter-panel {
+  background-color: lightgrey;
+  padding: .5%;
+
+}
+
+#filter-form {
+  margin:5px;
+  /*color: white;*/
+}
+
+#filter-inputs {
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+
+/**************************** BUSINESS PROFILE VIEW STYLES ************************/
+/*.business-profile-name {
+  display: flex;
+}
+.business-profile-picture {
+  display: flex;
+  flex-direction: row;
+  border: solid black
+}
+.business-profile-info {
+  display: flex;
+  flex-direction: column;
+   flex-grow: 1; 
+  justify-content: space-between;
+   align-items: stretch; 
+  border: solid black
+}
+
+.business-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.edit-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+.metric{
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-name{
+  display: flex;
+  flex-direction: row;
+}
+
+.metrics-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}*/
+
+.metric-container {
+  height: 550px;
+  overflow: auto;
+}
+
+
+/**************************** NAV BAR STYLES ************************/
+.nav-bar{
+  background-color: #d7c5e3;
+}
+
+.links-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: right;
+}
+
+#sign-up{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.req{
+  color:red;
+}
+
+.form-group.required .control-label:after { 
+  content:"*";
+  color:red;
+}
